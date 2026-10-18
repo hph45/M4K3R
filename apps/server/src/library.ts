@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, writeFileSync } from "node:fs"
 import { join } from "node:path"
 import { Part, type PartInput } from "@m4k3r/core"
+import { partJson } from "@m4k3r/parts"
 
 export type PartSource = "builtin" | "user"
 
@@ -65,7 +66,7 @@ export class PartLibrary {
     const part = Part.parse(input)
     const dir = join(this.userDir, part.id)
     mkdirSync(dir, { recursive: true })
-    writeAtomic(join(dir, "part.json"), JSON.stringify(part, null, 2) + "\n")
+    writeAtomic(join(dir, "part.json"), partJson(part))
     return part
   }
 }

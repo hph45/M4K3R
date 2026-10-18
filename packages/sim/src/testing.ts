@@ -12,8 +12,8 @@ const extra: Record<string, Part> = {
 }
 
 /**
- * A project from netlist lines, e.g. "R1 resistor IN OUT value=1k":
- * ref, part id (library or vsource), one net per pin in pin order, then props.
+ * A project from netlist lines, e.g. "R1 resistor IN OUT value=1k" or "D1 led A:IN K:GND":
+ * ref, part id (library or vsource), nets in pin order or as PIN:NET, then props.
  */
 export function circuit(...lines: string[]): Project {
   const p = emptyProject("test", "test")
@@ -23,9 +23,10 @@ export function circuit(...lines: string[]): Project {
     const part = (p.parts[partId!] ??= extra[partId!] ?? libraryPart(partId!))
     const props = Object.fromEntries(rest.filter((w) => w.includes("=")).map((w) => w.split("=") as [string, string]))
     const pinNets = rest.filter((w) => !w.includes("="))
+    const named = Object.fromEntries(pinNets.filter((w) => w.includes(":")).map((w) => w.split(":") as [string, string]))
     p.components.push({ id: ref!, ref: ref!, part: part.id, props: { ...part.props, ...props } })
     part.pins.forEach((pin, i) => {
-      const name = pinNets[i]
+      const name = Object.keys(named).length ? named[pin.name] : pinNets[i]
       if (!name || name === "-") return
       if (!nets.has(name)) nets.set(name, { id: name, name, pins: [] })
       nets.get(name)!.pins.push({ component: ref!, pin: pin.num })

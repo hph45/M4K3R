@@ -1,6 +1,7 @@
 {
   "id": "dc-motor",
   "name": "DC motor",
+  "description": "",
   "category": "electromechanical",
   "refPrefix": "M",
   "pins": [
@@ -20,7 +21,180 @@
     "noLoadRpm": "300",
     "stallCurrent": "1.5A"
   },
+  "symbol": {
+    "source": "KiCad Motor:Motor_DC",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "poly",
+            "pts": [
+              [-1.27, 3.302],
+              [-1.27, -0.508],
+              [0, 2.032],
+              [1.27, -0.508],
+              [1.27, 3.302]
+            ],
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [0, -2.032],
+              [0, -2.54]
+            ],
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [0, -1.7272],
+              [0, -2.0828]
+            ],
+            "width": 0
+          },
+          {
+            "type": "circle",
+            "center": [0, 1.524],
+            "radius": 3.2512,
+            "width": 0.254
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [0, 4.7752],
+              [0, 5.1816]
+            ],
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [0, 7.62],
+              [0, 7.112]
+            ],
+            "width": 0
+          },
+          {
+            "type": "text",
+            "text": "${REFERENCE}",
+            "at": [2.54, -2.54],
+            "size": 1.27
+          },
+          {
+            "type": "text",
+            "text": "${VALUE}",
+            "at": [2.54, 5.08],
+            "size": 1.27
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [0, -5.08],
+            "rot": 270,
+            "length": 2.54
+          },
+          {
+            "num": "2",
+            "at": [0, 7.62],
+            "rot": 90,
+            "length": 2.54
+          }
+        ]
+      }
+    ],
+    "pinNameOffset": 0
+  },
+  "footprint": {
+    "source": "KiCad Connector_Wire:SolderWire-0.5sqmm_1x02_P4.8mm_D0.9mm_OD2.3mm",
+    "pads": [
+      {
+        "num": "1",
+        "type": "thru_hole",
+        "shape": "roundrect",
+        "at": [0, 0],
+        "size": [2.3, 2.3],
+        "drill": [1.15, 1.15],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ],
+        "roundness": 0.108696
+      },
+      {
+        "num": "2",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [4.8, 0],
+        "size": [2.3, 2.3],
+        "drill": [1.15, 1.15],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      }
+    ],
+    "graphics": [
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [2.4, -2.35],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "${VALUE}",
+        "at": [2.4, 2.35],
+        "size": 1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "rect",
+        "start": [-1.9, -1.65],
+        "end": [1.9, 1.65],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "rect",
+        "start": [2.9, -1.65],
+        "end": [6.7, 1.65],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "circle",
+        "center": [0, 0],
+        "radius": 1.15,
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "circle",
+        "center": [4.8, 0],
+        "radius": 1.1500000000000004,
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [2.4, 0],
+        "size": 0.82,
+        "rot": 90,
+        "layer": "F.Fab"
+      }
+    ],
+    "courtyard": {
+      "min": [-1.9, -1.65],
+      "max": [6.7, 1.65]
+    }
+  },
+  "model3d": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/Connector_Wire.3dshapes/SolderWire-0.5sqmm_1x02_P4.8mm_D0.9mm_OD2.3mm.step",
   "sim": {
-    "model": "dc-motor"
+    "model": "dc-motor",
+    "params": {}
   }
 }

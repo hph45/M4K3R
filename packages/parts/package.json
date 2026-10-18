@@ -1,0 +1,19 @@
+{
+  "name": "@m4k3r/parts",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./node": "./src/node.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p .",
+    "builtins": "tsx scripts/builtins.ts"
+  },
+  "dependencies": {
+    "@m4k3r/core": "workspace:*"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}

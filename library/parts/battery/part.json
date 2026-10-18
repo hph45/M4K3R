@@ -1,6 +1,7 @@
 {
   "id": "battery",
   "name": "Battery",
+  "description": "",
   "category": "power",
   "refPrefix": "BT",
   "pins": [
@@ -20,7 +21,378 @@
     "voltage": "3.7V",
     "capacity": "1000mAh"
   },
+  "symbol": {
+    "source": "KiCad Device:Battery_Cell",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "rect",
+            "start": [-2.286, -1.778],
+            "end": [2.286, -1.524],
+            "width": 0,
+            "fill": "outline"
+          },
+          {
+            "type": "rect",
+            "start": [-1.524, -1.016],
+            "end": [1.524, -0.508],
+            "width": 0,
+            "fill": "outline"
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [0, -1.778],
+              [0, -2.54]
+            ],
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [0, -0.762],
+              [0, 0]
+            ],
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [0.762, -3.048],
+              [1.778, -3.048]
+            ],
+            "width": 0.254
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [1.27, -3.556],
+              [1.27, -2.54]
+            ],
+            "width": 0.254
+          },
+          {
+            "type": "text",
+            "text": "${REFERENCE}",
+            "at": [2.54, -2.54],
+            "size": 1.27
+          },
+          {
+            "type": "text",
+            "text": "${VALUE}",
+            "at": [2.54, 0],
+            "size": 1.27
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [0, -5.08],
+            "rot": 270,
+            "length": 2.54
+          },
+          {
+            "num": "2",
+            "at": [0, 2.54],
+            "rot": 90,
+            "length": 2.54
+          }
+        ]
+      }
+    ],
+    "pinNameOffset": 0,
+    "hidePinNames": true,
+    "hidePinNumbers": true
+  },
+  "footprint": {
+    "source": "KiCad Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical",
+    "pads": [
+      {
+        "num": "1",
+        "type": "thru_hole",
+        "shape": "roundrect",
+        "at": [0, 0],
+        "size": [1.2, 1.75],
+        "drill": [0.75, 0.75],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ],
+        "roundness": 0.208333
+      },
+      {
+        "num": "2",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [2, 0],
+        "size": [1.2, 1.75],
+        "drill": [0.75, 0.75],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      }
+    ],
+    "graphics": [
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [1, -2.9],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "${VALUE}",
+        "at": [1, 4],
+        "size": 1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-2.36, -2.11],
+          [-2.36, -0.86]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-2.06, -0.5],
+          [-1.45, -0.5]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-2.06, 0.8],
+          [-1.45, 0.8]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.45, -1.2],
+          [-1.45, 2.3]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.45, 2.3],
+          [3.45, 2.3]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.11, -2.11],
+          [-2.36, -2.11]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.6, -2.01],
+          [-0.6, -1.81]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.3, -2.01],
+          [-0.6, -2.01]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.3, -1.91],
+          [-0.6, -1.91]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.3, -1.81],
+          [-0.3, -2.01]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [0.5, -1.81],
+          [0.5, -1.2]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [0.5, -1.2],
+          [-1.45, -1.2]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [0.9, 1.8],
+          [1.1, 1.8]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [0.9, 2.3],
+          [0.9, 1.8]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [1, 2.3],
+          [1, 1.8]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [1.1, 1.8],
+          [1.1, 2.3]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [1.5, -1.2],
+          [1.5, -1.81]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [3.45, -1.2],
+          [1.5, -1.2]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [3.45, 2.3],
+          [3.45, -1.2]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [4.06, -0.5],
+          [3.45, -0.5]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [4.06, 0.8],
+          [3.45, 0.8]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "rect",
+        "start": [-2.06, -1.81],
+        "end": [4.06, 2.91],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "rect",
+        "start": [-2.45, -2.2],
+        "end": [4.45, 3.3],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-2.36, -2.11],
+          [-2.36, -0.86]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.11, -2.11],
+          [-2.36, -2.11]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "rect",
+        "start": [-1.95, -1.7],
+        "end": [3.95, 2.8],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [1, 1.5],
+        "size": 1,
+        "layer": "F.Fab"
+      }
+    ],
+    "courtyard": {
+      "min": [-2.45, -2.2],
+      "max": [4.45, 3.3]
+    }
+  },
+  "model3d": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/Connector_JST.3dshapes/JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical.step",
   "sim": {
-    "model": "battery"
+    "model": "battery",
+    "params": {}
   }
 }

@@ -56,11 +56,23 @@ Domains add their own commands (`cad.*`, `schematic.*`, …). `GET /api/commands
 | GET | `/api/parts?q=` | Search the built-in and user libraries |
 | GET | `/api/parts/:id` | |
 | PUT | `/api/parts/:id` | Create or replace a part in the user library |
+| POST | `/api/parts/import` | Import a KiCad part into the user library (see below). Returns `{ part, warnings }`. |
+| GET | `/api/kicad/symbols?lib=&q=` | Search symbol names in a KiCad library, or list libraries when `lib` is omitted |
+| GET | `/api/kicad/footprints?lib=&q=` | Same for footprints |
 | WS | `/ws` | Send `{ subscribe: id }`. Receive `{ project, version, patches }`. |
 | GET | `/api/projects/:id/firmware/:doc/pins.h` | The generated pin header |
 | POST | `/api/projects/:id/firmware/:doc/build` | `{ ok, hash, diagnostics, size, artifacts }`. See [firmware.md](firmware.md). |
 | GET | `/api/projects/:id/firmware/:doc/build/:hash/firmware.uf2` | Also `firmware.elf` |
 | POST | `/api/projects/:id/firmware/:doc/run` | `{ ms }` → `{ ok, serial, gpio, simulatedMs, wallMs }`, or `{ ok: false, diagnostics }` |
+
+```jsonc
+POST /api/parts/import
+{ "symbol": "Driver_Motor:DRV8833PWP", "id": "drv8833", "overrides": { "category": "driver" } }
+```
+
+`symbol` is a `Library:Name` from the official KiCad libraries, or the contents of a `.kicad_sym` file (add `name` if it has several symbols).
+`footprint` works the same way with `.kicad_mod` files. It defaults to the symbol's own footprint; pass `null` for none.
+Pin alternates become pin `functions`. `warnings` lists pins without pads and pads without pins.
 
 ## MCP tools
 
@@ -75,6 +87,8 @@ Each tool is a thin wrapper over an endpoint:
 - `search_parts`
 - `get_part`
 - `save_part`
+- `import_kicad_part`
+- `search_kicad_symbols`, `search_kicad_footprints`
 - `list_commands`
 - `simulate`: the same as the endpoint, returned as compact text (final values plus ~20 points per waveform)
 - `firmware_build`: compile a firmware doc, returns size or diagnostics

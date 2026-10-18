@@ -1,6 +1,7 @@
 {
   "id": "resistor",
   "name": "Resistor",
+  "description": "",
   "category": "passive",
   "refPrefix": "R",
   "pins": [
@@ -19,7 +20,144 @@
     "value": "10k",
     "package": "0603"
   },
+  "symbol": {
+    "source": "KiCad Device:R",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "rect",
+            "start": [-1.016, 2.54],
+            "end": [1.016, -2.54],
+            "width": 0.254
+          },
+          {
+            "type": "text",
+            "text": "${REFERENCE}",
+            "at": [2.032, 0],
+            "size": 1.27,
+            "rot": 90
+          },
+          {
+            "type": "text",
+            "text": "${VALUE}",
+            "at": [0, 0],
+            "size": 1.27,
+            "rot": 90
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [0, -3.81],
+            "rot": 270,
+            "length": 1.27
+          },
+          {
+            "num": "2",
+            "at": [0, 3.81],
+            "rot": 90,
+            "length": 1.27
+          }
+        ]
+      }
+    ],
+    "pinNameOffset": 0,
+    "hidePinNumbers": true
+  },
+  "footprint": {
+    "source": "KiCad Resistor_SMD:R_0603_1608Metric",
+    "pads": [
+      {
+        "num": "1",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-0.825, 0],
+        "size": [0.8, 0.95],
+        "layers": [
+          "F.Cu",
+          "F.Mask",
+          "F.Paste"
+        ],
+        "roundness": 0.25
+      },
+      {
+        "num": "2",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [0.825, 0],
+        "size": [0.8, 0.95],
+        "layers": [
+          "F.Cu",
+          "F.Mask",
+          "F.Paste"
+        ],
+        "roundness": 0.25
+      }
+    ],
+    "graphics": [
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [0, -1.43],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "${VALUE}",
+        "at": [0, 1.43],
+        "size": 1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.237258, -0.5225],
+          [0.237258, -0.5225]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.237258, 0.5225],
+          [0.237258, 0.5225]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "rect",
+        "start": [-1.48, -0.73],
+        "end": [1.48, 0.73],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "rect",
+        "start": [-0.8, -0.4125],
+        "end": [0.8, 0.4125],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [0, 0],
+        "size": 0.4,
+        "layer": "F.Fab"
+      }
+    ],
+    "courtyard": {
+      "min": [-1.48, -0.73],
+      "max": [1.48, 0.73]
+    }
+  },
+  "model3d": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
   "sim": {
-    "model": "resistor"
+    "model": "resistor",
+    "params": {}
   }
 }

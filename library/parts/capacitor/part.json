@@ -1,6 +1,7 @@
 {
   "id": "capacitor",
   "name": "Capacitor",
+  "description": "",
   "category": "passive",
   "refPrefix": "C",
   "pins": [
@@ -19,7 +20,152 @@
     "value": "100n",
     "package": "0603"
   },
+  "symbol": {
+    "source": "KiCad Device:C",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "poly",
+            "pts": [
+              [-2.032, -0.762],
+              [2.032, -0.762]
+            ],
+            "width": 0.508
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [-2.032, 0.762],
+              [2.032, 0.762]
+            ],
+            "width": 0.508
+          },
+          {
+            "type": "text",
+            "text": "${REFERENCE}",
+            "at": [0.635, -2.54],
+            "size": 1.27
+          },
+          {
+            "type": "text",
+            "text": "${VALUE}",
+            "at": [0.635, 2.54],
+            "size": 1.27
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [0, -3.81],
+            "rot": 270,
+            "length": 2.794
+          },
+          {
+            "num": "2",
+            "at": [0, 3.81],
+            "rot": 90,
+            "length": 2.794
+          }
+        ]
+      }
+    ],
+    "pinNameOffset": 0.254,
+    "hidePinNumbers": true
+  },
+  "footprint": {
+    "source": "KiCad Capacitor_SMD:C_0603_1608Metric",
+    "pads": [
+      {
+        "num": "1",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-0.775, 0],
+        "size": [0.9, 0.95],
+        "layers": [
+          "F.Cu",
+          "F.Mask",
+          "F.Paste"
+        ],
+        "roundness": 0.25
+      },
+      {
+        "num": "2",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [0.775, 0],
+        "size": [0.9, 0.95],
+        "layers": [
+          "F.Cu",
+          "F.Mask",
+          "F.Paste"
+        ],
+        "roundness": 0.25
+      }
+    ],
+    "graphics": [
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [0, -1.43],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "${VALUE}",
+        "at": [0, 1.43],
+        "size": 1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.14058, -0.51],
+          [0.14058, -0.51]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.14058, 0.51],
+          [0.14058, 0.51]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "rect",
+        "start": [-1.48, -0.73],
+        "end": [1.48, 0.73],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "rect",
+        "start": [-0.8, -0.4],
+        "end": [0.8, 0.4],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [0, 0],
+        "size": 0.4,
+        "layer": "F.Fab"
+      }
+    ],
+    "courtyard": {
+      "min": [-1.48, -0.73],
+      "max": [1.48, 0.73]
+    }
+  },
+  "model3d": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
   "sim": {
-    "model": "capacitor"
+    "model": "capacitor",
+    "params": {}
   }
 }

@@ -8,10 +8,7 @@ A part is a small folder:
 
 ```
 parts/drv8833/
-  part.json            metadata, pins, parameters, model bindings
-  symbol.kicad_sym
-  footprint.kicad_mod
-  model.step
+  part.json            metadata, pins, symbol, footprint, model bindings
   spice.lib            optional
 ```
 
@@ -23,6 +20,9 @@ parts/drv8833/
     { "num": "1",  "name": "nSLEEP", "type": "input" },
     { "num": "12", "name": "VM",     "type": "power_in", "v": [2.7, 10.8] }
   ],
+  "symbol":    { "source": "KiCad Driver_Motor:DRV8833PWP", "units": [{ "graphics": […], "pins": […] }] },
+  "footprint": { "source": "KiCad Package_SO:HTSSOP-16-…", "pads": […], "graphics": […], "courtyard": {…} },
+  "model3d":   "https://…/HTSSOP-16-….step",
   "sim":   { "model": "h-bridge-drv8833", "params": { "rdsOn": 0.36 } },
   "spice": { "lib": "spice.lib", "subckt": "DRV8833" }
 }
@@ -30,8 +30,20 @@ parts/drv8833/
 
 - **Pin types:** `power_in`, `power_out`, `input`, `output`, `bidir`, `passive`, `open_drain`, `nc`
 - **MCU pins** also list their functions (`GPIO`, `PWM5A`, `SPI0_TX`, `I2C0_SDA`, `ADC0`), which ERC and the firmware tools use
-- **Sources:** symbols, footprints and 3D models are imported from the KiCad libraries. We only write `part.json` and the sim bindings.
+- **Sources:** symbols, footprints and 3D models are imported from the official KiCad libraries by name (`Driver_Motor:DRV8833PWP`) or from `.kicad_sym` / `.kicad_mod` files. Downloads are cached in `M4K3R_HOME/.cache/kicad`.
 - **Generic passives** (R, C, L, LED, diode) are one part each with a value and a package
+- Built-in parts are regenerated from KiCad with `pnpm --filter @m4k3r/parts builtins`. Pin numbers follow KiCad: LEDs and diodes are 1 = K, 2 = A.
+
+### Geometry
+
+Symbol and footprint geometry lives in `part.json`, so vendoring a part into a project copies everything it needs.
+Lengths are in mm with y pointing down; angles are degrees counter-clockwise.
+
+| | Contains |
+|---|---|
+| `symbol` | `units[]`, each with `graphics` and `pins` (`num`, `at` = connection point, `rot` = direction toward the body, `length`, `hidden`). Pin names and types come from `pins`. Also `pinNameOffset`, `hidePinNames`, `hidePinNumbers`. |
+| `footprint` | `pads[]` (`num`, `type`, `shape`, `at`, `rot`, `size`, `drill`, `layers`), `graphics` on silkscreen, fab and courtyard layers, and `courtyard` bounds |
+| `graphics` | `poly`, `rect`, `circle`, `arc` (start, mid, end), and `text`, where `${REFERENCE}` and `${VALUE}` are filled in per component |
 
 ## Schematic
 

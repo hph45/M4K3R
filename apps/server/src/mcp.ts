@@ -9,7 +9,7 @@ import { domains } from "./domains"
 const INSTRUCTIONS = `M4K3R is a hardware design tool (CAD, schematic, PCB, firmware, simulation).
 Every edit is a command applied with apply_commands; the user's browser updates live.
 Pins are addressed as REF.PIN (e.g. U1.GP10). Read wiring with get_netlist before and after edits.
-If a part you need is missing, search_parts first, then define it with save_part (pins, types, MCU pin functions).`
+If a part you need is missing, search_parts first, then import it from KiCad (search_kicad_symbols, import_kicad_part); define it by hand with save_part only as a last resort.`
 
 function build(ctx: DomainContext) {
   const { store, library } = ctx

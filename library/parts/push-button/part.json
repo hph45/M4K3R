@@ -1,9 +1,9 @@
 {
   "id": "push-button",
   "name": "Push button",
+  "description": "Momentary, normally open",
   "category": "electromechanical",
   "refPrefix": "SW",
-  "description": "Momentary, normally open",
   "pins": [
     {
       "num": "1",
@@ -19,6 +19,353 @@
   "props": {
     "package": "6mm-tactile"
   },
+  "symbol": {
+    "source": "KiCad Switch:SW_Push",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "circle",
+            "center": [-2.032, 0],
+            "radius": 0.508,
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [0, -1.27],
+              [0, -3.048]
+            ],
+            "width": 0
+          },
+          {
+            "type": "circle",
+            "center": [2.032, 0],
+            "radius": 0.508,
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [2.54, -1.27],
+              [-2.54, -1.27]
+            ],
+            "width": 0
+          },
+          {
+            "type": "text",
+            "text": "${REFERENCE}",
+            "at": [1.27, -2.54],
+            "size": 1.27
+          },
+          {
+            "type": "text",
+            "text": "${VALUE}",
+            "at": [0, 1.524],
+            "size": 1.27
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [-5.08, 0],
+            "rot": 0,
+            "length": 2.54
+          },
+          {
+            "num": "2",
+            "at": [5.08, 0],
+            "rot": 180,
+            "length": 2.54
+          }
+        ]
+      }
+    ],
+    "pinNameOffset": 1.016,
+    "hidePinNames": true,
+    "hidePinNumbers": true
+  },
+  "footprint": {
+    "source": "KiCad Button_Switch_THT:SW_PUSH_6mm",
+    "pads": [
+      {
+        "num": "1",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [0, 0],
+        "rot": 90,
+        "size": [2, 2],
+        "drill": [1.1, 1.1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "1",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [6.5, 0],
+        "rot": 90,
+        "size": [2, 2],
+        "drill": [1.1, 1.1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "2",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [0, 4.5],
+        "rot": 90,
+        "size": [2, 2],
+        "drill": [1.1, 1.1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "2",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [6.5, 4.5],
+        "rot": 90,
+        "size": [2, 2],
+        "drill": [1.1, 1.1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      }
+    ],
+    "graphics": [
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [3.25, -2],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "${VALUE}",
+        "at": [3.75, 6.7],
+        "size": 1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.25, 1.5],
+          [-0.25, 3]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [1, 5.5],
+          [5.5, 5.5]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [5.5, -1],
+          [1, -1]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [6.75, 3],
+          [6.75, 1.5]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.5, -1.5],
+          [-1.25, -1.5]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.5, -1.25],
+          [-1.5, -1.5]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.5, 5.75],
+          [-1.5, -1.25]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.5, 5.75],
+          [-1.5, 6]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.5, 6],
+          [-1.25, 6]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.25, -1.5],
+          [7.75, -1.5]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [7.75, -1.5],
+          [8, -1.5]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [7.75, 6],
+          [-1.25, 6]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [7.75, 6],
+          [8, 6]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [8, -1.5],
+          [8, -1.25]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [8, -1.25],
+          [8, 5.75]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [8, 6],
+          [8, 5.75]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [0.25, -0.75],
+          [3.25, -0.75]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [0.25, 5.25],
+          [0.25, -0.75]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [3.25, -0.75],
+          [6.25, -0.75]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [6.25, -0.75],
+          [6.25, 5.25]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [6.25, 5.25],
+          [0.25, 5.25]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "circle",
+        "center": [3.25, 2.25],
+        "radius": 2.0155644370746373,
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [3.25, 2.25],
+        "size": 1,
+        "layer": "F.Fab"
+      }
+    ],
+    "courtyard": {
+      "min": [-1.5, -1.5],
+      "max": [8, 6]
+    }
+  },
+  "model3d": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/Button_Switch_THT.3dshapes/SW_PUSH_6mm.step",
   "sim": {
     "model": "button",
     "params": {

@@ -35,7 +35,7 @@ describe("linear", () => {
 
 describe("diodes", () => {
   it("LED current with a series resistor matches the diode equation", () => {
-    const r = simulate(circuit("V1 vsource IN GND voltage=5V", "R1 resistor IN A value=150", "D1 led A GND color=red"), {
+    const r = simulate(circuit("V1 vsource IN GND voltage=5V", "R1 resistor IN A value=150", "D1 led A:A K:GND color=red"), {
       analysis: "op",
     })
     // Solve 5 = I·(150 + rs) + n·Vt·ln(1 + I/Is) by bisection
@@ -55,7 +55,7 @@ describe("diodes", () => {
 
   it("LED color sets the forward voltage, and an explicit vf wins", () => {
     const vf = (props: string) =>
-      simulate(circuit("V1 vsource IN GND voltage=5V", "R1 resistor IN A value=330", `D1 led A GND ${props}`), {
+      simulate(circuit("V1 vsource IN GND voltage=5V", "R1 resistor IN A value=330", `D1 led A:A K:GND ${props}`), {
         analysis: "op",
       }).voltages.A!
     expect(vf("color=blue") - vf("color=red")).toBeGreaterThan(0.8)
@@ -63,12 +63,12 @@ describe("diodes", () => {
   })
 
   it("silicon diode forward voltage is plausible and reverse current is tiny", () => {
-    const fwd = simulate(circuit("V1 vsource IN GND voltage=5V", "R1 resistor IN A value=430", "D1 diode A GND"), {
+    const fwd = simulate(circuit("V1 vsource IN GND voltage=5V", "R1 resistor IN A value=430", "D1 diode A:A K:GND"), {
       analysis: "op",
     })
     expect(fwd.voltages.A).toBeGreaterThan(0.6)
     expect(fwd.voltages.A).toBeLessThan(0.75)
-    const rev = simulate(circuit("V1 vsource IN GND voltage=5V", "R1 resistor IN K value=430", "D1 diode GND K"), {
+    const rev = simulate(circuit("V1 vsource IN GND voltage=5V", "R1 resistor IN K value=430", "D1 diode A:GND K:K"), {
       analysis: "op",
     })
     expect(Math.abs(rev.currents.D1!)).toBeLessThan(1e-7)
@@ -78,10 +78,10 @@ describe("diodes", () => {
     const p = circuit(
       "V1 vsource IN GND voltage=10V",
       "R1 resistor IN A value=1",
-      "D1 diode A GND",
+      "D1 diode A:A K:GND",
       "R2 resistor IN B value=1",
       "C1 capacitor B GND value=1n",
-      "D2 led B GND color=blue",
+      "D2 led A:B K:GND color=blue",
     )
     const op = simulate(p, { analysis: "op" })
     expect(op.currents.D1).toBeGreaterThan(5)

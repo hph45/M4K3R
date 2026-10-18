@@ -184,6 +184,9 @@ importers:
       '@m4k3r/firmware':
         specifier: workspace:*
         version: link:../../packages/firmware
+      '@m4k3r/parts':
+        specifier: workspace:*
+        version: link:../../packages/parts
       '@m4k3r/sim':
         specifier: workspace:*
         version: link:../../packages/sim
@@ -264,6 +267,16 @@ importers:
       zod:
         specifier: ^4.6.7
         version: 4.6.7
+
+  packages/parts:
+    dependencies:
+      '@m4k3r/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      tsx:
+        specifier: ^4.23.15
+        version: 4.23.15
 
   packages/sim:
     dependencies:
