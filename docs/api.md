@@ -52,6 +52,7 @@ Domains add their own commands (`cad.*`, `schematic.*`, …). `GET /api/commands
 | POST | `/api/projects/:id/commands` | Apply a batch |
 | POST | `/api/projects/:id/undo`, `/redo` | |
 | GET | `/api/projects/:id/netlist` | Readable wiring, plus unconnected pins |
+| POST | `/api/projects/:id/simulate` | Run the circuit. See below. |
 | GET | `/api/parts?q=` | Search the built-in and user libraries |
 | GET | `/api/parts/:id` | |
 | PUT | `/api/parts/:id` | Create or replace a part in the user library |
@@ -71,5 +72,25 @@ Each tool is a thin wrapper over an endpoint:
 - `get_part`
 - `save_part`
 - `list_commands`
+- `simulate`: the same as the endpoint, returned as compact text (final values plus ~20 points per waveform)
 
 New capabilities (schematic layout, PCB, CAD, simulation) show up as new commands plus read tools, such as `run_scenario` or `get_erc`. The API's shape stays the same.
+
+## Simulate
+
+```jsonc
+POST /api/projects/:id/simulate
+{ "analysis": "tran", "duration": "200ms", "probes": ["LED", "M1.rpm", "I(BT1)"],
+  "inputs": [{ "t": "50ms", "ref": "SW1", "action": "press" }] }
+→ { "t": 0.2, "voltages": { "VBAT": 4.19, "LED": 2.94 }, "currents": { "BT1": 0.065, … },
+    "views": { "M1": { "rpm": 210, "current": 0.052 }, … },
+    "waveforms": { "time": [0.01, …], "series": { "V(LED)": […], "M1.rpm": […], "I(BT1)": […] } },
+    "warnings": [], "stats": { "steps": 20000, "ms": 12 } }
+```
+
+- `analysis`: `op` (DC operating point) or `tran` (from power-on, with `duration` and optional `step`, default min(10 µs, duration/1000)).
+- Times are seconds or strings like `"50ms"`. Values are SI.
+- `probes`: net names, `V(NET)`, `I(REF)` or `REF.field` from a part's view. Default: every net and part current.
+- `inputs`: buttons take `press`/`release`, switches `A`/`B`/`toggle`.
+- `maxPoints` caps waveform length (default 500).
+- Ground is the net named `GND`. Parts without a sim model are skipped with a warning.

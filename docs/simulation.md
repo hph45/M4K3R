@@ -45,18 +45,25 @@ loop, quantum Δ = 10 µs (sim time):
 
 ### Model API
 
+A model is a factory keyed by `part.sim.model`. It runs once (init) and returns the instance:
+
 ```ts
+type ModelFactory = (ctx: ModelContext) => Model   // ctx: pin(name) → node, num("value") from props then sim.params,
+                                                   //      node()/branch() for internal unknowns, v(node)
 interface Model {
-  init(ctx: ModelContext): void           // declare pins, read params from part.json
-  stamp?(m: Stamper, t: number): void     // analog: add conductances and sources to MNA
-  onPin?(pin: string, level: Logic, t: number): void  // digital: react to input changes
-  step?(t: number, dt: number): void      // advance internal state
-  view?(): unknown                        // what the UI renders (LED glow, motor rpm, OLED pixels)
-  input?(e: UserEvent): void              // user interaction (press a button)
+  nonlinear?: boolean                     // stamp depends on the solution → Newton iterations
+  stamp(s: Stamper): void                 // analog: conductance(), current(), voltage(), add(); s.dt = ∞ at DC
+  step?(t: number, dt: number): void      // advance internal state after an accepted step
+  current?(): number                      // main current through the part
+  view?(): View                           // what the UI renders (LED brightness, motor rpm, battery soc)
+  input?(e: SimInput): void               // user interaction: { t, ref, action: "press" }
+  // later: onPin?(pin, level, t) for digital nets and MCU pin bridges
 }
 ```
 
-Models live in `packages/sim/models/`, one file each, with a unit test against known values.
+Models live in `packages/sim/src/models/`, one file each, tested against analytic results.
+
+**Solver:** dense LU with partial pivoting, refactored only when the matrix changes, so a linear circuit costs one forward/back substitution per step. Newton–Raphson with junction limiting, and gmin stepping if the operating point won't converge. C and L use backward Euler: first-order, but it never rings on switch edges or contact bounce, and the live-sim step is far below circuit time constants. Transients start from rest (capacitors discharged, motors stopped), like powering on.
 
 ### Models needed for v1
 
