@@ -1,0 +1,21 @@
+{
+  "name": "m4k3r",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.14.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @m4k3r/server dev",
+    "build": "pnpm --filter @m4k3r/web build",
+    "start": "pnpm --filter @m4k3r/server start",
+    "test": "vitest run",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}

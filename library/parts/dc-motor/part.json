@@ -1,0 +1,26 @@
+{
+  "id": "dc-motor",
+  "name": "DC motor",
+  "category": "electromechanical",
+  "refPrefix": "M",
+  "pins": [
+    {
+      "num": "1",
+      "name": "1",
+      "type": "passive"
+    },
+    {
+      "num": "2",
+      "name": "2",
+      "type": "passive"
+    }
+  ],
+  "props": {
+    "voltage": "6V",
+    "noLoadRpm": "300",
+    "stallCurrent": "1.5A"
+  },
+  "sim": {
+    "model": "dc-motor"
+  }
+}

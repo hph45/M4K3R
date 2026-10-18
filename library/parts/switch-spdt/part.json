@@ -1,0 +1,26 @@
+{
+  "id": "switch-spdt",
+  "name": "Slide switch (SPDT)",
+  "category": "electromechanical",
+  "refPrefix": "SW",
+  "pins": [
+    {
+      "num": "1",
+      "name": "A",
+      "type": "passive"
+    },
+    {
+      "num": "2",
+      "name": "COM",
+      "type": "passive"
+    },
+    {
+      "num": "3",
+      "name": "B",
+      "type": "passive"
+    }
+  ],
+  "sim": {
+    "model": "switch"
+  }
+}

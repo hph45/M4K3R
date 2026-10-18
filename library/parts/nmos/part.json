@@ -1,0 +1,34 @@
+{
+  "id": "nmos",
+  "name": "N-channel MOSFET",
+  "category": "discrete",
+  "refPrefix": "Q",
+  "description": "SOT-23 pinout (2N7002-style)",
+  "pins": [
+    {
+      "num": "1",
+      "name": "G",
+      "type": "input"
+    },
+    {
+      "num": "2",
+      "name": "S",
+      "type": "passive"
+    },
+    {
+      "num": "3",
+      "name": "D",
+      "type": "passive"
+    }
+  ],
+  "props": {
+    "package": "SOT-23"
+  },
+  "sim": {
+    "model": "nmos",
+    "params": {
+      "vth": 2.1,
+      "rdsOn": 2
+    }
+  }
+}

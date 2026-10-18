@@ -1,0 +1,75 @@
+# API
+
+The UI and AI agents use the same API. Every edit is a **command**, and every command shows up live in any open browser tab.
+
+## Connect an agent
+
+```bash
+claude mcp add --transport http m4k3r http://localhost:4400/mcp
+```
+
+Or call the HTTP API directly. It's plain JSON, no auth, localhost only.
+
+## Commands
+
+```jsonc
+POST /api/projects/:id/commands
+{ "label": "Wire motor driver", "commands": [
+  { "type": "component.add", "args": { "part": "resistor", "props": { "value": "10k" } } },
+  { "type": "net.connect",   "args": { "pins": ["U1.GP10", "U2.AIN1"], "name": "L_IN1" } }
+]}
+→ { "version": 12, "results": [{ "id": "c_…", "ref": "R1" }, { "net": "L_IN1" }] }
+```
+
+A batch is atomic: all of it applies, or none of it does. It counts as one undo step.
+
+| Command | Args | Does |
+|---|---|---|
+| `project.rename` | `name` | |
+| `variable.set` | `name, value` | Sets a project variable (`"65 mm"`, `"pcb_w + 4"`) |
+| `variable.remove` | `name` | |
+| `part.vendor` | `part` | Copies a part definition into the project. Done automatically by `component.add`. |
+| `component.add` | `part, ref?, props?` | Adds a component. `ref` is auto-numbered by the part's prefix. |
+| `component.update` | `component, ref?, props?` | |
+| `component.remove` | `component` | Also removes its pins from all nets |
+| `net.connect` | `pins[], name?` | Connects the pins, merging nets when needed |
+| `net.disconnect` | `pins[]` | |
+| `net.rename` | `net, name` | |
+| `doc.create` | `kind, name, data?` | Creates a doc of a registered kind (`part-studio`, `schematic`…) |
+| `doc.rename`, `doc.remove` | `doc, …` | |
+
+Domains add their own commands (`cad.*`, `schematic.*`, …). `GET /api/commands` always lists the current set.
+
+`component` and `net` args accept either an id or a name/ref.
+
+## Endpoints
+
+| Method | Path | |
+|---|---|---|
+| GET | `/api/commands` | Every command with its JSON Schema |
+| GET / POST | `/api/projects` | List or create (`{ name }`) |
+| GET / DELETE | `/api/projects/:id` | |
+| POST | `/api/projects/:id/commands` | Apply a batch |
+| POST | `/api/projects/:id/undo`, `/redo` | |
+| GET | `/api/projects/:id/netlist` | Readable wiring, plus unconnected pins |
+| GET | `/api/parts?q=` | Search the built-in and user libraries |
+| GET | `/api/parts/:id` | |
+| PUT | `/api/parts/:id` | Create or replace a part in the user library |
+| WS | `/ws` | Send `{ subscribe: id }`. Receive `{ project, version, patches }`. |
+
+## MCP tools
+
+Each tool is a thin wrapper over an endpoint:
+- `list_projects`
+- `create_project`
+- `get_project`
+- `get_netlist`
+- `apply_commands`
+- `undo`
+- `redo`
+- `search_parts`
+- `get_part`
+- `save_part`
+- `list_commands`
+
+New capabilities (schematic layout, PCB, CAD, simulation) show up as new commands plus read tools, such as `run_scenario` or `get_erc`. The API's shape stays the same.

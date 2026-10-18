@@ -1,0 +1,31 @@
+{
+  "id": "header-1x4",
+  "name": "Pin header 1×4",
+  "category": "connector",
+  "refPrefix": "J",
+  "pins": [
+    {
+      "num": "1",
+      "name": "1",
+      "type": "passive"
+    },
+    {
+      "num": "2",
+      "name": "2",
+      "type": "passive"
+    },
+    {
+      "num": "3",
+      "name": "3",
+      "type": "passive"
+    },
+    {
+      "num": "4",
+      "name": "4",
+      "type": "passive"
+    }
+  ],
+  "props": {
+    "pitch": "2.54mm"
+  }
+}

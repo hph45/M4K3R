@@ -1,0 +1,25 @@
+{
+  "id": "resistor",
+  "name": "Resistor",
+  "category": "passive",
+  "refPrefix": "R",
+  "pins": [
+    {
+      "num": "1",
+      "name": "1",
+      "type": "passive"
+    },
+    {
+      "num": "2",
+      "name": "2",
+      "type": "passive"
+    }
+  ],
+  "props": {
+    "value": "10k",
+    "package": "0603"
+  },
+  "sim": {
+    "model": "resistor"
+  }
+}

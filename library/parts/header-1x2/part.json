@@ -1,0 +1,21 @@
+{
+  "id": "header-1x2",
+  "name": "Pin header 1×2",
+  "category": "connector",
+  "refPrefix": "J",
+  "pins": [
+    {
+      "num": "1",
+      "name": "1",
+      "type": "passive"
+    },
+    {
+      "num": "2",
+      "name": "2",
+      "type": "passive"
+    }
+  ],
+  "props": {
+    "pitch": "2.54mm"
+  }
+}

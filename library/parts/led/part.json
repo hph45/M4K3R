@@ -1,0 +1,28 @@
+{
+  "id": "led",
+  "name": "LED",
+  "category": "optoelectronics",
+  "refPrefix": "D",
+  "pins": [
+    {
+      "num": "1",
+      "name": "A",
+      "type": "passive"
+    },
+    {
+      "num": "2",
+      "name": "K",
+      "type": "passive"
+    }
+  ],
+  "props": {
+    "color": "red",
+    "package": "0603"
+  },
+  "sim": {
+    "model": "led",
+    "params": {
+      "vf": 2
+    }
+  }
+}

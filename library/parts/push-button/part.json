@@ -1,0 +1,28 @@
+{
+  "id": "push-button",
+  "name": "Push button",
+  "category": "electromechanical",
+  "refPrefix": "SW",
+  "description": "Momentary, normally open",
+  "pins": [
+    {
+      "num": "1",
+      "name": "1",
+      "type": "passive"
+    },
+    {
+      "num": "2",
+      "name": "2",
+      "type": "passive"
+    }
+  ],
+  "props": {
+    "package": "6mm-tactile"
+  },
+  "sim": {
+    "model": "button",
+    "params": {
+      "bounceMs": 5
+    }
+  }
+}

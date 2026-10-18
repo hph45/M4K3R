@@ -1,0 +1,15 @@
+{
+  "name": "@m4k3r/core",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "immer": "^11.1.21",
+    "zod": "^4.6.7"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "battery",
+  "name": "Battery",
+  "category": "power",
+  "refPrefix": "BT",
+  "pins": [
+    {
+      "num": "1",
+      "name": "+",
+      "type": "power_out"
+    },
+    {
+      "num": "2",
+      "name": "-",
+      "type": "power_out"
+    }
+  ],
+  "props": {
+    "chemistry": "li-ion",
+    "voltage": "3.7V",
+    "capacity": "1000mAh"
+  },
+  "sim": {
+    "model": "battery"
+  }
+}
