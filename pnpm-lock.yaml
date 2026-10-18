@@ -212,6 +212,9 @@ importers:
       '@m4k3r/core':
         specifier: workspace:*
         version: link:../../packages/core
+      immer:
+        specifier: ^11.1.21
+        version: 11.1.21
       react:
         specifier: ^19.3.1
         version: 19.3.1

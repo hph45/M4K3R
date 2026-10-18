@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@m4k3r/core": "workspace:*",
+    "immer": "^11.1.21",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "zustand": "^5.0.15"

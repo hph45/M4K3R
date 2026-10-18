@@ -1,3 +1,7 @@
 import { createRoot } from "react-dom/client"
+import "./styles.css"
+import "./theme"
+import "./actions"
+import { App } from "./ui/App"
 
-createRoot(document.getElementById("root")!).render(<h1>M4K3R</h1>)
+createRoot(document.getElementById("root")!).render(<App />)
