@@ -3,9 +3,11 @@ import { describe, expect, it } from "vitest"
 import { reconcile } from "./live"
 
 const base: Project = { ...emptyProject("p", "Test"), version: 3 }
+const history = { undo: null, redo: null }
 const rename = (version: number, name: string) => ({
   project: "p",
   version,
+  history,
   patches: [
     { op: "replace" as const, path: ["name"], value: name },
     { op: "replace" as const, path: ["version"], value: version },
@@ -32,6 +34,7 @@ describe("reconcile", () => {
     const next = reconcile(base, {
       project: "p",
       version: 4,
+      history,
       patches: [
         { op: "add", path: ["components", 0], value: { id: "c_1", ref: "R1", part: "resistor", props: {} } },
         { op: "replace", path: ["version"], value: 4 },

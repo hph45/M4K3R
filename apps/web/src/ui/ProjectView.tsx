@@ -8,6 +8,7 @@ import { Wiring } from "./Wiring"
 export function ProjectView({ tab }: { tab: string }) {
   const project = useApp((s) => s.project)
   const live = useApp((s) => s.live)
+  const history = useApp((s) => s.history)
   if (!project) return <div className="loading" />
 
   const doc = project.docs.find((d) => d.id === tab)
@@ -27,10 +28,20 @@ export function ProjectView({ tab }: { tab: string }) {
         />
         <span className="spacer" />
         {!live && <span className="offline">Reconnecting…</span>}
-        <button className="ghost icon" title={`Undo (${formatKeys("mod+z")})`} onClick={undo}>
+        <button
+          className="ghost icon"
+          title={history.undo ? `Undo ${history.undo} (${formatKeys("mod+z")})` : "Nothing to undo"}
+          disabled={!history.undo}
+          onClick={undo}
+        >
           <svg viewBox="0 0 16 16"><path d="M6 4 3 7l3 3M3.5 7H10a3 3 0 0 1 0 6H8" /></svg>
         </button>
-        <button className="ghost icon" title={`Redo (${formatKeys("mod+shift+z")})`} onClick={redo}>
+        <button
+          className="ghost icon"
+          title={history.redo ? `Redo ${history.redo} (${formatKeys("mod+shift+z")})` : "Nothing to redo"}
+          disabled={!history.redo}
+          onClick={redo}
+        >
           <svg viewBox="0 0 16 16"><path d="m10 4 3 3-3 3M12.5 7H6a3 3 0 0 0 0 6h2" /></svg>
         </button>
         <button className="kbd" onClick={() => openPalette(commandsStep())}>

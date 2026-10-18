@@ -23,6 +23,13 @@ export interface ProjectChange {
   project: string
   version: number
   patches: Patch[]
+  history: History
+}
+
+/** Labels of the next undo/redo steps, or null when there's nothing to undo/redo. */
+export interface History {
+  undo: string | null
+  redo: string | null
 }
 
 export class ApiError extends Error {}
@@ -49,7 +56,7 @@ const pid = (id: string) => `/projects/${encodeURIComponent(id)}`
 export const api = {
   projects: () => request<ProjectSummary[]>("GET", "/projects"),
   createProject: (name: string) => request<Project>("POST", "/projects", { name }),
-  project: (id: string) => request<Project>("GET", pid(id)),
+  project: (id: string) => request<Project & { history: History }>("GET", pid(id)),
   deleteProject: (id: string) => request<void>("DELETE", pid(id)),
   apply: (id: string, commands: Command[], label?: string) =>
     request<{ version: number; results: unknown[] }>("POST", `${pid(id)}/commands`, { commands, label }),

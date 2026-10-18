@@ -1,6 +1,6 @@
 import type { Command, Project } from "@m4k3r/core"
 import { create } from "zustand"
-import { api, ApiError, type ProjectChange, type ProjectSummary } from "./api"
+import { api, ApiError, type History, type ProjectChange, type ProjectSummary } from "./api"
 import { connect, reconcile } from "./live"
 
 export type Route = { page: "home" } | { page: "project"; id: string; tab: string }
@@ -31,6 +31,7 @@ interface State {
   route: Route
   projects: ProjectSummary[] | null
   project: Project | null
+  history: History
   live: boolean
   toast: { id: number; text: string } | null
   palette: PaletteStep | null
@@ -41,6 +42,7 @@ export const useApp = create<State>(() => ({
   route: parseHash(),
   projects: null,
   project: null,
+  history: { undo: null, redo: null },
   live: false,
   toast: null,
   palette: null,
@@ -127,15 +129,14 @@ async function loadProject(id: string) {
     loading = null
     return navigate({ page: "home" })
   }
-  const { history: _, ...rest } = fetched as Project & { history?: unknown }
-  let project: Project = rest
+  let { history, ...project } = fetched
   for (const change of loading.pending) {
     const next = reconcile(project, change)
     if (next === "gap") return loadProject(id)
-    if (next !== "stale") project = next
+    if (next !== "stale") (project = next), (history = change.history)
   }
   loading = null
-  set({ project })
+  set({ project, history })
 }
 
 export function receive(change: ProjectChange) {
@@ -144,7 +145,7 @@ export function receive(change: ProjectChange) {
   if (!project) return
   const next = reconcile(project, change)
   if (next === "gap") loadProject(project.id)
-  else if (next !== "stale") set({ project: next })
+  else if (next !== "stale") set({ project: next, history: change.history })
 }
 
 let connectedBefore = false
@@ -178,14 +179,14 @@ export async function run(commands: Command[], label?: string) {
 }
 
 export async function undo() {
-  const project = get().project
-  const res = project && (await safe(api.undo(project.id)))
+  const { project, history } = get()
+  const res = project && history.undo && (await safe(api.undo(project.id)))
   if (res) toast(`Undid ${res.undone}`)
 }
 
 export async function redo() {
-  const project = get().project
-  const res = project && (await safe(api.redo(project.id)))
+  const { project, history } = get()
+  const res = project && history.redo && (await safe(api.redo(project.id)))
   if (res) toast(`Redid ${res.redone}`)
 }
 

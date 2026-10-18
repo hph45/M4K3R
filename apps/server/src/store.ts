@@ -13,6 +13,8 @@ export interface ProjectChange {
   project: string
   version: number
   patches: Patch[]
+  /** Labels of the next undo/redo steps, so clients can show and disable their buttons. */
+  history: { undo: string | null; redo: string | null }
 }
 
 interface Entry {
@@ -112,20 +114,22 @@ export class ProjectStore extends EventEmitter<{ change: [ProjectChange]; projec
 
   undo(id: string) {
     const h = this.historyOf(id)
-    const entry = h.undo.pop()
+    const entry = h.undo.at(-1)
     if (!entry) throw new CommandError("Nothing to undo")
-    this.commit(id, replay(this.get(id), entry.inversePatches))
-    h.redo.push(entry)
-    return { version: this.get(id).version, undone: entry.label }
+    const change = replay(this.get(id), entry.inversePatches)
+    h.redo.push(h.undo.pop()!)
+    this.commit(id, change)
+    return { version: change.project.version, undone: entry.label }
   }
 
   redo(id: string) {
     const h = this.historyOf(id)
-    const entry = h.redo.pop()
+    const entry = h.redo.at(-1)
     if (!entry) throw new CommandError("Nothing to redo")
-    this.commit(id, replay(this.get(id), entry.patches))
-    h.undo.push(entry)
-    return { version: this.get(id).version, redone: entry.label }
+    const change = replay(this.get(id), entry.patches)
+    h.undo.push(h.redo.pop()!)
+    this.commit(id, change)
+    return { version: change.project.version, redone: entry.label }
   }
 
   historyLabels(id: string) {
@@ -140,9 +144,13 @@ export class ProjectStore extends EventEmitter<{ change: [ProjectChange]; projec
   }
 
   private commit(id: string, change: Change) {
-    this.save(change.project)
-    this.cache.set(id, change.project)
-    this.emit("change", { project: id, version: change.project.version, patches: change.patches })
+    const before = this.get(id)
+    const next = change.project
+    this.save(next)
+    this.cache.set(id, next)
+    this.emit("change", { project: id, version: next.version, patches: change.patches, history: this.historyLabels(id) })
+    const summary = (p: Project) => `${p.name}/${p.components.length}/${p.nets.length}`
+    if (summary(before) !== summary(next)) this.emit("projects")
   }
 
   private folder(id: string) {

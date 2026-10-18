@@ -50,9 +50,11 @@ describe("ProjectStore", () => {
     const { store } = setup()
     const { id } = store.create("x")
     const versions: number[] = []
-    store.on("change", (c) => versions.push(c.version))
+    const labels: unknown[] = []
+    store.on("change", (c) => (versions.push(c.version), labels.push(c.history)))
     store.apply(id, [{ type: "component.add", args: { part: "capacitor" } }], "add C")
     expect(store.undo(id)).toEqual({ version: 2, undone: "add C" })
+    expect(labels).toEqual([{ undo: "add C", redo: null }, { undo: null, redo: "add C" }])
     expect(store.get(id).components).toHaveLength(0)
     store.redo(id)
     expect(store.get(id).components).toHaveLength(1)
