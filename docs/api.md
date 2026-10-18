@@ -57,6 +57,10 @@ Domains add their own commands (`cad.*`, `schematic.*`, …). `GET /api/commands
 | GET | `/api/parts/:id` | |
 | PUT | `/api/parts/:id` | Create or replace a part in the user library |
 | WS | `/ws` | Send `{ subscribe: id }`. Receive `{ project, version, patches }`. |
+| GET | `/api/projects/:id/firmware/:doc/pins.h` | The generated pin header |
+| POST | `/api/projects/:id/firmware/:doc/build` | `{ ok, hash, diagnostics, size, artifacts }`. See [firmware.md](firmware.md). |
+| GET | `/api/projects/:id/firmware/:doc/build/:hash/firmware.uf2` | Also `firmware.elf` |
+| POST | `/api/projects/:id/firmware/:doc/run` | `{ ms }` → `{ ok, serial, gpio, simulatedMs, wallMs }`, or `{ ok: false, diagnostics }` |
 
 ## MCP tools
 
@@ -73,6 +77,8 @@ Each tool is a thin wrapper over an endpoint:
 - `save_part`
 - `list_commands`
 - `simulate`: the same as the endpoint, returned as compact text (final values plus ~20 points per waveform)
+- `firmware_build`: compile a firmware doc, returns size or diagnostics
+- `firmware_run`: build and run it on a simulated RP2040, returns serial output and GPIO states
 
 New capabilities (schematic layout, PCB, CAD, simulation) show up as new commands plus read tools, such as `run_scenario` or `get_erc`. The API's shape stays the same.
 
