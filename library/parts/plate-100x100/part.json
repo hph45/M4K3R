@@ -1,0 +1,23 @@
+{
+  "id": "plate-100x100",
+  "name": "100 × 100 × 3 plate",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "stock",
+  "kind": "mechanical",
+  "refPrefix": "MP",
+  "pins": [],
+  "props": {},
+  "physical": {
+    "size": [100, 100, 3],
+    "mass": 81,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "box",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}

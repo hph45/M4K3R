@@ -1,0 +1,201 @@
+{
+  "id": "esc-20a",
+  "name": "Generic ESC + propeller load",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "modules",
+  "kind": "module",
+  "refPrefix": "U",
+  "pins": [
+    {
+      "num": "1",
+      "name": "VBAT",
+      "type": "power_in"
+    },
+    {
+      "num": "2",
+      "name": "GND",
+      "type": "power_in"
+    },
+    {
+      "num": "3",
+      "name": "SIGNAL",
+      "type": "passive"
+    },
+    {
+      "num": "4",
+      "name": "A",
+      "type": "passive"
+    },
+    {
+      "num": "5",
+      "name": "B",
+      "type": "passive"
+    },
+    {
+      "num": "6",
+      "name": "C",
+      "type": "passive"
+    }
+  ],
+  "props": {},
+  "symbol": {
+    "source": "M4K3R abstract module",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "rect",
+            "start": [-7.5, -5.08],
+            "end": [7.5, 5.08],
+            "width": 0.25
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [-10, -2.54],
+            "rot": 0,
+            "length": 2.5
+          },
+          {
+            "num": "2",
+            "at": [-10, 0],
+            "rot": 0,
+            "length": 2.5
+          },
+          {
+            "num": "3",
+            "at": [-10, 2.54],
+            "rot": 0,
+            "length": 2.5
+          },
+          {
+            "num": "4",
+            "at": [10, -2.54],
+            "rot": 180,
+            "length": 2.5
+          },
+          {
+            "num": "5",
+            "at": [10, 0],
+            "rot": 180,
+            "length": 2.5
+          },
+          {
+            "num": "6",
+            "at": [10, 2.54],
+            "rot": 180,
+            "length": 2.5
+          }
+        ]
+      }
+    ]
+  },
+  "footprint": {
+    "source": "M4K3R generic 2.54 mm header interface — verify vendor pinout and geometry",
+    "pads": [
+      {
+        "num": "1",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-13.73, -2.54],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "2",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-13.73, 0],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "3",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-13.73, 2.54],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "4",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [13.73, -2.54],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "5",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [13.73, 0],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "6",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [13.73, 2.54],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      }
+    ],
+    "graphics": [],
+    "courtyard": {
+      "min": [-16, -8.5],
+      "max": [16, 8.5]
+    }
+  },
+  "physical": {
+    "size": [30, 15, 6],
+    "mass": 6,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "box",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  },
+  "sim": {
+    "model": "esc-propeller",
+    "params": {
+      "diameter": 127,
+      "ct": 0.1,
+      "cp": 0.05,
+      "fullRpm": 20000,
+      "efficiency": 0.8,
+      "signalLow": 0,
+      "signalHigh": 3.3
+    }
+  }
+}

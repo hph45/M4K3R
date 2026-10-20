@@ -1,0 +1,3050 @@
+{
+  "id": "raspberry-pi-pico",
+  "name": "Raspberry Pi Pico (RP2040)",
+  "description": "RP2040-based Raspberry Pi Pico with official KiCad header pinout/footprint. Physical height and mass are estimated; Pico 2 execution is not implied.",
+  "category": "microcontrollers",
+  "kind": "module",
+  "refPrefix": "U",
+  "manufacturer": "Raspberry Pi",
+  "mpn": "SC0915",
+  "datasheet": "https://datasheets.raspberrypi.com/pico/pico-datasheet.pdf",
+  "pins": [
+    {
+      "num": "1",
+      "name": "GPIO0",
+      "type": "bidir",
+      "functions": [
+        "GPIO0",
+        "PWM0A",
+        "SPI0_RX",
+        "I2C0_SDA"
+      ]
+    },
+    {
+      "num": "2",
+      "name": "GPIO1",
+      "type": "bidir",
+      "functions": [
+        "GPIO1",
+        "PWM0B",
+        "SPI0_CSN",
+        "I2C0_SCL"
+      ]
+    },
+    {
+      "num": "3",
+      "name": "GND",
+      "type": "power_out",
+      "functions": [
+        "GND_IN"
+      ]
+    },
+    {
+      "num": "4",
+      "name": "GPIO2",
+      "type": "bidir",
+      "functions": [
+        "GPIO2",
+        "PWM1A",
+        "SPI0_SCK",
+        "I2C1_SDA"
+      ]
+    },
+    {
+      "num": "5",
+      "name": "GPIO3",
+      "type": "bidir",
+      "functions": [
+        "GPIO3",
+        "PWM1B",
+        "SPI0_TX",
+        "I2C1_SCL"
+      ]
+    },
+    {
+      "num": "6",
+      "name": "GPIO4",
+      "type": "bidir",
+      "functions": [
+        "GPIO4",
+        "PWM2A",
+        "SPI0_RX",
+        "I2C0_SDA"
+      ]
+    },
+    {
+      "num": "7",
+      "name": "GPIO5",
+      "type": "bidir",
+      "functions": [
+        "GPIO5",
+        "PWM2B",
+        "SPI0_CSN",
+        "I2C0_SCL"
+      ]
+    },
+    {
+      "num": "8",
+      "name": "GND",
+      "type": "passive"
+    },
+    {
+      "num": "9",
+      "name": "GPIO6",
+      "type": "bidir",
+      "functions": [
+        "GPIO6",
+        "PWM3A",
+        "SPI0_SCK",
+        "I2C1_SDA"
+      ]
+    },
+    {
+      "num": "10",
+      "name": "GPIO7",
+      "type": "bidir",
+      "functions": [
+        "GPIO7",
+        "PWM3B",
+        "SPI0_TX",
+        "I2C1_SCL"
+      ]
+    },
+    {
+      "num": "11",
+      "name": "GPIO8",
+      "type": "bidir",
+      "functions": [
+        "GPIO8",
+        "PWM4A",
+        "SPI1_RX",
+        "I2C0_SDA"
+      ]
+    },
+    {
+      "num": "12",
+      "name": "GPIO9",
+      "type": "bidir",
+      "functions": [
+        "GPIO9",
+        "PWM4B",
+        "SPI1_CSN",
+        "I2C0_SCL"
+      ]
+    },
+    {
+      "num": "13",
+      "name": "GND",
+      "type": "passive"
+    },
+    {
+      "num": "14",
+      "name": "GPIO10",
+      "type": "bidir",
+      "functions": [
+        "GPIO10",
+        "PWM5A",
+        "SPI1_SCK",
+        "I2C1_SDA"
+      ]
+    },
+    {
+      "num": "15",
+      "name": "GPIO11",
+      "type": "bidir",
+      "functions": [
+        "GPIO11",
+        "PWM5B",
+        "SPI1_TX",
+        "I2C1_SCL"
+      ]
+    },
+    {
+      "num": "16",
+      "name": "GPIO12",
+      "type": "bidir",
+      "functions": [
+        "GPIO12",
+        "PWM6A",
+        "SPI1_RX",
+        "I2C0_SDA"
+      ]
+    },
+    {
+      "num": "17",
+      "name": "GPIO13",
+      "type": "bidir",
+      "functions": [
+        "GPIO13",
+        "PWM6B",
+        "SPI1_CSN",
+        "I2C0_SCL"
+      ]
+    },
+    {
+      "num": "18",
+      "name": "GND",
+      "type": "passive"
+    },
+    {
+      "num": "19",
+      "name": "GPIO14",
+      "type": "bidir",
+      "functions": [
+        "GPIO14",
+        "PWM7A",
+        "SPI1_SCK",
+        "I2C1_SDA"
+      ]
+    },
+    {
+      "num": "20",
+      "name": "GPIO15",
+      "type": "bidir",
+      "functions": [
+        "GPIO15",
+        "PWM7B",
+        "SPI1_TX",
+        "I2C1_SCL"
+      ]
+    },
+    {
+      "num": "21",
+      "name": "GPIO16",
+      "type": "bidir",
+      "functions": [
+        "GPIO16",
+        "PWM0A",
+        "SPI0_RX",
+        "I2C0_SDA"
+      ]
+    },
+    {
+      "num": "22",
+      "name": "GPIO17",
+      "type": "bidir",
+      "functions": [
+        "GPIO17",
+        "PWM0B",
+        "SPI0_CSN",
+        "I2C0_SCL"
+      ]
+    },
+    {
+      "num": "23",
+      "name": "GND",
+      "type": "passive"
+    },
+    {
+      "num": "24",
+      "name": "GPIO18",
+      "type": "bidir",
+      "functions": [
+        "GPIO18",
+        "PWM1A",
+        "SPI0_SCK",
+        "I2C1_SDA"
+      ]
+    },
+    {
+      "num": "25",
+      "name": "GPIO19",
+      "type": "bidir",
+      "functions": [
+        "GPIO19",
+        "PWM1B",
+        "SPI0_TX",
+        "I2C1_SCL"
+      ]
+    },
+    {
+      "num": "26",
+      "name": "GPIO20",
+      "type": "bidir",
+      "functions": [
+        "GPIO20",
+        "PWM2A",
+        "SPI0_RX",
+        "I2C0_SDA"
+      ]
+    },
+    {
+      "num": "27",
+      "name": "GPIO21",
+      "type": "bidir",
+      "functions": [
+        "GPIO21",
+        "PWM2B",
+        "SPI0_CSN",
+        "I2C0_SCL"
+      ]
+    },
+    {
+      "num": "28",
+      "name": "GND",
+      "type": "passive"
+    },
+    {
+      "num": "29",
+      "name": "GPIO22",
+      "type": "bidir",
+      "functions": [
+        "GPIO22",
+        "PWM3A",
+        "SPI0_SCK",
+        "I2C1_SDA"
+      ]
+    },
+    {
+      "num": "30",
+      "name": "RUN",
+      "type": "passive",
+      "functions": [
+        "nRESET"
+      ]
+    },
+    {
+      "num": "31",
+      "name": "GPIO26_ADC0",
+      "type": "bidir",
+      "functions": [
+        "GPIO26",
+        "PWM5A",
+        "SPI1_SCK",
+        "I2C1_SDA",
+        "ADC0"
+      ]
+    },
+    {
+      "num": "32",
+      "name": "GPIO27_ADC1",
+      "type": "bidir",
+      "functions": [
+        "GPIO27",
+        "PWM5B",
+        "SPI1_TX",
+        "I2C1_SCL",
+        "ADC1"
+      ]
+    },
+    {
+      "num": "33",
+      "name": "AGND",
+      "type": "power_out",
+      "functions": [
+        "GND"
+      ]
+    },
+    {
+      "num": "34",
+      "name": "GPIO28_ADC2",
+      "type": "bidir",
+      "functions": [
+        "GPIO28",
+        "PWM6A",
+        "SPI1_RX",
+        "I2C0_SDA",
+        "ADC2"
+      ]
+    },
+    {
+      "num": "35",
+      "name": "ADC_VREF",
+      "type": "power_in"
+    },
+    {
+      "num": "36",
+      "name": "3V3",
+      "type": "power_out"
+    },
+    {
+      "num": "37",
+      "name": "3V3_EN",
+      "type": "passive",
+      "functions": [
+        "n3V3_DISABLE"
+      ]
+    },
+    {
+      "num": "38",
+      "name": "GND",
+      "type": "passive"
+    },
+    {
+      "num": "39",
+      "name": "VSYS",
+      "type": "power_in",
+      "functions": [
+        "VSYS_OUT"
+      ],
+      "voltage": [1.8, 5.5]
+    },
+    {
+      "num": "40",
+      "name": "VBUS",
+      "type": "power_out",
+      "functions": [
+        "VBUS_IN"
+      ]
+    }
+  ],
+  "props": {},
+  "symbol": {
+    "source": "KiCad MCU_Module:RaspberryPi_Pico",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "rect",
+            "start": [-19.05, -34.29],
+            "end": [19.05, 31.75],
+            "width": 0.254,
+            "fill": "background"
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [-5.08, -34.29],
+              [-3.81, -33.655],
+              [-3.81, -31.75],
+              [-3.175, -31.75]
+            ],
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [-3.429, -32.766],
+              [-3.429, -33.02],
+              [-3.175, -33.02],
+              [-3.175, -30.48],
+              [-2.921, -30.48],
+              [-2.921, -30.734]
+            ],
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [-3.175, -31.75],
+              [-1.905, -33.02],
+              [-1.905, -30.48],
+              [-3.175, -31.75]
+            ],
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [0, -34.29],
+              [-1.27, -33.655],
+              [-1.27, -31.75],
+              [-1.905, -31.75]
+            ],
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [0, 31.75],
+              [1.27, 31.115],
+              [1.27, 24.13],
+              [18.415, 24.13],
+              [19.05, 22.86]
+            ],
+            "width": 0
+          },
+          {
+            "type": "text",
+            "text": "${REFERENCE}",
+            "at": [-19.05, -35.56],
+            "size": 1.27
+          },
+          {
+            "type": "text",
+            "text": "${VALUE}",
+            "at": [7.62, -35.56],
+            "size": 1.27
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [-22.86, -15.24],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "2",
+            "at": [-22.86, -12.7],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "3",
+            "at": [0, 35.56],
+            "rot": 90,
+            "length": 3.81
+          },
+          {
+            "num": "4",
+            "at": [-22.86, -10.16],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "5",
+            "at": [-22.86, -7.62],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "6",
+            "at": [-22.86, -5.08],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "7",
+            "at": [-22.86, -2.54],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "8",
+            "at": [0, 35.56],
+            "rot": 90,
+            "length": 3.81,
+            "hidden": true
+          },
+          {
+            "num": "9",
+            "at": [-22.86, 0],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "10",
+            "at": [-22.86, 2.54],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "11",
+            "at": [-22.86, 5.08],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "12",
+            "at": [-22.86, 7.62],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "13",
+            "at": [0, 35.56],
+            "rot": 90,
+            "length": 3.81,
+            "hidden": true
+          },
+          {
+            "num": "14",
+            "at": [-22.86, 10.16],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "15",
+            "at": [-22.86, 12.7],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "16",
+            "at": [-22.86, 15.24],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "17",
+            "at": [-22.86, 17.78],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "18",
+            "at": [0, 35.56],
+            "rot": 90,
+            "length": 3.81,
+            "hidden": true
+          },
+          {
+            "num": "19",
+            "at": [-22.86, 20.32],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "20",
+            "at": [-22.86, 22.86],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "21",
+            "at": [22.86, -12.7],
+            "rot": 180,
+            "length": 3.81
+          },
+          {
+            "num": "22",
+            "at": [22.86, -10.16],
+            "rot": 180,
+            "length": 3.81
+          },
+          {
+            "num": "23",
+            "at": [0, 35.56],
+            "rot": 90,
+            "length": 3.81,
+            "hidden": true
+          },
+          {
+            "num": "24",
+            "at": [22.86, -7.62],
+            "rot": 180,
+            "length": 3.81
+          },
+          {
+            "num": "25",
+            "at": [22.86, -5.08],
+            "rot": 180,
+            "length": 3.81
+          },
+          {
+            "num": "26",
+            "at": [22.86, -2.54],
+            "rot": 180,
+            "length": 3.81
+          },
+          {
+            "num": "27",
+            "at": [22.86, 0],
+            "rot": 180,
+            "length": 3.81
+          },
+          {
+            "num": "28",
+            "at": [0, 35.56],
+            "rot": 90,
+            "length": 3.81,
+            "hidden": true
+          },
+          {
+            "num": "29",
+            "at": [22.86, 2.54],
+            "rot": 180,
+            "length": 3.81
+          },
+          {
+            "num": "30",
+            "at": [-22.86, -22.86],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "31",
+            "at": [22.86, 12.7],
+            "rot": 180,
+            "length": 3.81
+          },
+          {
+            "num": "32",
+            "at": [22.86, 15.24],
+            "rot": 180,
+            "length": 3.81
+          },
+          {
+            "num": "33",
+            "at": [22.86, 22.86],
+            "rot": 180,
+            "length": 3.81
+          },
+          {
+            "num": "34",
+            "at": [22.86, 17.78],
+            "rot": 180,
+            "length": 3.81
+          },
+          {
+            "num": "35",
+            "at": [22.86, 7.62],
+            "rot": 180,
+            "length": 3.81
+          },
+          {
+            "num": "36",
+            "at": [5.08, -38.1],
+            "rot": 270,
+            "length": 3.81
+          },
+          {
+            "num": "37",
+            "at": [-22.86, -20.32],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "38",
+            "at": [0, 35.56],
+            "rot": 90,
+            "length": 3.81,
+            "hidden": true
+          },
+          {
+            "num": "39",
+            "at": [-5.08, -38.1],
+            "rot": 270,
+            "length": 3.81
+          },
+          {
+            "num": "40",
+            "at": [0, -38.1],
+            "rot": 270,
+            "length": 3.81
+          }
+        ]
+      }
+    ],
+    "pinNameOffset": 0.762
+  },
+  "footprint": {
+    "source": "KiCad Module:RaspberryPi_Pico_Common_Unspecified",
+    "pads": [
+      {
+        "num": "",
+        "type": "np_thru_hole",
+        "shape": "circle",
+        "at": [-2.725, -24],
+        "size": [2.2, 2.2],
+        "drill": [2.2, 2.2],
+        "layers": [
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "",
+        "type": "np_thru_hole",
+        "shape": "circle",
+        "at": [-2.425, -20.97],
+        "size": [1.85, 1.85],
+        "drill": [1.85, 1.85],
+        "layers": [
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "",
+        "type": "np_thru_hole",
+        "shape": "circle",
+        "at": [2.425, -20.97],
+        "size": [1.85, 1.85],
+        "drill": [1.85, 1.85],
+        "layers": [
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "",
+        "type": "np_thru_hole",
+        "shape": "circle",
+        "at": [2.725, -24],
+        "size": [2.2, 2.2],
+        "drill": [2.2, 2.2],
+        "layers": [
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "1",
+        "type": "smd",
+        "shape": "custom",
+        "at": [-9.69, -24.13],
+        "size": [1.6, 0.8],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "poly": [
+          [-1.6, -0.6],
+          [-1.6, 0.6],
+          [-1.4, 0.8],
+          [0.8, 0.8],
+          [0.8, -0.8],
+          [-1.4, -0.8]
+        ]
+      },
+      {
+        "num": "1",
+        "type": "thru_hole",
+        "shape": "roundrect",
+        "at": [-8.89, -24.13],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ],
+        "roundness": 0.125
+      },
+      {
+        "num": "2",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-9.69, -21.59],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "2",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-8.89, -21.59],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "3",
+        "type": "smd",
+        "shape": "custom",
+        "at": [-9.69, -19.05],
+        "size": [1.6, 0.8],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "poly": [
+          [1.6, -0.6],
+          [1.6, 0.6],
+          [1.4, 0.8],
+          [-0.8, 0.8],
+          [-0.8, -0.8],
+          [1.4, -0.8]
+        ]
+      },
+      {
+        "num": "3",
+        "type": "thru_hole",
+        "shape": "custom",
+        "at": [-8.89, -19.05],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ],
+        "poly": [
+          [0.8, 0.6],
+          [0.8, -0.6],
+          [0.6, -0.8],
+          [0, -0.8],
+          [0, 0.8],
+          [0.6, 0.8]
+        ]
+      },
+      {
+        "num": "4",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-9.69, -16.51],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "4",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-8.89, -16.51],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "5",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-9.69, -13.97],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "5",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-8.89, -13.97],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "6",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-9.69, -11.43],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "6",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-8.89, -11.43],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "7",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-9.69, -8.89],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "7",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-8.89, -8.89],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "8",
+        "type": "smd",
+        "shape": "custom",
+        "at": [-9.69, -6.35],
+        "size": [1.6, 0.8],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "poly": [
+          [1.6, -0.6],
+          [1.6, 0.6],
+          [1.4, 0.8],
+          [-0.8, 0.8],
+          [-0.8, -0.8],
+          [1.4, -0.8]
+        ]
+      },
+      {
+        "num": "8",
+        "type": "thru_hole",
+        "shape": "custom",
+        "at": [-8.89, -6.35],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ],
+        "poly": [
+          [0.8, 0.6],
+          [0.8, -0.6],
+          [0.6, -0.8],
+          [0, -0.8],
+          [0, 0.8],
+          [0.6, 0.8]
+        ]
+      },
+      {
+        "num": "9",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-9.69, -3.81],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "9",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-8.89, -3.81],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "10",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-9.69, -1.27],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "10",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-8.89, -1.27],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "11",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-9.69, 1.27],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "11",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-8.89, 1.27],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "12",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-9.69, 3.81],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "12",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-8.89, 3.81],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "13",
+        "type": "smd",
+        "shape": "custom",
+        "at": [-9.69, 6.35],
+        "size": [1.6, 0.8],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "poly": [
+          [1.6, -0.6],
+          [1.6, 0.6],
+          [1.4, 0.8],
+          [-0.8, 0.8],
+          [-0.8, -0.8],
+          [1.4, -0.8]
+        ]
+      },
+      {
+        "num": "13",
+        "type": "thru_hole",
+        "shape": "custom",
+        "at": [-8.89, 6.35],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ],
+        "poly": [
+          [0.8, 0.6],
+          [0.8, -0.6],
+          [0.6, -0.8],
+          [0, -0.8],
+          [0, 0.8],
+          [0.6, 0.8]
+        ]
+      },
+      {
+        "num": "14",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-9.69, 8.89],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "14",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-8.89, 8.89],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "15",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-9.69, 11.43],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "15",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-8.89, 11.43],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "16",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-9.69, 13.97],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "16",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-8.89, 13.97],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "17",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-9.69, 16.51],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "17",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-8.89, 16.51],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "18",
+        "type": "smd",
+        "shape": "custom",
+        "at": [-9.69, 19.05],
+        "size": [1.6, 0.8],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "poly": [
+          [1.6, -0.6],
+          [1.6, 0.6],
+          [1.4, 0.8],
+          [-0.8, 0.8],
+          [-0.8, -0.8],
+          [1.4, -0.8]
+        ]
+      },
+      {
+        "num": "18",
+        "type": "thru_hole",
+        "shape": "custom",
+        "at": [-8.89, 19.05],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ],
+        "poly": [
+          [0.8, 0.6],
+          [0.8, -0.6],
+          [0.6, -0.8],
+          [0, -0.8],
+          [0, 0.8],
+          [0.6, 0.8]
+        ]
+      },
+      {
+        "num": "19",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-9.69, 21.59],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "19",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-8.89, 21.59],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "20",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-9.69, 24.13],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "20",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-8.89, 24.13],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "21",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [8.89, 24.13],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "21",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [9.69, 24.13],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "22",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [8.89, 21.59],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "22",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [9.69, 21.59],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "23",
+        "type": "thru_hole",
+        "shape": "custom",
+        "at": [8.89, 19.05],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ],
+        "poly": [
+          [-0.8, 0.6],
+          [-0.8, -0.6],
+          [-0.6, -0.8],
+          [0, -0.8],
+          [0, 0.8],
+          [-0.6, 0.8]
+        ]
+      },
+      {
+        "num": "23",
+        "type": "smd",
+        "shape": "custom",
+        "at": [9.69, 19.05],
+        "size": [1.6, 0.8],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "poly": [
+          [-1.6, -0.6],
+          [-1.6, 0.6],
+          [-1.4, 0.8],
+          [0.8, 0.8],
+          [0.8, -0.8],
+          [-1.4, -0.8]
+        ]
+      },
+      {
+        "num": "24",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [8.89, 16.51],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "24",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [9.69, 16.51],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "25",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [8.89, 13.97],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "25",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [9.69, 13.97],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "26",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [8.89, 11.43],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "26",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [9.69, 11.43],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "27",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [8.89, 8.89],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "27",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [9.69, 8.89],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "28",
+        "type": "thru_hole",
+        "shape": "custom",
+        "at": [8.89, 6.35],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ],
+        "poly": [
+          [-0.8, 0.6],
+          [-0.8, -0.6],
+          [-0.6, -0.8],
+          [0, -0.8],
+          [0, 0.8],
+          [-0.6, 0.8]
+        ]
+      },
+      {
+        "num": "28",
+        "type": "smd",
+        "shape": "custom",
+        "at": [9.69, 6.35],
+        "size": [1.6, 0.8],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "poly": [
+          [-1.6, -0.6],
+          [-1.6, 0.6],
+          [-1.4, 0.8],
+          [0.8, 0.8],
+          [0.8, -0.8],
+          [-1.4, -0.8]
+        ]
+      },
+      {
+        "num": "29",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [8.89, 3.81],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "29",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [9.69, 3.81],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "30",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [8.89, 1.27],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "30",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [9.69, 1.27],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "31",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [8.89, -1.27],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "31",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [9.69, -1.27],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "32",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [8.89, -3.81],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "32",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [9.69, -3.81],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "33",
+        "type": "thru_hole",
+        "shape": "custom",
+        "at": [8.89, -6.35],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ],
+        "poly": [
+          [-0.8, 0.6],
+          [-0.8, -0.6],
+          [-0.6, -0.8],
+          [0, -0.8],
+          [0, 0.8],
+          [-0.6, 0.8]
+        ]
+      },
+      {
+        "num": "33",
+        "type": "smd",
+        "shape": "custom",
+        "at": [9.69, -6.35],
+        "size": [1.6, 0.8],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "poly": [
+          [-1.6, -0.6],
+          [-1.6, 0.6],
+          [-1.4, 0.8],
+          [0.8, 0.8],
+          [0.8, -0.8],
+          [-1.4, -0.8]
+        ]
+      },
+      {
+        "num": "34",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [8.89, -8.89],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "34",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [9.69, -8.89],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "35",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [8.89, -11.43],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "35",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [9.69, -11.43],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "36",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [8.89, -13.97],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "36",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [9.69, -13.97],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "37",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [8.89, -16.51],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "37",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [9.69, -16.51],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "38",
+        "type": "thru_hole",
+        "shape": "custom",
+        "at": [8.89, -19.05],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ],
+        "poly": [
+          [-0.8, 0.6],
+          [-0.8, -0.6],
+          [-0.6, -0.8],
+          [0, -0.8],
+          [0, 0.8],
+          [-0.6, 0.8]
+        ]
+      },
+      {
+        "num": "38",
+        "type": "smd",
+        "shape": "custom",
+        "at": [9.69, -19.05],
+        "size": [1.6, 0.8],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "poly": [
+          [-1.6, -0.6],
+          [-1.6, 0.6],
+          [-1.4, 0.8],
+          [0.8, 0.8],
+          [0.8, -0.8],
+          [-1.4, -0.8]
+        ]
+      },
+      {
+        "num": "39",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [8.89, -21.59],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "39",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [9.69, -21.59],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      },
+      {
+        "num": "40",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [8.89, -24.13],
+        "size": [1.6, 1.6],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "40",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [9.69, -24.13],
+        "size": [3.2, 1.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask"
+        ],
+        "roundness": 0.5
+      }
+    ],
+    "graphics": [
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [11.7475, 24.765],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "${VALUE}",
+        "at": [0, 27.94],
+        "size": 1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, -23.07],
+          [-11.09, -23.07]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, -23.07],
+          [-10.61, -22.65]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, -20.53],
+          [-10.61, -20.11]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, -17.99],
+          [-10.61, -17.57]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, -15.45],
+          [-10.61, -15.03]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, -12.91],
+          [-10.61, -12.49]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, -10.37],
+          [-10.61, -9.95]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, -7.83],
+          [-10.61, -7.41]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, -5.29],
+          [-10.61, -4.87]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, -2.75],
+          [-10.61, -2.33]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, -0.21],
+          [-10.61, 0.21]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, 2.33],
+          [-10.61, 2.75]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, 4.87],
+          [-10.61, 5.29]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, 7.41],
+          [-10.61, 7.83]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, 9.95],
+          [-10.61, 10.37]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, 12.49],
+          [-10.61, 12.91]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, 15.03],
+          [-10.61, 15.45]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, 17.57],
+          [-10.61, 17.99]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, 20.11],
+          [-10.61, 20.53]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.61, 22.65],
+          [-10.61, 23.07]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.579676, -25.19],
+          [-11.09, -25.19]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, -25.189937],
+          [-10.27, -25.547]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, -23.07],
+          [-10.27, -22.65]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, -20.53],
+          [-10.27, -20.11]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, -17.99],
+          [-10.27, -17.57]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, -15.45],
+          [-10.27, -15.03]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, -12.91],
+          [-10.27, -12.49]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, -10.37],
+          [-10.27, -9.95]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, -7.83],
+          [-10.27, -7.41]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, -5.29],
+          [-10.27, -4.87]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, -2.75],
+          [-10.27, -2.33]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, -0.21],
+          [-10.27, 0.21]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, 2.33],
+          [-10.27, 2.75]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, 4.87],
+          [-10.27, 5.29]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, 7.41],
+          [-10.27, 7.83]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, 9.95],
+          [-10.27, 10.37]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, 12.49],
+          [-10.27, 12.91]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, 15.03],
+          [-10.27, 15.45]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, 17.57],
+          [-10.27, 17.99]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, 20.11],
+          [-10.27, 20.53]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, 22.65],
+          [-10.27, 23.07]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.27, 25.189937],
+          [-10.27, 25.547]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10, -25.61],
+          [-7.51, -25.61]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10, 25.61],
+          [-6.162061, 25.61]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-7.51, -25.61],
+          [-7.51, -24.69648]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-7.51, -25.61],
+          [-6.16206, -25.61]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-7.51, -22.30352],
+          [-7.51, 22.30352]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-7.51, 24.69648],
+          [-7.51, 25.61]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-5.237939, -25.61],
+          [-4.235, -25.61]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-4.235, -25.61],
+          [4.235, -25.61]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-3.9, -25.61],
+          [-3.9, -24.694]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-3.9, -22.306],
+          [-3.9, -21.09]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-3.9, -21.09],
+          [-3.60391, -21.09]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-3.6, 25.61],
+          [-5.237939, 25.61]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.24609, -21.09],
+          [1.24609, -21.09]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [3.6, 25.61],
+          [-3.6, 25.61]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [3.60391, -21.09],
+          [3.9, -21.09]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [3.9, -25.61],
+          [3.9, -24.694]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [3.9, -22.306],
+          [3.9, -21.09]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [4.235, -25.61],
+          [5.237939, -25.61]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [5.237939, 25.61],
+          [3.6, 25.61]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [6.162061, -25.61],
+          [7.51, -25.61]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [6.162061, 25.61],
+          [10, 25.61]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [7.51, -25.61],
+          [7.51, -24.69648]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [7.51, -22.30352],
+          [7.51, 22.30352]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [7.51, 24.69648],
+          [7.51, 25.61]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10, -25.61],
+          [7.51, -25.61]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, -25.189937],
+          [10.27, -25.547]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, -23.07],
+          [10.27, -22.65]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, -20.53],
+          [10.27, -20.11]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, -17.99],
+          [10.27, -17.57]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, -15.45],
+          [10.27, -15.03]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, -12.91],
+          [10.27, -12.49]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, -10.37],
+          [10.27, -9.95]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, -7.83],
+          [10.27, -7.41]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, -5.29],
+          [10.27, -4.87]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, -2.75],
+          [10.27, -2.33]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, -0.21],
+          [10.27, 0.21]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, 2.33],
+          [10.27, 2.75]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, 4.87],
+          [10.27, 5.29]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, 7.41],
+          [10.27, 7.83]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, 9.95],
+          [10.27, 10.37]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, 12.49],
+          [10.27, 12.91]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, 15.03],
+          [10.27, 15.45]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, 17.57],
+          [10.27, 17.99]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, 20.11],
+          [10.27, 20.53]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, 22.65],
+          [10.27, 23.07]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.27, 25.189937],
+          [10.27, 25.547]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, -23.07],
+          [10.61, -22.65]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, -20.53],
+          [10.61, -20.11]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, -17.99],
+          [10.61, -17.57]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, -15.45],
+          [10.61, -15.03]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, -12.91],
+          [10.61, -12.49]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, -10.37],
+          [10.61, -9.95]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, -7.83],
+          [10.61, -7.41]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, -5.29],
+          [10.61, -4.87]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, -2.75],
+          [10.61, -2.33]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, -0.21],
+          [10.61, 0.21]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, 2.33],
+          [10.61, 2.75]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, 4.87],
+          [10.61, 5.29]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, 7.41],
+          [10.61, 7.83]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, 9.95],
+          [10.61, 10.37]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, 12.49],
+          [10.61, 12.91]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, 15.03],
+          [10.61, 15.45]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, 17.57],
+          [10.61, 17.99]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, 20.11],
+          [10.61, 20.53]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.61, 22.65],
+          [10.61, 23.07]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "arc",
+        "start": [-10.579676, -25.19],
+        "mid": [-10.357938, -25.493944],
+        "end": [-10, -25.61],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "arc",
+        "start": [-10, 25.61],
+        "mid": [-10.357937, 25.493944],
+        "end": [-10.579676, 25.189937],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "arc",
+        "start": [10, -25.61],
+        "mid": [10.357937, -25.493944],
+        "end": [10.579676, -25.189937],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "arc",
+        "start": [10.579676, 25.189937],
+        "mid": [10.357946, 25.493957],
+        "end": [10, 25.61],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-4.5, -27.3],
+          [4.5, -27.3],
+          [4.5, -25.75],
+          [11.54, -25.75],
+          [11.54, 26.55],
+          [-11.54, 26.55],
+          [-11.54, -25.75],
+          [-4.5, -25.75]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.5, -24.5],
+          [-9.5, -25.5]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-10.5, 25],
+          [-10.5, -24.5]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-9.5, -25.5],
+          [10, -25.5]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-4.625, -14.075],
+          [-4.625, -12.925]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-2.375, -14.075],
+          [-2.375, -12.925]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10, 25.5],
+          [-10, 25.5]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [10.5, -25],
+          [10.5, 25]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "rect",
+        "start": [-6.5, -21.1],
+        "end": [-4.9, -20.3],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "rect",
+        "start": [-6.2, -21.1],
+        "end": [-5.2, -20.3],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "rect",
+        "start": [-5.1, -15.625],
+        "end": [-1.9, -11.375],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "arc",
+        "start": [-10, 25.5],
+        "mid": [-10.353553, 25.353553],
+        "end": [-10.5, 25],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "arc",
+        "start": [-4.625, -14.075],
+        "mid": [-3.5, -15.2],
+        "end": [-2.375, -14.075],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "arc",
+        "start": [-2.375, -12.925],
+        "mid": [-3.5, -11.8],
+        "end": [-4.625, -12.925],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "arc",
+        "start": [10, -25.5],
+        "mid": [10.353553, -25.353553],
+        "end": [10.5, -25],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "arc",
+        "start": [10.5, 25],
+        "mid": [10.353553, 25.353553],
+        "end": [10, 25.5],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [3.79, -21.2],
+          [3.79, -26.2],
+          [4, -26.2],
+          [4, -26.8],
+          [-4, -26.8],
+          [-4, -26.2],
+          [-3.79, -26.2],
+          [-3.79, -21.2]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [0, 0],
+        "size": 1,
+        "rot": 90,
+        "layer": "F.Fab"
+      }
+    ],
+    "courtyard": {
+      "min": [-11.54, -27.3],
+      "max": [11.54, 26.55]
+    }
+  },
+  "model3d": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/Module.3dshapes/RaspberryPi_Pico_PinSockets_H8.50mm.step",
+  "physical": {
+    "size": [21, 51, 3.9],
+    "mass": 3,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "box",
+      "color": "#399a74"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "Raspberry Pi Pico datasheet board outline; KiCad pinout/footprint. Height and mass estimated.",
+    "massSource": "estimated"
+  }
+}

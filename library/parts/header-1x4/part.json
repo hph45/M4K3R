@@ -1,0 +1,314 @@
+{
+  "id": "header-1x4",
+  "name": "Pin header 1×4",
+  "description": "",
+  "category": "connector",
+  "kind": "electronic",
+  "refPrefix": "J",
+  "pins": [
+    {
+      "num": "1",
+      "name": "1",
+      "type": "passive"
+    },
+    {
+      "num": "2",
+      "name": "2",
+      "type": "passive"
+    },
+    {
+      "num": "3",
+      "name": "3",
+      "type": "passive"
+    },
+    {
+      "num": "4",
+      "name": "4",
+      "type": "passive"
+    }
+  ],
+  "props": {
+    "pitch": "2.54mm"
+  },
+  "symbol": {
+    "source": "KiCad Connector_Generic:Conn_01x04",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "rect",
+            "start": [-1.27, -3.81],
+            "end": [1.27, 6.35],
+            "width": 0.254,
+            "fill": "background"
+          },
+          {
+            "type": "rect",
+            "start": [-1.27, -2.667],
+            "end": [0, -2.413],
+            "width": 0.1524
+          },
+          {
+            "type": "rect",
+            "start": [-1.27, -0.127],
+            "end": [0, 0.127],
+            "width": 0.1524
+          },
+          {
+            "type": "rect",
+            "start": [-1.27, 2.413],
+            "end": [0, 2.667],
+            "width": 0.1524
+          },
+          {
+            "type": "rect",
+            "start": [-1.27, 4.953],
+            "end": [0, 5.207],
+            "width": 0.1524
+          },
+          {
+            "type": "text",
+            "text": "${REFERENCE}",
+            "at": [0, -5.08],
+            "size": 1.27
+          },
+          {
+            "type": "text",
+            "text": "${VALUE}",
+            "at": [0, 7.62],
+            "size": 1.27
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [-5.08, -2.54],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "2",
+            "at": [-5.08, 0],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "3",
+            "at": [-5.08, 2.54],
+            "rot": 0,
+            "length": 3.81
+          },
+          {
+            "num": "4",
+            "at": [-5.08, 5.08],
+            "rot": 0,
+            "length": 3.81
+          }
+        ]
+      }
+    ],
+    "pinNameOffset": 1.016,
+    "hidePinNames": true
+  },
+  "footprint": {
+    "source": "KiCad Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical",
+    "pads": [
+      {
+        "num": "1",
+        "type": "thru_hole",
+        "shape": "rect",
+        "at": [0, 0],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "2",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [0, 2.54],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "3",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [0, 5.08],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "4",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [0, 7.62],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      }
+    ],
+    "graphics": [
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [0, -2.38],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "${VALUE}",
+        "at": [0, 10],
+        "size": 1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.38, -1.38],
+          [0, -1.38]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.38, 0],
+          [-1.38, -1.38]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.38, 1.27],
+          [-1.38, 9]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.38, 1.27],
+          [1.38, 1.27]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.38, 9],
+          [1.38, 9]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [1.38, 1.27],
+          [1.38, 9]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "rect",
+        "start": [-1.77, -1.77],
+        "end": [1.77, 9.39],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.27, -0.635],
+          [-0.635, -1.27]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.27, 8.89],
+          [-1.27, -0.635]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.635, -1.27],
+          [1.27, -1.27]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [1.27, -1.27],
+          [1.27, 8.89]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [1.27, 8.89],
+          [-1.27, 8.89]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [0, 3.81],
+        "size": 1,
+        "rot": 90,
+        "layer": "F.Fab"
+      }
+    ],
+    "courtyard": {
+      "min": [-1.77, -1.77],
+      "max": [1.77, 9.39]
+    }
+  },
+  "model3d": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x04_P2.54mm_Vertical.step",
+  "physical": {
+    "size": [2.54, 10.16, 8],
+    "mass": 0.4,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "box",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}

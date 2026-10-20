@@ -1,0 +1,200 @@
+{
+  "id": "inductor",
+  "name": "Inductor",
+  "description": "",
+  "category": "passive",
+  "kind": "electronic",
+  "refPrefix": "L",
+  "pins": [
+    {
+      "num": "1",
+      "name": "1",
+      "type": "passive"
+    },
+    {
+      "num": "2",
+      "name": "2",
+      "type": "passive"
+    }
+  ],
+  "props": {
+    "value": "10u",
+    "package": "0805"
+  },
+  "symbol": {
+    "source": "KiCad Device:L",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "arc",
+            "start": [0, -2.54],
+            "mid": [0.6323, -1.905],
+            "end": [0, -1.27],
+            "width": 0
+          },
+          {
+            "type": "arc",
+            "start": [0, -1.27],
+            "mid": [0.6323, -0.635],
+            "end": [0, 0],
+            "width": 0
+          },
+          {
+            "type": "arc",
+            "start": [0, 0],
+            "mid": [0.6323, 0.635],
+            "end": [0, 1.27],
+            "width": 0
+          },
+          {
+            "type": "arc",
+            "start": [0, 1.27],
+            "mid": [0.6323, 1.905],
+            "end": [0, 2.54],
+            "width": 0
+          },
+          {
+            "type": "text",
+            "text": "${REFERENCE}",
+            "at": [-1.27, 0],
+            "size": 1.27,
+            "rot": 90
+          },
+          {
+            "type": "text",
+            "text": "${VALUE}",
+            "at": [1.905, 0],
+            "size": 1.27,
+            "rot": 90
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [0, -3.81],
+            "rot": 270,
+            "length": 1.27
+          },
+          {
+            "num": "2",
+            "at": [0, 3.81],
+            "rot": 90,
+            "length": 1.27
+          }
+        ]
+      }
+    ],
+    "pinNameOffset": 1.016,
+    "hidePinNames": true,
+    "hidePinNumbers": true
+  },
+  "footprint": {
+    "source": "KiCad Inductor_SMD:L_0805_2012Metric",
+    "pads": [
+      {
+        "num": "1",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-1.0625, 0],
+        "size": [0.875, 1.2],
+        "layers": [
+          "F.Cu",
+          "F.Mask",
+          "F.Paste"
+        ],
+        "roundness": 0.25
+      },
+      {
+        "num": "2",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [1.0625, 0],
+        "size": [0.875, 1.2],
+        "layers": [
+          "F.Cu",
+          "F.Mask",
+          "F.Paste"
+        ],
+        "roundness": 0.25
+      }
+    ],
+    "graphics": [
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [0, -1.55],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "${VALUE}",
+        "at": [0, 1.55],
+        "size": 1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.399622, -0.56],
+          [0.399622, -0.56]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.399622, 0.56],
+          [0.399622, 0.56]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "rect",
+        "start": [-1.75, -0.85],
+        "end": [1.75, 0.85],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "rect",
+        "start": [-1, -0.45],
+        "end": [1, 0.45],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [0, 0],
+        "size": 0.5,
+        "layer": "F.Fab"
+      }
+    ],
+    "courtyard": {
+      "min": [-1.75, -0.85],
+      "max": [1.75, 0.85]
+    }
+  },
+  "model3d": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/Inductor_SMD.3dshapes/L_0805_2012Metric.step",
+  "physical": {
+    "size": [2, 1.2, 1],
+    "mass": 0.01,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "box",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  },
+  "sim": {
+    "model": "inductor",
+    "params": {}
+  }
+}

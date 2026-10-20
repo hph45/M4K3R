@@ -1,0 +1,23 @@
+{
+  "id": "bracket-l",
+  "name": "L bracket planning envelope",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "brackets",
+  "kind": "mechanical",
+  "refPrefix": "MP",
+  "pins": [],
+  "props": {},
+  "physical": {
+    "size": [30, 30, 30],
+    "mass": 8,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "box",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}

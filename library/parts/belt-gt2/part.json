@@ -1,0 +1,23 @@
+{
+  "id": "belt-gt2",
+  "name": "GT2 belt planning segment",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "power transmission",
+  "kind": "mechanical",
+  "refPrefix": "MP",
+  "pins": [],
+  "props": {},
+  "physical": {
+    "size": [100, 6, 1.4],
+    "mass": 1,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "box",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}

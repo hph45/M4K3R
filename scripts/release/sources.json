@@ -1,0 +1,42 @@
+[
+  {
+    "file": "pico-bootrom-rp2040-00a4a191.tar.gz",
+    "url": "https://codeload.github.com/raspberrypi/pico-bootrom-rp2040/tar.gz/00a4a19114195e20fb817bdfbca1165e157eef37",
+    "sha256": "616eaab1742fb5178a178acd511a1d5d77dfa19b6a1272bebf719f34f7e9ce6b"
+  },
+  {
+    "file": "pico-sdk-26653ea8.tar.gz",
+    "url": "https://codeload.github.com/raspberrypi/pico-sdk/tar.gz/26653ea81e340cacee55025d110c3e014a252a87",
+    "sha256": "7b4ae1c838576425720fc35da0dec58b02473eadd5100f3ad41181cb110c2de9"
+  },
+  {
+    "file": "replicad-e4b05f67.tar.gz",
+    "url": "https://codeload.github.com/sgenoud/replicad/tar.gz/e4b05f67dc4e2393a876ce8c5064a9c93db05bf1",
+    "sha256": "92180710da11a6e67ab75eaac8b494b29d32011415c22e29f7fecb1c796da783"
+  },
+  {
+    "file": "planegcs-9d26baef.tar.gz",
+    "url": "https://codeload.github.com/Salusoft89/planegcs/tar.gz/9d26baef0b240fe0eef4186d4e5e5e66ec3620b7",
+    "sha256": "6641e73b41f638621d5f95ae35dfadb45b42c1e43afbeab613753de851566be3"
+  },
+  {
+    "file": "opencascade-js-ebd263f1.tar.gz",
+    "url": "https://codeload.github.com/taucad/opencascade.js/tar.gz/ebd263f1",
+    "sha256": "80fa8bfb0d7b39bf434d0ff15b106d89944808b860b57089b5b97993e120f213"
+  },
+  {
+    "file": "occt-b8f597c6.tar.gz",
+    "url": "https://codeload.github.com/Open-Cascade-SAS/OCCT/tar.gz/b8f597c677811d1f9f4d8a97f5ae2825c0353a42",
+    "sha256": "dba62b81078dd43cec23feba89432be301582341001edad1b93342ad8bda35ea"
+  },
+  {
+    "file": "freetype-de8b92dd.tar.gz",
+    "url": "https://codeload.github.com/freetype/freetype/tar.gz/de8b92dd7ec634e9e2b25ef534c54a3537555c11",
+    "sha256": "14791d34053acf30394912a8b963277bee60b35fbb3038795d86555ba0415a44"
+  },
+  {
+    "file": "rapidjson-24b5e7a8.tar.gz",
+    "url": "https://codeload.github.com/Tencent/rapidjson/tar.gz/24b5e7a8b27f42fa16b96fc70aade9106cf7102f",
+    "sha256": "2d2601a82d2d3b7e143a3c8d43ef616671391034bc46891a9816b79cf2d3e7a8"
+  }
+]

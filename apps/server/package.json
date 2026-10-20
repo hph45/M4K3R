@@ -1,0 +1,29 @@
+{
+  "name": "@m4k3r/server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch --clear-screen=false --ignore '../web/**' src/index.ts",
+    "start": "NODE_ENV=production tsx src/index.ts",
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@m4k3r/cad": "workspace:*",
+    "@m4k3r/core": "workspace:*",
+    "@m4k3r/ecad": "workspace:*",
+    "@m4k3r/firmware": "workspace:*",
+    "@m4k3r/parts": "workspace:*",
+    "@m4k3r/sim": "workspace:*",
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "express": "^5.3.0",
+    "tsx": "^4.23.15",
+    "vite": "^8.3.4",
+    "ws": "^8.22.0",
+    "zod": "^4.6.7",
+    "@m4k3r/assembly": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/ws": "^8.18.2"
+  }
+}

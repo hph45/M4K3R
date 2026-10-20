@@ -1,0 +1,24 @@
+{
+  "id": "pulley-20t",
+  "name": "GT2 20 tooth pulley",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "power transmission",
+  "kind": "mechanical",
+  "refPrefix": "MP",
+  "pins": [],
+  "props": {},
+  "physical": {
+    "size": [16, 16, 16],
+    "mass": 7,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "gear",
+      "color": "#7296a6",
+      "innerDiameter": 5
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}

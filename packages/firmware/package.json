@@ -1,0 +1,18 @@
+{
+  "name": "@m4k3r/firmware",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./chips": "./src/chips.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@m4k3r/core": "workspace:*",
+    "rp2040js": "1.4.0",
+    "zod": "^4.6.7",
+    "@m4k3r/sim": "workspace:*"
+  }
+}

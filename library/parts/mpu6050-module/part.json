@@ -1,0 +1,239 @@
+{
+  "id": "mpu6050-module",
+  "name": "Generic MPU6050 IMU breakout",
+  "description": "M4K3R generic breakout connector/envelope; pin numbering, dimensions and mass are planning assumptions, not a manufacturer module footprint. Verify the selected module before fabrication.",
+  "category": "modules",
+  "kind": "module",
+  "refPrefix": "U",
+  "datasheet": "https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Register-Map.pdf",
+  "pins": [
+    {
+      "num": "1",
+      "name": "VCC",
+      "type": "power_in"
+    },
+    {
+      "num": "2",
+      "name": "GND",
+      "type": "power_in"
+    },
+    {
+      "num": "3",
+      "name": "SCL",
+      "type": "bidir"
+    },
+    {
+      "num": "4",
+      "name": "SDA",
+      "type": "bidir"
+    },
+    {
+      "num": "5",
+      "name": "XDA",
+      "type": "bidir"
+    },
+    {
+      "num": "6",
+      "name": "XCL",
+      "type": "bidir"
+    },
+    {
+      "num": "7",
+      "name": "AD0",
+      "type": "bidir"
+    },
+    {
+      "num": "8",
+      "name": "INT",
+      "type": "output"
+    }
+  ],
+  "props": {
+    "sensorModel": "mpu6050",
+    "i2cAddress": "0x68"
+  },
+  "symbol": {
+    "source": "M4K3R abstract breakout symbol",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "rect",
+            "start": [-8, -10.16],
+            "end": [8, 10.16],
+            "width": 0.2
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [-11, -8.89],
+            "rot": 0,
+            "length": 3
+          },
+          {
+            "num": "2",
+            "at": [-11, -6.35],
+            "rot": 0,
+            "length": 3
+          },
+          {
+            "num": "3",
+            "at": [-11, -3.81],
+            "rot": 0,
+            "length": 3
+          },
+          {
+            "num": "4",
+            "at": [-11, -1.27],
+            "rot": 0,
+            "length": 3
+          },
+          {
+            "num": "5",
+            "at": [-11, 1.27],
+            "rot": 0,
+            "length": 3
+          },
+          {
+            "num": "6",
+            "at": [-11, 3.81],
+            "rot": 0,
+            "length": 3
+          },
+          {
+            "num": "7",
+            "at": [-11, 6.35],
+            "rot": 0,
+            "length": 3
+          },
+          {
+            "num": "8",
+            "at": [-11, 8.89],
+            "rot": 0,
+            "length": 3
+          }
+        ]
+      }
+    ]
+  },
+  "footprint": {
+    "source": "M4K3R generic breakout connector/envelope; pin numbering, dimensions and mass are planning assumptions, not a manufacturer module footprint. Verify the selected module before fabrication.",
+    "pads": [
+      {
+        "num": "1",
+        "type": "thru_hole",
+        "shape": "rect",
+        "at": [0, -8.89],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "2",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [0, -6.3500000000000005],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "3",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [0, -3.8100000000000005],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "4",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [0, -1.2700000000000005],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "5",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [0, 1.2699999999999996],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "6",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [0, 3.8099999999999987],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "7",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [0, 6.35],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "8",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [0, 8.89],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      }
+    ],
+    "graphics": [],
+    "courtyard": {
+      "min": [-11, -9],
+      "max": [11, 9]
+    }
+  },
+  "physical": {
+    "size": [20, 16, 3],
+    "mass": 2,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "box",
+      "color": "#357b9b"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic breakout connector/envelope; pin numbering, dimensions and mass are planning assumptions, not a manufacturer module footprint. Verify the selected module before fabrication.",
+    "massSource": "estimated"
+  }
+}

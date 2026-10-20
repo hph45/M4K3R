@@ -1,0 +1,23 @@
+{
+  "id": "shaft-8x100",
+  "name": "8 mm × 100 shaft",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "shafts",
+  "kind": "mechanical",
+  "refPrefix": "MP",
+  "pins": [],
+  "props": {},
+  "physical": {
+    "size": [8, 8, 100],
+    "mass": 39.5,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "cylinder",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}

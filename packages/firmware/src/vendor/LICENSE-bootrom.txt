@@ -1,0 +1,40 @@
+bootrom.ts contains the RP2040 B1 bootrom image copied from rp2040js.
+rp2040js is MIT-licensed; that does not replace the separate ROM licenses.
+Upstream-identified ROM source revision:
+https://github.com/raspberrypi/pico-bootrom-rp2040/tree/00a4a19114195e20fb817bdfbca1165e157eef37
+Its pinned Pico SDK revision is 26653ea81e340cacee55025d110c3e014a252a87.
+
+The floating-point routines bootrom/mufplib.S and bootrom/mufplib-double.S
+are Copyright (c) 2020 Mark Owen https://www.quinapalus.com . Their headers
+provide a Raspberry Pi license restricted to physical RP2040-device use,
+and state that the software is also available under GPLv2. The restricted
+hardware-only alternative is not assumed to cover this software emulator.
+The original headers and full GPLv2 text are retained in third_party/licenses/.
+Local release packages include the identified source/build archives, including
+the pinned SDK, in third_party/sources/. See third_party/README.md and
+THIRD_PARTY_NOTICES.md. No legal determination about the combined application
+or a first-party application license is made by this notice.
+
+Everything else in the bootrom is licensed as follows:
+
+Copyright 2020 (c) 2020 Raspberry Pi (Trading) Ltd.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
+following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following
+   disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following
+   disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products
+   derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

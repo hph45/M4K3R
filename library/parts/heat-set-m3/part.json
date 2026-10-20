@@ -1,0 +1,31 @@
+{
+  "id": "heat-set-m3",
+  "name": "M3 heat-set insert",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "fasteners",
+  "kind": "mechanical",
+  "refPrefix": "MP",
+  "pins": [],
+  "props": {},
+  "physical": {
+    "size": [4.6, 4.6, 5.7],
+    "mass": 0.6,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "cylinder",
+      "color": "#7296a6",
+      "innerDiameter": 3.2
+    },
+    "mountingHoles": [
+      {
+        "id": "bore",
+        "at": [0, 0, 0],
+        "diameter": 3.2,
+        "axis": [0, 0, 1]
+      }
+    ],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}

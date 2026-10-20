@@ -1,0 +1,267 @@
+{
+  "id": "led",
+  "name": "LED",
+  "description": "",
+  "category": "optoelectronics",
+  "kind": "electronic",
+  "refPrefix": "D",
+  "pins": [
+    {
+      "num": "1",
+      "name": "K",
+      "type": "passive"
+    },
+    {
+      "num": "2",
+      "name": "A",
+      "type": "passive"
+    }
+  ],
+  "props": {
+    "color": "red",
+    "package": "0603"
+  },
+  "symbol": {
+    "source": "KiCad Device:LED",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "poly",
+            "pts": [
+              [-3.048, 0.762],
+              [-4.572, 2.286],
+              [-3.81, 2.286],
+              [-4.572, 2.286],
+              [-4.572, 1.524]
+            ],
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [-1.778, 0.762],
+              [-3.302, 2.286],
+              [-2.54, 2.286],
+              [-3.302, 2.286],
+              [-3.302, 1.524]
+            ],
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [-1.27, 0],
+              [1.27, 0]
+            ],
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [-1.27, 1.27],
+              [-1.27, -1.27]
+            ],
+            "width": 0.254
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [1.27, 1.27],
+              [1.27, -1.27],
+              [-1.27, 0],
+              [1.27, 1.27]
+            ],
+            "width": 0.254
+          },
+          {
+            "type": "text",
+            "text": "${REFERENCE}",
+            "at": [0, -2.54],
+            "size": 1.27
+          },
+          {
+            "type": "text",
+            "text": "${VALUE}",
+            "at": [0, 2.54],
+            "size": 1.27
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [-3.81, 0],
+            "rot": 0,
+            "length": 2.54
+          },
+          {
+            "num": "2",
+            "at": [3.81, 0],
+            "rot": 180,
+            "length": 2.54
+          }
+        ]
+      }
+    ],
+    "pinNameOffset": 1.016,
+    "hidePinNames": true,
+    "hidePinNumbers": true
+  },
+  "footprint": {
+    "source": "KiCad LED_SMD:LED_0603_1608Metric",
+    "pads": [
+      {
+        "num": "1",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-0.7875, 0],
+        "size": [0.875, 0.95],
+        "layers": [
+          "F.Cu",
+          "F.Mask",
+          "F.Paste"
+        ],
+        "roundness": 0.25
+      },
+      {
+        "num": "2",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [0.7875, 0],
+        "size": [0.875, 0.95],
+        "layers": [
+          "F.Cu",
+          "F.Mask",
+          "F.Paste"
+        ],
+        "roundness": 0.25
+      }
+    ],
+    "graphics": [
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [0, -1.43],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "${VALUE}",
+        "at": [0, 1.43],
+        "size": 1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.485, -0.735],
+          [-1.485, 0.735]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.485, 0.735],
+          [0.8, 0.735]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [0.8, -0.735],
+          [-1.485, -0.735]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "rect",
+        "start": [-1.48, -0.73],
+        "end": [1.48, 0.73],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.8, -0.1],
+          [-0.8, 0.4]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.8, 0.4],
+          [0.8, 0.4]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.5, -0.4],
+          [-0.8, -0.1]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [0.8, -0.4],
+          [-0.5, -0.4]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [0.8, 0.4],
+          [0.8, -0.4]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [0, 0],
+        "size": 0.4,
+        "layer": "F.Fab"
+      }
+    ],
+    "courtyard": {
+      "min": [-1.48, -0.73],
+      "max": [1.48, 0.73]
+    }
+  },
+  "model3d": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/LED_SMD.3dshapes/LED_0603_1608Metric.step",
+  "physical": {
+    "size": [1.6, 0.8, 0.8],
+    "mass": 0.004,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "box",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  },
+  "sim": {
+    "model": "led",
+    "params": {
+      "vf": 2
+    }
+  }
+}

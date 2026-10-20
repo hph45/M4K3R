@@ -1,0 +1,24 @@
+{
+  "id": "tube-10x100",
+  "name": "10 mm tube, 100 mm",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "stock",
+  "kind": "mechanical",
+  "refPrefix": "MP",
+  "pins": [],
+  "props": {},
+  "physical": {
+    "size": [10, 10, 100],
+    "mass": 7.6,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "cylinder",
+      "color": "#7296a6",
+      "innerDiameter": 8
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}

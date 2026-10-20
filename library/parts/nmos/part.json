@@ -1,0 +1,510 @@
+{
+  "id": "nmos",
+  "name": "N-channel MOSFET",
+  "description": "SOT-23 pinout (2N7002-style)",
+  "category": "discrete",
+  "kind": "electronic",
+  "refPrefix": "Q",
+  "pins": [
+    {
+      "num": "1",
+      "name": "G",
+      "type": "input"
+    },
+    {
+      "num": "2",
+      "name": "S",
+      "type": "passive"
+    },
+    {
+      "num": "3",
+      "name": "D",
+      "type": "passive"
+    }
+  ],
+  "props": {
+    "package": "SOT-23"
+  },
+  "symbol": {
+    "source": "KiCad Transistor_FET:Q_NMOS_GSD",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "poly",
+            "pts": [
+              [0.254, -1.905],
+              [0.254, 1.905]
+            ],
+            "width": 0.254
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [0.254, 0],
+              [-2.54, 0]
+            ],
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [0.762, -2.286],
+              [0.762, -1.27]
+            ],
+            "width": 0.254
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [0.762, -0.508],
+              [0.762, 0.508]
+            ],
+            "width": 0.254
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [0.762, 1.27],
+              [0.762, 2.286]
+            ],
+            "width": 0.254
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [0.762, 1.778],
+              [3.302, 1.778],
+              [3.302, -1.778],
+              [0.762, -1.778]
+            ],
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [1.016, 0],
+              [2.032, -0.381],
+              [2.032, 0.381],
+              [1.016, 0]
+            ],
+            "width": 0,
+            "fill": "outline"
+          },
+          {
+            "type": "circle",
+            "center": [1.651, 0],
+            "radius": 2.794,
+            "width": 0.254
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [2.54, -2.54],
+              [2.54, -1.778]
+            ],
+            "width": 0
+          },
+          {
+            "type": "circle",
+            "center": [2.54, -1.778],
+            "radius": 0.254,
+            "width": 0,
+            "fill": "outline"
+          },
+          {
+            "type": "circle",
+            "center": [2.54, 1.778],
+            "radius": 0.254,
+            "width": 0,
+            "fill": "outline"
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [2.54, 2.54],
+              [2.54, 0],
+              [0.762, 0]
+            ],
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [2.921, -0.381],
+              [3.683, -0.381]
+            ],
+            "width": 0
+          },
+          {
+            "type": "poly",
+            "pts": [
+              [3.302, -0.381],
+              [2.921, 0.254],
+              [3.683, 0.254],
+              [3.302, -0.381]
+            ],
+            "width": 0
+          },
+          {
+            "type": "text",
+            "text": "${REFERENCE}",
+            "at": [5.08, -1.905],
+            "size": 1.27
+          },
+          {
+            "type": "text",
+            "text": "${VALUE}",
+            "at": [5.08, 0],
+            "size": 1.27
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [-5.08, 0],
+            "rot": 0,
+            "length": 2.54
+          },
+          {
+            "num": "2",
+            "at": [2.54, 5.08],
+            "rot": 90,
+            "length": 2.54
+          },
+          {
+            "num": "3",
+            "at": [2.54, -5.08],
+            "rot": 270,
+            "length": 2.54
+          }
+        ]
+      }
+    ],
+    "pinNameOffset": 0,
+    "hidePinNames": true
+  },
+  "footprint": {
+    "source": "KiCad Package_TO_SOT_SMD:SOT-23",
+    "pads": [
+      {
+        "num": "1",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-0.9375, -0.95],
+        "size": [1.475, 0.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask",
+          "F.Paste"
+        ],
+        "roundness": 0.25
+      },
+      {
+        "num": "2",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [-0.9375, 0.95],
+        "size": [1.475, 0.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask",
+          "F.Paste"
+        ],
+        "roundness": 0.25
+      },
+      {
+        "num": "3",
+        "type": "smd",
+        "shape": "roundrect",
+        "at": [0.9375, 0],
+        "size": [1.475, 0.6],
+        "layers": [
+          "F.Cu",
+          "F.Mask",
+          "F.Paste"
+        ],
+        "roundness": 0.25
+      }
+    ],
+    "graphics": [
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [0, -2.4],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "${VALUE}",
+        "at": [0, 2.4],
+        "size": 1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.76, -1.56],
+          [0.76, -1.56]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.76, -1.51],
+          [-0.76, -1.56]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.76, 0.39],
+          [-0.76, -0.39]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.76, 1.56],
+          [-0.76, 1.51]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [0.76, -1.56],
+          [0.76, -0.56]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [0.76, 0.56],
+          [0.76, 1.56]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [0.76, 1.56],
+          [-0.76, 1.56]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.3, -0.38],
+          [-1.06, -0.05],
+          [-1.54, -0.05]
+        ],
+        "width": 0.12,
+        "fill": "outline",
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.93, -1.5],
+          [-0.9, -1.5]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.93, -0.39],
+          [-1.93, -1.5]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.93, 0.39],
+          [-0.9, 0.39]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.93, 1.5],
+          [-1.93, 0.39]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.9, -1.7],
+          [0.9, -1.7]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.9, -1.5],
+          [-0.9, -1.7]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.9, -0.39],
+          [-1.93, -0.39]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.9, 0.39],
+          [-0.9, -0.39]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.9, 1.5],
+          [-1.93, 1.5]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.9, 1.7],
+          [-0.9, 1.5]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [0.9, -1.7],
+          [0.9, -0.55]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [0.9, -0.55],
+          [1.93, -0.55]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [0.9, 0.55],
+          [0.9, 1.7]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [0.9, 1.7],
+          [-0.9, 1.7]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [1.93, -0.55],
+          [1.93, 0.55]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [1.93, 0.55],
+          [0.9, 0.55]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-0.325, -1.45],
+          [0.65, -1.45],
+          [0.65, 1.45],
+          [-0.65, 1.45],
+          [-0.65, -1.125]
+        ],
+        "width": 0.1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [0, 0],
+        "size": 0.72,
+        "rot": 90,
+        "layer": "F.Fab"
+      }
+    ],
+    "courtyard": {
+      "min": [-1.93, -1.7],
+      "max": [1.93, 1.7]
+    }
+  },
+  "model3d": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/Package_TO_SOT_SMD.3dshapes/SOT-23.step",
+  "physical": {
+    "size": [3, 1.4, 1.1],
+    "mass": 0.01,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "box",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  },
+  "sim": {
+    "model": "nmos",
+    "params": {
+      "vth": 2.1,
+      "rdsOn": 2
+    }
+  }
+}

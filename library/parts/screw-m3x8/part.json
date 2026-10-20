@@ -1,0 +1,23 @@
+{
+  "id": "screw-m3x8",
+  "name": "M3 × 8 socket screw",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "fasteners",
+  "kind": "mechanical",
+  "refPrefix": "MP",
+  "pins": [],
+  "props": {},
+  "physical": {
+    "size": [5.5, 5.5, 11],
+    "mass": 1.2,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "fastener",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}

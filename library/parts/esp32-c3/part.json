@@ -1,0 +1,1216 @@
+{
+  "id": "esp32-c3",
+  "name": "ESP32-C3-DevKitM-1",
+  "description": "Development board featuring ESP32-C3-MINI-1 module",
+  "category": "microcontrollers",
+  "kind": "module",
+  "refPrefix": "U",
+  "manufacturer": "Espressif",
+  "mpn": "ESP32-C3-DevKitM-1",
+  "datasheet": "https://documentation.espressif.com/ESP32-C3_Datasheet_en.pdf",
+  "pins": [
+    {
+      "num": "1",
+      "name": "GND",
+      "type": "power_in"
+    },
+    {
+      "num": "2",
+      "name": "3V3",
+      "type": "power_out",
+      "voltage": [3, 3.6]
+    },
+    {
+      "num": "3",
+      "name": "3V3",
+      "type": "passive",
+      "voltage": [3, 3.6]
+    },
+    {
+      "num": "4",
+      "name": "IO2",
+      "type": "bidir",
+      "functions": [
+        "GPIO2"
+      ]
+    },
+    {
+      "num": "5",
+      "name": "IO3",
+      "type": "bidir",
+      "functions": [
+        "GPIO3"
+      ]
+    },
+    {
+      "num": "6",
+      "name": "GND",
+      "type": "passive"
+    },
+    {
+      "num": "7",
+      "name": "RST",
+      "type": "input"
+    },
+    {
+      "num": "8",
+      "name": "GND",
+      "type": "passive"
+    },
+    {
+      "num": "9",
+      "name": "IO0",
+      "type": "bidir",
+      "functions": [
+        "GPIO0"
+      ]
+    },
+    {
+      "num": "10",
+      "name": "IO1",
+      "type": "bidir",
+      "functions": [
+        "GPIO1"
+      ]
+    },
+    {
+      "num": "11",
+      "name": "IO10",
+      "type": "bidir",
+      "functions": [
+        "GPIO10"
+      ]
+    },
+    {
+      "num": "12",
+      "name": "GND",
+      "type": "passive"
+    },
+    {
+      "num": "13",
+      "name": "5V",
+      "type": "passive"
+    },
+    {
+      "num": "14",
+      "name": "5V",
+      "type": "passive"
+    },
+    {
+      "num": "15",
+      "name": "GND",
+      "type": "passive"
+    },
+    {
+      "num": "16",
+      "name": "GND",
+      "type": "passive"
+    },
+    {
+      "num": "17",
+      "name": "IO19",
+      "type": "bidir",
+      "functions": [
+        "GPIO19"
+      ]
+    },
+    {
+      "num": "18",
+      "name": "IO18",
+      "type": "bidir",
+      "functions": [
+        "GPIO18"
+      ]
+    },
+    {
+      "num": "19",
+      "name": "GND",
+      "type": "passive"
+    },
+    {
+      "num": "20",
+      "name": "IO4",
+      "type": "bidir",
+      "functions": [
+        "GPIO4"
+      ]
+    },
+    {
+      "num": "21",
+      "name": "IO5",
+      "type": "bidir",
+      "functions": [
+        "GPIO5"
+      ]
+    },
+    {
+      "num": "22",
+      "name": "IO6",
+      "type": "bidir",
+      "functions": [
+        "GPIO6"
+      ]
+    },
+    {
+      "num": "23",
+      "name": "IO7",
+      "type": "bidir",
+      "functions": [
+        "GPIO7"
+      ]
+    },
+    {
+      "num": "24",
+      "name": "GND",
+      "type": "passive"
+    },
+    {
+      "num": "25",
+      "name": "IO8",
+      "type": "bidir",
+      "functions": [
+        "GPIO8"
+      ]
+    },
+    {
+      "num": "26",
+      "name": "IO9",
+      "type": "bidir",
+      "functions": [
+        "GPIO9"
+      ]
+    },
+    {
+      "num": "27",
+      "name": "GND",
+      "type": "passive"
+    },
+    {
+      "num": "28",
+      "name": "RX",
+      "type": "input",
+      "functions": [
+        "IO20",
+        "GPIO20"
+      ]
+    },
+    {
+      "num": "29",
+      "name": "TX",
+      "type": "output",
+      "functions": [
+        "IO21",
+        "GPIO21"
+      ]
+    },
+    {
+      "num": "30",
+      "name": "GND",
+      "type": "passive"
+    }
+  ],
+  "props": {},
+  "symbol": {
+    "source": "KiCad RF_Module:ESP32-C3-DevKitM-1",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "rect",
+            "start": [-12.7, -15.24],
+            "end": [12.7, 15.24],
+            "width": 0.254,
+            "fill": "background"
+          },
+          {
+            "type": "text",
+            "text": "${REFERENCE}",
+            "at": [7.62, -16.51],
+            "size": 1.27
+          },
+          {
+            "type": "text",
+            "text": "${VALUE}",
+            "at": [11.684, 16.764],
+            "size": 1.27
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [0, 17.78],
+            "rot": 90,
+            "length": 2.54
+          },
+          {
+            "num": "2",
+            "at": [15.24, -12.7],
+            "rot": 180,
+            "length": 2.54
+          },
+          {
+            "num": "3",
+            "at": [15.24, -12.7],
+            "rot": 180,
+            "length": 2.54,
+            "hidden": true
+          },
+          {
+            "num": "4",
+            "at": [-15.24, -2.54],
+            "rot": 0,
+            "length": 2.54
+          },
+          {
+            "num": "5",
+            "at": [-15.24, 0],
+            "rot": 0,
+            "length": 2.54
+          },
+          {
+            "num": "6",
+            "at": [0, 17.78],
+            "rot": 90,
+            "length": 2.54,
+            "hidden": true
+          },
+          {
+            "num": "7",
+            "at": [-15.24, 12.7],
+            "rot": 0,
+            "length": 2.54
+          },
+          {
+            "num": "8",
+            "at": [0, 17.78],
+            "rot": 90,
+            "length": 2.54,
+            "hidden": true
+          },
+          {
+            "num": "9",
+            "at": [-15.24, -7.62],
+            "rot": 0,
+            "length": 2.54
+          },
+          {
+            "num": "10",
+            "at": [-15.24, -5.08],
+            "rot": 0,
+            "length": 2.54
+          },
+          {
+            "num": "11",
+            "at": [15.24, 7.62],
+            "rot": 180,
+            "length": 2.54
+          },
+          {
+            "num": "12",
+            "at": [0, 17.78],
+            "rot": 90,
+            "length": 2.54,
+            "hidden": true
+          },
+          {
+            "num": "13",
+            "at": [0, -17.78],
+            "rot": 270,
+            "length": 2.54
+          },
+          {
+            "num": "14",
+            "at": [0, -17.78],
+            "rot": 270,
+            "length": 2.54,
+            "hidden": true
+          },
+          {
+            "num": "15",
+            "at": [0, 17.78],
+            "rot": 90,
+            "length": 2.54,
+            "hidden": true
+          },
+          {
+            "num": "16",
+            "at": [0, 17.78],
+            "rot": 90,
+            "length": 2.54,
+            "hidden": true
+          },
+          {
+            "num": "17",
+            "at": [15.24, 12.7],
+            "rot": 180,
+            "length": 2.54
+          },
+          {
+            "num": "18",
+            "at": [15.24, 10.16],
+            "rot": 180,
+            "length": 2.54
+          },
+          {
+            "num": "19",
+            "at": [0, 17.78],
+            "rot": 90,
+            "length": 2.54,
+            "hidden": true
+          },
+          {
+            "num": "20",
+            "at": [15.24, -7.62],
+            "rot": 180,
+            "length": 2.54
+          },
+          {
+            "num": "21",
+            "at": [15.24, -5.08],
+            "rot": 180,
+            "length": 2.54
+          },
+          {
+            "num": "22",
+            "at": [15.24, -2.54],
+            "rot": 180,
+            "length": 2.54
+          },
+          {
+            "num": "23",
+            "at": [15.24, 0],
+            "rot": 180,
+            "length": 2.54
+          },
+          {
+            "num": "24",
+            "at": [0, 17.78],
+            "rot": 90,
+            "length": 2.54,
+            "hidden": true
+          },
+          {
+            "num": "25",
+            "at": [15.24, 2.54],
+            "rot": 180,
+            "length": 2.54
+          },
+          {
+            "num": "26",
+            "at": [15.24, 5.08],
+            "rot": 180,
+            "length": 2.54
+          },
+          {
+            "num": "27",
+            "at": [0, 17.78],
+            "rot": 90,
+            "length": 2.54,
+            "hidden": true
+          },
+          {
+            "num": "28",
+            "at": [-15.24, 5.08],
+            "rot": 0,
+            "length": 2.54
+          },
+          {
+            "num": "29",
+            "at": [-15.24, 7.62],
+            "rot": 0,
+            "length": 2.54
+          },
+          {
+            "num": "30",
+            "at": [0, 17.78],
+            "rot": 90,
+            "length": 2.54,
+            "hidden": true
+          }
+        ]
+      }
+    ],
+    "pinNameOffset": 0.508
+  },
+  "footprint": {
+    "source": "Espressif kicad-libraries ESP32-C3-DevKitM-1",
+    "pads": [
+      {
+        "num": "1",
+        "type": "thru_hole",
+        "shape": "rect",
+        "at": [0, 0],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "2",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [0, 2.54],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "3",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [0, 5.08],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "4",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [0, 7.62],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "5",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [0, 10.16],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "6",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [0, 12.7],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "7",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [0, 15.24],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "8",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [0, 17.78],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "9",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [0, 20.32],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "10",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [0, 22.86],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "11",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [0, 25.4],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "12",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [0, 27.94],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "13",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [0, 30.48],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "14",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [0, 33.02],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "15",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [0, 35.56],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "16",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [22.86, 35.56],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "17",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [22.86, 33.02],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "18",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [22.86, 30.48],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "19",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [22.86, 27.94],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "20",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [22.86, 25.4],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "21",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [22.86, 22.86],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "22",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [22.86, 20.32],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "23",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [22.86, 17.78],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "24",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [22.86, 15.24],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "25",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [22.86, 12.7],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "26",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [22.86, 10.16],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "27",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [22.86, 7.62],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "28",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [22.86, 5.08],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "29",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [22.86, 2.54],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "30",
+        "type": "thru_hole",
+        "shape": "oval",
+        "at": [22.86, 0],
+        "rot": 270,
+        "size": [1.2, 2],
+        "drill": [0.8, 0.8],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      }
+    ],
+    "graphics": [
+      {
+        "type": "text",
+        "text": "${REFERENCE}",
+        "at": [22.352, 39.116],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "${VALUE}",
+        "at": [11.4, 17.2],
+        "size": 1,
+        "rot": -90,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GPIO4~",
+        "at": [21.59, 25.4],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "3V3",
+        "at": [1.27, 5.08],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GPIO2~",
+        "at": [1.27, 7.62],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "RST",
+        "at": [1.27, 15.24],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "USB",
+        "at": [11.43, 37.338],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GND",
+        "at": [1.27, 35.56],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GPIO7",
+        "at": [21.59, 17.78],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GND",
+        "at": [1.27, 12.7],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "5V",
+        "at": [1.27, 33.02],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GPIO1~",
+        "at": [1.27, 22.86],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "3V3",
+        "at": [1.3, 2.54],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GND",
+        "at": [21.59, 15.24],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GND",
+        "at": [21.59, 0],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GPIO18/USB_D+",
+        "at": [21.59, 30.48],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GPIO3~",
+        "at": [1.27, 10.16],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GPIO6",
+        "at": [21.59, 20.32],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GND",
+        "at": [1.27, 27.94],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GND",
+        "at": [21.59, 7.62],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GPIO20/U0RXD",
+        "at": [21.59, 5.08],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GPIO10",
+        "at": [1.27, 25.4],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GND",
+        "at": [1.27, 0],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GPIO8",
+        "at": [21.59, 12.7],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GND",
+        "at": [1.27, 17.78],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "Antenna",
+        "at": [11.43, -4.318],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GPIO19/USB_D-",
+        "at": [21.59, 33.02],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GPIO9",
+        "at": [21.59, 10.16],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GPIO21/U0TXD",
+        "at": [21.59, 2.54],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GPIO0~",
+        "at": [1.27, 20.32],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GND",
+        "at": [21.59, 35.56],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "5V",
+        "at": [1.27, 30.48],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GPIO5~",
+        "at": [21.59, 22.86],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "GND",
+        "at": [21.59, 27.94],
+        "size": 1,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "text",
+        "text": "REF**",
+        "at": [11.43, 27.686],
+        "size": 1,
+        "layer": "F.Fab"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.524, 37.846],
+          [7.112, 37.846]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.5, -1.575],
+          [-1.524, 37.846]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [4.83, -7.0104],
+          [18.03, -7.0104]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [4.83, -1.6104],
+          [4.83, -7.0104]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [18.03, -7.0104],
+          [18.03, -1.6104]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [24.359999, 37.846],
+          [15.748, 37.846]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [24.359999, 37.846],
+          [24.36, -1.575]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [24.36, -1.575],
+          [-1.5, -1.575]
+        ],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "rect",
+        "start": [7.112, 34.544],
+        "end": [15.748, 39.2938],
+        "width": 0.12,
+        "layer": "F.SilkS"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.27, -1.325],
+          [24.11, -1.325]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [-1.27, 37.592],
+          [-1.27, -1.325]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [24.11, -1.325],
+          [24.11, 37.592]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      },
+      {
+        "type": "poly",
+        "pts": [
+          [24.11, 37.592],
+          [-1.27, 37.592]
+        ],
+        "width": 0.05,
+        "layer": "F.CrtYd"
+      }
+    ],
+    "courtyard": {
+      "min": [-1.27, -1.325],
+      "max": [24.11, 37.592]
+    }
+  },
+  "physical": {
+    "size": [25.4, 38.91, 9],
+    "mass": 7,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "box",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [
+      {
+        "name": "Antenna clearance (planning)",
+        "at": [0, 14, 5],
+        "size": [25.4, 12, 10]
+      }
+    ],
+    "source": "Espressif board drawing: 25.40 × 38.91 mm (https://dl.espressif.com/dl/schematics/DIMENSION_ESP32-C3-DEVKITM-1_V1_20200915AA.pdf); height and mass estimated",
+    "massSource": "estimated"
+  }
+}

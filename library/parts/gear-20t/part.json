@@ -1,0 +1,24 @@
+{
+  "id": "gear-20t",
+  "name": "20 tooth gear planning envelope",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "power transmission",
+  "kind": "mechanical",
+  "refPrefix": "MP",
+  "pins": [],
+  "props": {},
+  "physical": {
+    "size": [22, 22, 6],
+    "mass": 5,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "gear",
+      "color": "#7296a6",
+      "innerDiameter": 5
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}

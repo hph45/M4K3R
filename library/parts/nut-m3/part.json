@@ -1,0 +1,24 @@
+{
+  "id": "nut-m3",
+  "name": "M3 hex nut",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "fasteners",
+  "kind": "mechanical",
+  "refPrefix": "MP",
+  "pins": [],
+  "props": {},
+  "physical": {
+    "size": [5.5, 5.5, 2.4],
+    "mass": 0.45,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "fastener",
+      "color": "#7296a6",
+      "innerDiameter": 3.2
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}
