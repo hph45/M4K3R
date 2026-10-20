@@ -47,65 +47,30 @@ Lengths are in mm with y pointing down; angles are degrees counter-clockwise.
 
 ## Schematic
 
-- Sheets, symbols, wires, junctions, net labels, power ports, no-connect flags
-- **Hierarchical sheets**, which also act as simulation blocks (see [simulation.md](simulation.md))
-- Auto-numbered refdes, and properties edited inline
-- Net names flow everywhere: PCB, SPICE netlist, and the firmware pin header
+The Wiring tab is a visual circuit canvas; Details retains the component/net list. Drag parts from the tray, move bodies, and drag pin-to-pin to attach wires. Release on empty space or Escape cancels. Click pins for the named Connect/Disconnect bar. Placements and drawing edits use shared undo/history. Pinless mechanical parts belong in assemblies and are filtered out of electrical placement.
 
-### ERC
+**Arrange** groups parts by the nets they share and draws power rails and many-pin nets as power symbols or net labels, so circuits wired by agents stay readable. When the catalog lacks a part, **Search KiCad libraries** in the parts tray searches every official library by name (e.g. `ESP32-S3`) and imports the picked symbol with its default footprint.
 
-Runs live and shows results in a small bottom panel.
+Direct wire dragging changes the canonical electrical net and records editable bends atomically. Select a path (or choose it under Editable wire paths) to drag bend handles; double-click a segment to add a bend. Body movement updates endpoints while preserving explicit bends. Removing a drawn path keeps the electrical net; disconnect pins explicitly to change connectivity.
 
-| Rule | Example |
-|---|---|
-| Unconnected input or power pin | nSLEEP floating |
-| Output-to-output conflict | Two push-pull outputs on one net |
-| Voltage domain mismatch | 5 V signal into a 3.3 V-only pin |
-| Missing pull-up | I²C bus without pull-ups |
-| Missing decoupling | IC power pin with no cap on its net |
-| Pin function | `PWM` net on a pin without PWM, or two SPI buses fighting over one pin |
-| Rail budget | Total load on a regulator exceeds its rating |
+Select pins to mark/clear intentional no-connects. Wired no-connect flags cause ERC errors instead of silently disconnecting pins. Select a net to place a draggable name label or explicit junction marker. Labels follow the canonical net name. Crossings of different nets do not merge them; junction dots annotate the selected net.
 
-## PCB
+Imported multi-unit components place each gate independently with one shared physical component/pin list. Place unplaced adds remaining gates. References/properties remain shared. Hierarchical sheet ports and simulation-block hierarchy remain later extensions; current sheets share the project netlist.
 
-- 2-layer for v1 (4-layer later)
-- Board outline drawn directly or linked to a CAD sketch
-- Footprints are placed from the schematic, and a ratsnest shows unrouted connections
-- Interactive routing with walkaround (push-and-shove later), vias, and width presets per net class
-- Copper zones (pours) with thermal reliefs
-- Live 3D board view
+Run/Pause/Reset operates live analog simulation directly on the canvas: rotating motor fan/RPM, LED glow, held buttons/switches and solved net readings. Missing ground is explicit: select a return net and Set ground. Moving symbols preserves live state; electrical edits reset it. Firmware + circuit runs compiled code as an explicit batch snapshot with serial output; it is distinct from live analog stepping.
 
-### Net classes and DRC
+### Electrical rules
 
-| Class | Default width | Use |
-|---|---|---|
-| Default | 0.25 mm | Signals |
-| Power | 0.5 mm | Logic rails |
-| Motor | 1.0 mm | Motor and battery current |
-| HV | 0.3 mm, 0.5 mm clearance | High-voltage nets (e.g. 30 V bias) |
+Live ERC appears in the inspector and at `GET /api/projects/:id/erc` / MCP `schematic_check`. It checks unconnected input/power pins, no-connect conflicts, driven-output conflicts, incompatible declared voltage ranges, missing open-drain pull-ups, missing IC decoupling and named PWM/SPI/I2C pin functions. Warnings require engineering judgment. Rail-current budgets require ratings/load metadata and are not inferred from part appearance.
 
-DRC defaults come from JLCPCB's standard capabilities (0.127 mm trace/space, 0.3 mm drill).
-It checks clearance, width, annular ring, drill sizes, board-edge clearance, unrouted nets, and courtyard overlap.
-A trace-width helper (IPC-2221) suggests a width from net current.
+For static DC checks, an explicitly configured battery referenced to a net named GND/0 establishes its **nominal** voltage; a regulator establishes its setpoint only with a known input, explicit ground and configured dropout headroom. ERC compares those values against declared `pin.voltage` ranges, reports conflicting sources, and warns when a rated net's voltage remains unknown. It does not infer rails from names such as 3V3, arbitrary resistors, switches or MCU outputs. Battery voltage varies with charge/load, so this nominal check does not certify worst-case voltage or replace simulation and measurement. Catalog ratings use the [Pico VSYS specification](https://datasheets.raspberrypi.com/pico/pico-datasheet.pdf) and [ESP32-C3 recommended supply conditions](https://documentation.espressif.com/ESP32-C3_Datasheet_en.pdf); project-vendored parts retain their existing metadata until explicitly updated.
 
-## Fab outputs
+The built-in Pico's VSYS pin 39 is rated 1.8–5.5 V. The ESP32-C3-DevKitM-1's 3V3 header pins 2 and 3 use the 3.0–3.6 V recommended supply range; the [DevKit guide](https://documentation.espressif.com/esp-dev-kits/en/latest/esp32c3/esp32-c3-devkitm-1/index.html) documents powering through these headers. These are supply ratings, not complete GPIO absolute-maximum or power-sequencing checks.
 
-One click produces a zip with:
-- Gerber X2 + Excellon drill
-- BOM (CSV)
-- Pick-and-place (CSV)
-- Board STEP
+## PCB and fabrication
 
-Formats match what JLCPCB and PCBWay expect.
+The implemented two-layer placement/routing/via/outline/zone editor, geometric DRC, real fabrication ZIP and assembly geometry are documented in [PCB](pcb.md). Create New PCB from the New document menu. Off-board motors, batteries and modules can remain in the shared project/assembly while being explicitly excluded from a carrier PCB.
 
-## Interop
+## Interoperability
 
-| | v1 | Later |
-|---|---|---|
-| KiCad symbols, footprints, 3D | Import | — |
-| KiCad project | — | Import and export |
-| SPICE netlist | Export | — |
-
-## Done when
-
-A multi-board design can be captured, pass ERC/DRC, and export fab files that a fab house accepts.
+KiCad symbol/footprint import preserves vendored geometry. SPICE export uses shared nets. Fabrication exports actual Gerber X2, Excellon PTH/NPTH, BOM, SMT pick-and-place and exact board STEP. Native KiCad project import/export and four-layer boards remain later extensions. Review CAM files and confirm fabricator conventions before ordering.

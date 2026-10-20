@@ -1,62 +1,66 @@
-# Mechanical CAD
+# Parametric mechanical CAD
 
-Onshape-style parametric modeling, plus a live link to the electronics.
+Part studios contain ordered sketches and solid features. OpenCascade/replicad evaluates their exact B-rep geometry on the local server; the browser receives a mesh for orbitable, selectable preview. Model changes, undo and MCP edits use the same project command system.
 
-## Documents
+## Sketches and features
 
-| Doc | Purpose |
+Create rectangle, circle or interpolating cubic-spline sketches in the browser. Choose XY/XZ/YZ with an offset, or click **Sketch on face** and pick inside a planar face. A face sketch uses a stable local frame at the face center. A geometric normal query can follow an upstream dimension edit; a picked `near` point that no longer matches reports a reselection error instead of choosing another face silently.
+
+The command API additionally supports points, lines and arcs, construction geometry and constraints: coincident, horizontal, vertical, parallel, perpendicular, tangent, equal, midpoint, symmetric, fix, distance, angle, radius and diameter. Splines interpolate their points with cubic Bezier segments; individual points are referenced as `splineId.p0`, `splineId.p1`, etc. Their control points can participate in point constraints. Closed splines form a real curved profile; an open spline can be joined to other profile curves or marked construction.
+
+Extrude and shell have browser editing forms. The feature list supports selecting, suppressing, removing and rolling back. More advanced feature operations are available through commands: revolve, fillet, chamfer, hole with M2–M6 presets, linear/circular pattern, mirror and boolean. A failing feature stops later evaluation and retains the complete solid from before that feature, including failures partway through a pattern or boolean.
+
+## Dimensions and variables
+
+Lengths are millimeters and angles are degrees. Every dimension accepts a number or an expression, such as `3 mm`, `3/8 in`, `board_width + 2*wall`, or `max(12, spacing)`.
+
+```jsonc
+{ "material": "PLA", "features": [
+  { "id": "outline", "type": "sketch", "plane": "XY",
+    "entities": [{ "type": "rectangle", "id": "r", "width": "board_width + 2*wall", "height": 45 }] },
+  { "id": "body", "type": "extrude", "sketch": "outline", "depth": 22 },
+  { "id": "round", "type": "fillet", "edges": { "direction": "z" }, "radius": 4 },
+  { "id": "walls", "type": "shell", "faces": { "normal": "+z" }, "thickness": "wall" },
+  { "id": "top_sketch", "type": "sketch",
+    "face": { "body": "body", "query": { "normal": "+z" } },
+    "entities": [{ "id": "mount", "type": "circle", "center": [0, 0], "radius": 3 }] }
+] }
+```
+
+Project variables are shared with other document domains. References must point to earlier features. Bodies are identified by the feature that created them. Solid features default to a new body for the first feature and addition after it; explicit operations are `new`, `add`, `subtract` and `intersect`.
+
+## Parametric families and assemblies
+
+**Parametric part** creates mounting plates, L brackets, raised mounts and quadcopter frames with real through holes and an editable feature tree. The same form is available as **Printed part** in an assembly. Parameters include width/length/height, thickness, hole diameter and X/Y spacing; frames add motor diagonal and arm width. Frame templates include four motor pads with 16 × 19 mm hole patterns and a center mounting pattern. These are editable planning dimensions rather than certification of a particular motor or frame.
+
+```jsonc
+{ "type": "cad.template.create", "args": {
+  "name": "Controller bracket", "family": "bracket",
+  "width": "board_width + 8", "length": 50, "height": 25,
+  "thickness": "wall", "holeSpacingX": 30.5, "holeSpacingY": 30.5, "holeDiameter": 3.4
+} }
+```
+
+Place studio solids together with catalog components and PCBs in an [assembly](assembly.md). A studio can supply its entire solid set or an individual body. Assembly mounting anchors follow hole features and parametric dimensions. Components remain one shared BOM identity across electrical and mechanical workspaces.
+
+## Commands, queries and export
+
+The ordinary project command endpoint and MCP `apply_commands` expose `cad.sketch.add`, `cad.feature.add/update/remove/move`, `cad.material.set` and `cad.template.create`. `GET /api/commands` describes their exact schemas.
+
+| Endpoint | Result |
 |---|---|
-| **Part Studio** | Sketches and features that produce one or more bodies |
-| **Assembly** | Instances of parts (including PCBs) positioned with mates |
+| `GET /api/projects/:id/cad/:doc/mesh` | Triangle/edge meshes, solved sketches, feature status and first error |
+| `GET /api/projects/:id/cad/:doc/properties` | Volume, area, material density, mass, CG, bounds and per-body properties |
+| `GET /api/projects/:id/cad/:doc/export.stl` | Binary STL |
+| `GET /api/projects/:id/cad/:doc/export.step` | Analytic STEP with named solids |
+| `GET /api/projects/:id/cad/:doc/export.3mf` | Millimeter 3MF package with one object per body |
 
-## Sketches
+Mesh/properties accept `?until=<feature>` for rollback. Properties accept an optional material override. MCP `cad_properties` returns properties and feature diagnostics; `cad_export` writes STL/STEP/3MF to the requested path or the project's exports directory. Failed or empty studios cannot be exported.
 
-- Can sit on a plane or on a planar face
-- Entities: line, arc, circle, rectangle, spline, point, construction geometry
-- Constraints: coincident, horizontal, vertical, parallel, perpendicular, tangent, equal, midpoint, symmetric, fix
-- Dimensions: distance, angle, radius/diameter, which can be expressions (`pcb_w + 2*wall`)
-- Solved live by planegcs. Sketch state is shown by color: under-defined, fully defined, over-defined.
+The viewport uses resolved theme colors, backface culling, coherent B-rep face fills and depth-tested visible outlines. Drag to orbit, scroll to zoom, or use arrow keys, +/- and Home. Standard Top/Front/Right/Fit buttons and an orientation triad remain available. This is a modeling preview; the STEP solid is the authoritative geometry for manufacturing and interference.
 
-## Features (v1)
+The manufacturing helper also builds exact PCB solids from polygon outlines with circular drills and capsule slots for board STEP and assembly fit checks. 3MF packages contain Open Packaging relationships, core model resources and build items, with declared millimeter units.
 
-Extrude, revolve, fillet, chamfer, shell, hole (with M2/M3/M4 presets), linear and circular pattern, mirror, boolean.
-Later: sweep, loft, draft, threads.
+## Current boundaries
 
-The feature list is ordered and has a rollback bar. Editing any feature re-evaluates everything after it.
-
-## Variables
-
-Project variables (`pcb_w`, `wall`, `m2_clearance`) are shared with the PCB editor. Change the board width and the chassis pocket updates with it.
-
-## Assemblies
-
-- Instances can come from Part Studios, boards, or imported STEP files
-- Mates: fastened, revolute, slider, cylindrical, planar
-- Drag a part to see its degrees of freedom
-- Interference check, measure, section view
-- Mass properties come from material density. They feed the physics simulation.
-
-## ECAD ↔ MCAD link
-
-| Direction | What flows |
-|---|---|
-| CAD → PCB | The board outline and mounting holes can reference a sketch |
-| PCB → CAD | The board appears as a 3D part (substrate, copper outline, component STEP models) and updates live |
-
-So "does the board fit, do the connectors line up with the cutouts, does the battery clear the standoffs" all get checked in the assembly.
-
-## Export
-
-- STL and 3MF for 3D printing
-- STEP for everything else
-
-## Known hard problem
-
-**Topological naming.** When a fillet references "this edge", that edge can change after an upstream edit. v1 handles it this way:
-- References prefer sketch entities and datum planes, which are stable.
-- Face and edge picks store geometric hints (normal, centroid) and are re-matched after regeneration.
-- A failed match shows a clear error on the feature. It never silently picks the wrong edge.
-
-## Done when
-
-A real enclosure with its boards inside can be modeled, driven by shared variables, checked for fit, and exported for printing.
+This version supports planar face sketches, interpolating splines, constrained analytic sketch entities, ordered solid modeling, print exports and fastened mechanical assemblies. It does not implement sweep/loft, sculpting, nonplanar face sketch mapping, automatic topological face healing or a browser-local CAD kernel. Tangency/curvature constraints on spline curves themselves are not exposed; point constraints and the interpolation geometry are supported. Geometric edge/face picks report a clear error when upstream edits invalidate them.

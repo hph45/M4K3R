@@ -1,0 +1,28 @@
+{
+  "id": "propeller-5inch",
+  "name": "5 inch propeller (planning)",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "propulsion",
+  "kind": "mechanical",
+  "refPrefix": "MP",
+  "pins": [],
+  "props": {
+    "diameter": "127",
+    "ct": "0.1",
+    "cp": "0.05",
+    "dataSource": "Illustrative generic coefficients, not measured. Replace with measured or vendor data before assessing a real build."
+  },
+  "physical": {
+    "size": [127, 18, 6],
+    "mass": 4.5,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "propeller",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}

@@ -58,6 +58,8 @@ export class PartLibrary {
         description: part.description,
         refPrefix: part.refPrefix,
         pins: part.pins.length,
+        kind: part.kind,
+        physical: part.physical,
         source,
       }))
   }

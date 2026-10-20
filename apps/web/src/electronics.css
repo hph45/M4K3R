@@ -1,0 +1,144 @@
+.electronics-workspace { display: flex; flex-direction: column; height: 100%; min-height: 0; overflow: hidden; }
+.electronics-toolbar { min-height: 58px; padding: 12px 20px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.electronics-doc-title { font-weight: 600; margin-right: 8px; }
+.circuit-simulation-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; min-height: 48px; padding: 8px 20px; border-bottom: 1px solid var(--line); background: var(--surface); }
+.circuit-live-status { font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 7px; }
+.circuit-live-status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--muted); }
+.circuit-live-status[data-running]::before { background: #50b87e; box-shadow: 0 0 0 3px color-mix(in srgb, #50b87e 15%, transparent); }
+.circuit-simulation-error { padding: 10px 20px; background: color-mix(in srgb, var(--danger) 8%, var(--surface)); border-bottom: 1px solid var(--line); color: var(--danger); font-size: 12px; }
+.circuit-simulation-warnings { padding: 8px 20px; background: var(--surface); border-bottom: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.circuit-simulation-warnings summary { cursor: pointer; }
+.circuit-simulation-warnings p { margin-top: 4px; }
+.electronics-inspector > .circuit-simulation-error { padding: 10px; border: 1px solid color-mix(in srgb, var(--danger) 25%, var(--line)); border-radius: 6px; }
+.electronics-inspector > .circuit-simulation-warnings { padding: 0 0 10px; }
+.circuit-ground-setup { display: flex; flex-direction: column; gap: 10px; padding: 12px 0; }
+.circuit-ground-setup select { width: 130px; max-width: 100%; padding: 5px; border: 1px solid var(--line); border-radius: 6px; color: var(--text); background: var(--surface); font: inherit; }
+.circuit-inspector-readings { padding: 10px; display: flex; flex-direction: column; gap: 5px; border-radius: 7px; background: var(--accent-soft); color: var(--accent); font-size: 12px; }
+.electronics-body { display: flex; flex: 1; min-height: 0; overflow: hidden; }
+.wiring-workspace { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+.wiring-details-body { flex: 1; overflow: auto; min-height: 0; }
+.circuit-parts-tray { width: 174px; flex-shrink: 0; border-right: 1px solid var(--line); padding: 16px 12px; background: var(--surface); display: flex; flex-direction: column; gap: 12px; overflow: auto; }
+.circuit-parts-tray h2 { font-size: 13px; font-weight: 650; }
+.circuit-parts-tray > input { width: 100%; min-width: 0; font-size: 12px; }
+.circuit-part-cards { display: flex; flex-direction: column; gap: 8px; }
+.circuit-part-card { height: 62px; width: 100%; padding: 8px; display: grid; grid-template-columns: 36px minmax(0, 1fr) 9px; align-items: center; gap: 7px; white-space: normal; text-align: left; font-size: 12px; line-height: 1.25; cursor: grab; user-select: none; }
+.circuit-part-card:active { cursor: grabbing; }
+.circuit-part-card:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 2px 8px var(--accent-soft); }
+.circuit-part-icon { width: 32px; height: 26px; stroke-width: 1.5; color: light-dark(#73522c, #dcb479); overflow: visible; pointer-events: none; }
+.circuit-part-grip { color: var(--muted); font-size: 15px; }
+.circuit-parts-tray > button { justify-content: center; font-size: 12px; }
+.kicad-search { display: flex; flex-direction: column; gap: 8px; min-height: 0; }
+.kicad-search-head { display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 600; }
+.kicad-search-head button { width: 26px; padding: 0; justify-content: center; font-size: 15px; }
+.kicad-indexing { animation: fade 0.2s 0.4s both; }
+.kicad-symbols { display: flex; flex-direction: column; gap: 1px; }
+.kicad-symbols button { flex-direction: column; align-items: flex-start; gap: 0; height: auto; min-height: 26px; padding: 3px 8px; white-space: normal; overflow-wrap: anywhere; text-align: left; color: var(--text); font: 11px var(--mono); }
+.kicad-symbols small { display: block; color: var(--muted); font-size: 10px; }
+.electronics-inspector { width: 246px; flex-shrink: 0; padding: 20px; border-left: 1px solid var(--line); background: var(--surface); overflow: auto; display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
+.electronics-inspector h2, .firmware-files h2, .firmware-output h2 { font-size: 12px; font-weight: 650; letter-spacing: .03em; }
+.electronics-inspector h2:not(:first-child) { margin-top: 16px; }
+.electronics-inspector label { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 12px; color: var(--muted); }
+.electronics-inspector label .editable { color: var(--text); overflow-wrap: anywhere; text-align: right; }
+.electronics-pin-list { display: flex; flex-wrap: wrap; gap: 5px; }
+.electronics-pin-list button { height: 25px; padding: 0 7px; font: 11px var(--mono); }
+.electronics-pin-list button[data-picked] { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+.electronics-net-row { display: flex; align-items: center; justify-content: space-between; font: 12px var(--mono); cursor: pointer; }
+.electronics-net-row[data-active] { color: var(--accent); }
+.schematic-stage { flex: 1; min-width: 0; min-height: 350px; position: relative; background: var(--bg); overflow: hidden; }
+.schematic-canvas { width: 100%; height: 100%; display: block; touch-action: none; color: var(--text); stroke-width: .2; cursor: grab; }
+.schematic-canvas:active { cursor: grabbing; }
+.schematic-canvas text { font: 1.5px var(--mono); fill: currentColor; user-select: none; }
+.schematic-symbol { cursor: move; color: light-dark(#73522c, #dcb479); }
+.schematic-symbol:hover .schematic-symbol-hit { stroke: var(--accent); stroke-dasharray: 1 1; fill: var(--accent-soft); fill-opacity: .25; }
+.schematic-symbol[data-moving] { cursor: grabbing; opacity: .85; }
+.circuit-device-feedback { pointer-events: none; color: var(--text); }
+.schematic-canvas .circuit-device-feedback text { stroke: none; font-size: 1.8px; fill: currentColor; }
+.circuit-feedback-card { fill: color-mix(in srgb, var(--surface) 94%, transparent); stroke: var(--line); stroke-width: .25; }
+.circuit-motor-state { color: var(--muted); }
+.circuit-motor-state[data-spinning="true"] { color: var(--accent); }
+.circuit-motor-housing { fill: var(--surface); stroke: currentColor; stroke-width: .35; }
+.circuit-motor-rotor { transform-box: fill-box; transform-origin: center; animation: circuit-motor-spin 1s linear infinite; }
+.circuit-motor-rotor path { fill: currentColor; stroke: none; }
+.circuit-motor-hub { fill: currentColor; stroke: var(--surface); stroke-width: .25; }
+.schematic-canvas .circuit-live-rpm { font-size: 2.3px; font-weight: 700; }
+.schematic-canvas .circuit-live-unit, .schematic-canvas .circuit-live-current { font-size: 1.5px; }
+.schematic-canvas .circuit-live-state { font-size: 1.9px; font-weight: 650; }
+.circuit-led-glow { pointer-events: none; stroke: none; }
+.circuit-led-glow circle { fill: currentColor; }
+.circuit-led-glow circle:first-child { opacity: .28; filter: blur(1px); }
+.circuit-led-glow circle:last-child { opacity: .55; }
+.circuit-inline-control { pointer-events: all; cursor: pointer; color: var(--accent); outline: none; }
+.circuit-inline-control > rect { fill: var(--surface); stroke: var(--accent); stroke-width: .3; }
+.circuit-inline-control:hover > rect, .circuit-inline-control:focus-visible > rect { fill: var(--accent-soft); stroke-width: .5; }
+.circuit-inline-control > circle { fill: var(--accent-soft); stroke: var(--accent); stroke-width: .3; }
+.circuit-inline-control > path { stroke: var(--accent); stroke-width: .7; }
+.circuit-inline-control[data-pressed] > rect { fill: var(--accent); }
+.circuit-inline-control[data-pressed] > text { fill: var(--accent-text); }
+.circuit-inline-control[data-pressed] > circle { fill: var(--accent-text); stroke: none; }
+.circuit-inline-control[data-disabled] { opacity: .45; cursor: default; }
+.schematic-canvas .circuit-inline-control .circuit-control-help { font-size: 1.5px; fill: var(--muted); }
+@keyframes circuit-motor-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .circuit-motor-rotor { animation: none; } }
+.schematic-symbol[data-selected] { color: var(--accent); }
+.schematic-symbol-hit { fill: transparent; stroke: transparent; stroke-width: .3; rx: 1; }
+.schematic-symbol[data-selected] .schematic-symbol-hit { fill: var(--accent-soft); fill-opacity: .4; stroke: var(--accent); stroke-dasharray: 1 1; }
+.schematic-canvas .schematic-ref { font-size: 2px; font-weight: 650; fill: var(--text); }
+.schematic-canvas .schematic-value { font-size: 1.5px; font-weight: 400; fill: var(--muted); }
+.schematic-pin { color: light-dark(#956651, #d3a292); }
+.schematic-pin text { font-size: 1.2px; }
+.schematic-pin .schematic-pin-num { font-size: 1px; }
+.schematic-pin[data-wire-target] .schematic-pin-dot { fill: var(--accent); stroke: var(--accent); stroke-width: .5; r: 1.35; }
+.schematic-pin[data-wire-source] .schematic-pin-dot { fill: var(--accent); stroke: var(--accent); r: .9; }
+.schematic-pin-dot { fill: var(--surface); stroke-width: .35; }
+.schematic-pin[data-wired] .schematic-pin-dot { fill: light-dark(#468967, #84bf97); stroke: light-dark(#468967, #84bf97); }
+.schematic-pin[data-picked] .schematic-pin-dot { fill: var(--accent); stroke: var(--accent); r: 1; }
+.schematic-pin-target { fill: transparent; stroke: none; cursor: crosshair; }
+.schematic-pin-target:hover { fill: var(--accent); fill-opacity: .2; }
+.schematic-canvas[data-dragging="wire"] { cursor: crosshair; }
+.schematic-canvas[data-dragging="part"] { cursor: grabbing; }
+.schematic-canvas[data-dropping] { outline: 2px solid var(--accent); outline-offset: -2px; }
+.schematic-wire-draft { stroke: var(--accent); stroke-width: .6; fill: var(--accent); pointer-events: none; }
+.schematic-wire-draft path { fill: none; stroke-dasharray: 1.5 1; }
+.schematic-wire-draft[data-snapped] path { stroke-dasharray: none; }
+.schematic-drop-preview { color: var(--accent); pointer-events: none; stroke-width: .4; }
+.schematic-drop-preview rect { fill: var(--accent-soft); stroke-dasharray: 1 1; }
+.schematic-drop-preview text { font-size: 2px; font-weight: 600; }
+.schematic-interaction-status { position: absolute; top: 10px; left: 12px; right: 12px; padding: 7px 10px; width: fit-content; max-width: calc(100% - 24px); border-radius: 6px; color: var(--muted); background: color-mix(in srgb, var(--surface) 92%, transparent); font-size: 11px; pointer-events: none; }
+.schematic-net { color: light-dark(#468967, #84bf97); stroke-width: .35; cursor: pointer; }
+.schematic-net[data-active] { color: var(--accent); stroke-width: .6; }
+.schematic-net text { font-size: 1.6px; paint-order: stroke; stroke: var(--bg); stroke-width: .7px; }
+.schematic-port path { fill: none; }
+.schematic-canvas .schematic-port text { font-size: 1.7px; font-weight: 600; }
+.schematic-port[data-port="signal"] text { font-weight: 500; }
+.schematic-routed-wire>path{fill:none;stroke-width:.45;cursor:pointer}.schematic-wire-bend{fill:var(--surface);stroke:var(--accent);stroke-width:.35;cursor:move}.schematic-net-label{color:var(--accent);cursor:move;stroke-width:.25}.schematic-net-label text{fill:currentColor;stroke:none;font-size:2px}.schematic-junction{fill:light-dark(#468967,#84bf97);stroke:none;cursor:pointer}.schematic-no-connect{stroke:var(--accent);stroke-width:.3;pointer-events:none}.schematic-erc,.schematic-coupled{border-top:1px solid var(--line);padding-top:10px}.schematic-erc summary,.schematic-coupled summary{cursor:pointer;font-size:12px;font-weight:600}.schematic-erc button{white-space:normal;height:auto;text-align:left;font-size:11px;line-height:1.4;margin-top:8px;padding:8px}.schematic-coupled{display:flex;flex-direction:column;gap:8px}.schematic-coupled select{width:100%;background:var(--surface);color:var(--text);font:inherit;border:1px solid var(--line);border-radius:6px;padding:6px}.schematic-coupled pre{white-space:pre-wrap;overflow-wrap:anywhere;font:10px var(--mono)}
+.schematic-empty { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; pointer-events: none; padding: 32px; }
+.schematic-empty button { pointer-events: auto; }
+.schematic-hint { position: absolute; bottom: 12px; left: 16px; color: var(--muted); font-size: 11px; pointer-events: none; }
+.electronics-connect-bar { position: absolute; left: 16px; right: 16px; bottom: 42px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 10px; padding: 12px; font-size: 12px; }
+.electronics-connect-bar > span { max-width: 100%; overflow-wrap: anywhere; }
+.electronics-connect-bar input { width: 170px; flex: 1; min-width: 130px; font-size: 12px; }
+.firmware-duration { display: flex; align-items: center; gap: 5px; color: var(--muted); font-size: 12px; }
+.firmware-duration input { width: 88px; }
+.firmware-files { width: 235px; flex-shrink: 0; overflow: auto; padding: 16px 12px; border-right: 1px solid var(--line); background: var(--surface); }
+.firmware-files-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-left: 8px; }
+.firmware-file { width: 100%; display: block; text-align: left; padding: 0 8px; height: 32px; background: transparent; border-color: transparent; overflow: hidden; text-overflow: ellipsis; font-size: 11px; }
+.firmware-file[data-active] { color: var(--accent); background: var(--accent-soft); }
+.firmware-target { margin: 22px 8px 0; display: flex; flex-direction: column; gap: 16px; }
+.firmware-target label { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; color: var(--muted); font-size: 12px; }
+.firmware-target label .editable { color: var(--text); max-width: 100%; overflow-wrap: anywhere; }
+.firmware-target select { width: 100%; color: var(--text); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 6px; font: inherit; }
+.firmware-main { flex: 1; display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.firmware-source-head { min-height: 43px; display: flex; align-items: center; gap: 12px; padding: 8px 20px; border-bottom: 1px solid var(--line); font-size: 12px; }
+.firmware-source { flex: 1; min-height: 180px; width: 100%; resize: none; border: 0; outline: 0; color: var(--text); background: var(--bg); padding: 20px 24px; font-size: 13px; line-height: 21px; tab-size: 2; white-space: pre; overflow: auto; border-radius: 0; }
+.firmware-source:focus-visible { outline: 0; }
+.firmware-output { min-height: 155px; max-height: 42%; overflow: auto; padding: 14px 20px; border-top: 1px solid var(--line); background: var(--surface); font-size: 12px; display: flex; flex-direction: column; gap: 8px; }
+.firmware-output-head { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 4px; }
+.firmware-success { color: light-dark(#30794b, #7ac68b); }
+.electronics-error { color: var(--danger); }
+.firmware-artifact { color: var(--accent); text-decoration: underline; font: 12px var(--mono); }
+.firmware-diagnostic { display: block; text-align: left; min-height: 28px; height: auto; white-space: normal; padding: 4px 8px; font-size: 12px; border: 0; background: transparent; overflow-wrap: anywhere; }
+.firmware-diagnostic span { margin-right: 6px; }
+.firmware-output pre { margin: 4px 0 8px; white-space: pre-wrap; overflow-wrap: anywhere; font: 12px/1.5 var(--mono); }
+.firmware-gpio { display: flex; flex-direction: column; gap: 4px; }
+@media (max-width: 850px) { .electronics-toolbar { padding: 10px 12px; } .electronics-inspector { width: 190px; padding: 14px; } .circuit-parts-tray { width: 150px; padding: 12px 8px; } .circuit-part-card { grid-template-columns: 30px minmax(0, 1fr) 7px; gap: 4px; font-size: 11px; } .circuit-part-icon { width: 27px; } .firmware-files { width: 180px; } .firmware-toolbar .muted { display: none; } }
+@media (max-width: 620px) { .electronics-body { overflow: auto; } .schematic-workspace .electronics-body { flex-wrap: wrap; } .circuit-parts-tray { width: 100%; height: 150px; border-right: 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 85px 1fr; gap: 6px 10px; } .circuit-parts-tray > p { display: none; } .circuit-parts-tray > input { grid-column: 2; grid-row: 1; } .circuit-part-cards { grid-column: 1 / -1; flex-direction: row; overflow-x: auto; } .circuit-part-card { flex: 0 0 132px; height: 63px; } .electronics-inspector { width: 100%; max-height: 220px; border-left: 0; border-top: 1px solid var(--line); } .schematic-stage { flex-basis: 100%; min-height: 420px; } .schematic-hint { display: none; } .firmware-files { width: 150px; } .firmware-source { padding: 12px; } .firmware-target { margin-left: 0; margin-right: 0; } .firmware-output { max-height: 45%; } }

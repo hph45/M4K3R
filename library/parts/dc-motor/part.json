@@ -3,6 +3,7 @@
   "name": "DC motor",
   "description": "",
   "category": "electromechanical",
+  "kind": "electronic",
   "refPrefix": "M",
   "pins": [
     {
@@ -193,6 +194,19 @@
     }
   },
   "model3d": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/Connector_Wire.3dshapes/SolderWire-0.5sqmm_1x02_P4.8mm_D0.9mm_OD2.3mm.step",
+  "physical": {
+    "size": [24, 24, 30],
+    "mass": 30,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "cylinder",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  },
   "sim": {
     "model": "dc-motor",
     "params": {}

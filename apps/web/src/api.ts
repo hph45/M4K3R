@@ -1,4 +1,4 @@
-import type { Command, Patch, Project } from "@m4k3r/core"
+import type { Command, Part, Patch, Project, PhysicalPart } from "@m4k3r/core"
 
 export interface ProjectSummary {
   id: string
@@ -15,6 +15,8 @@ export interface PartSummary {
   description: string
   refPrefix: string
   pins: number
+  kind?: "electronic" | "mechanical" | "module"
+  physical?: PhysicalPart
   source: "builtin" | "user"
 }
 
@@ -56,6 +58,8 @@ const pid = (id: string) => `/projects/${encodeURIComponent(id)}`
 export const api = {
   projects: () => request<ProjectSummary[]>("GET", "/projects"),
   createProject: (name: string) => request<Project>("POST", "/projects", { name }),
+  createDemo: () => request<Project>("POST", "/demo"),
+  createDrone: () => request<Project>("POST", "/demo/drone"),
   project: (id: string) => request<Project & { history: History }>("GET", pid(id)),
   deleteProject: (id: string) => request<void>("DELETE", pid(id)),
   apply: (id: string, commands: Command[], label?: string) =>
@@ -63,4 +67,8 @@ export const api = {
   undo: (id: string) => request<{ version: number; undone: string }>("POST", `${pid(id)}/undo`),
   redo: (id: string) => request<{ version: number; redone: string }>("POST", `${pid(id)}/redo`),
   parts: (q = "") => request<PartSummary[]>("GET", `/parts?q=${encodeURIComponent(q)}`),
+  /** The best-matching "Library:Name" symbols across all KiCad libraries. */
+  kicadSymbols: (q: string) => request<string[]>("GET", `/kicad/symbols?q=${encodeURIComponent(q)}`),
+  /** Import a KiCad symbol and its default footprint into the user library. */
+  importKicad: (symbol: string, id?: string) => request<{ part: Part; warnings: string[] }>("POST", "/parts/import", { symbol, id }),
 }

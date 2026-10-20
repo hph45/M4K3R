@@ -1,0 +1,23 @@
+{
+  "id": "extrusion-2020",
+  "name": "2020 extrusion, 100 mm",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "stock",
+  "kind": "mechanical",
+  "refPrefix": "MP",
+  "pins": [],
+  "props": {},
+  "physical": {
+    "size": [20, 20, 100],
+    "mass": 50,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "extrusion",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}

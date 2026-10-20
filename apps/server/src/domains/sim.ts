@@ -1,5 +1,5 @@
-import { formatQuantity, parseQuantity } from "@m4k3r/core"
-import { SimError, simulate, type SimOptions, type SimResult } from "@m4k3r/sim"
+import { formatQuantity, parseQuantity, registerDocKind } from "@m4k3r/core"
+import { SimError, simulate, SimulationData, simulationCommands, simulationDoc, simulationOptions, runScenario, type SimOptions, type SimResult } from "@m4k3r/sim"
 import { z } from "zod"
 import { tool, type Domain } from "../domain"
 
@@ -74,8 +74,28 @@ export function summary(r: SimResult): string {
 
 export const sim: Domain = {
   name: "sim",
+  commands: simulationCommands,
+
+  setup() {
+    registerDocKind("simulation", SimulationData)
+  },
 
   routes(router, { store }) {
+    router.post("/projects/:id/simulation/:doc/scenario", (req, res) => {
+      const project = store.get(req.params.id), data = simulationDoc(project, req.params.doc)
+      res.json(runScenario(project, data))
+    })
+    router.post("/projects/:id/simulation/:doc/run", (req, res) => {
+      const { maxPoints } = z.object({ maxPoints: z.number().int().positive().max(10000).default(500) }).parse(req.body ?? {})
+      try {
+        const project = store.get(req.params.id)
+        res.json(simulate(project, { ...simulationOptions(project, req.params.doc), maxPoints }))
+      } catch (e) {
+        if (!(e instanceof SimError)) throw e
+        res.status(400).json({ error: e.message })
+      }
+    })
+
     router.post("/projects/:id/simulate", (req, res) => {
       const body = z.object({ ...Options, maxPoints: z.number().int().positive().optional() }).parse(req.body ?? {})
       try {
@@ -88,6 +108,19 @@ export const sim: Domain = {
   },
 
   tools(server, { store }) {
+    server.registerTool("simulation_scenario", { description: "Run a saved simulation's timed inputs and numeric probe assertions. Configure checks with sim.update; returns explicit pass/fail values and sample times.", inputSchema: { project: z.string(), doc: z.string() } }, tool(({ project: id, doc }: { project: string; doc: string }) => { const project = store.get(id); return runScenario(project, simulationDoc(project, doc)) }))
+    server.registerTool(
+      "simulation_run",
+      {
+        description: "Run a saved simulation document with its analysis settings, scope probes and timed inputs. Create with doc.create kind=simulation; edit with sim.update.",
+        inputSchema: { project: z.string(), doc: z.string().describe("Simulation document id or name") },
+      },
+      tool(({ project: id, doc }: { project: string; doc: string }) => {
+        const project = store.get(id)
+        return summary(simulate(project, { ...simulationOptions(project, doc), maxPoints: 20 }))
+      }),
+    )
+
     server.registerTool(
       "simulate",
       {

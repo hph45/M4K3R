@@ -17,8 +17,14 @@ const ImportArgs = {
   overrides: z.record(z.string(), z.unknown()).optional().describe("Part fields to set, e.g. { category, props, sim }"),
 }
 const SearchArgs = {
-  lib: z.string().optional().describe("Library, e.g. Device or MCU_Module. Omit to list libraries."),
-  query: z.string().optional().describe("Words to match, e.g. drv88"),
+  symbols: {
+    lib: z.string().optional().describe("Only this library, e.g. RF_Module. Omit to search all libraries, or to list libraries when query is omitted too."),
+    query: z.string().optional().describe("Words to match, e.g. esp32-s3"),
+  },
+  footprints: {
+    lib: z.string().optional().describe("Library, e.g. Package_SO. Omit to list libraries."),
+    query: z.string().optional().describe("Words to match, e.g. soic-8"),
+  },
 }
 
 let kicad: KicadLibrary
@@ -32,8 +38,10 @@ async function importPart({ library }: DomainContext, args: z.infer<z.ZodObject<
   }
 }
 
-async function search(kind: LibKind, lib?: string, query?: string) {
+async function search(kind: LibKind, lib?: string, query?: string, refresh = false) {
   try {
+    if (kind === "symbols" && refresh) await kicad.symbolIndex(true)
+    if (kind === "symbols" && query?.trim()) return await kicad.searchSymbols(query, lib)
     const names = await kicad.list(kind, lib, query)
     return lib ? names.map((n) => `${lib}:${n}`) : names
   } catch (e) {
@@ -75,7 +83,7 @@ export const parts: Domain = {
       const kind = req.params.kind
       if (kind !== "symbols" && kind !== "footprints") return next()
       const q = (key: string) => (typeof req.query[key] === "string" ? (req.query[key] as string) : undefined)
-      res.json(await search(kind, q("lib"), q("q")))
+      res.json(await search(kind, q("lib"), q("q"), q("refresh") === "1"))
     })
   },
 
@@ -97,11 +105,14 @@ export const parts: Domain = {
       server.registerTool(
         `search_kicad_${kind}`,
         {
-          description: `Search ${kind} in the official KiCad libraries by name. Returns "Library:Name" refs, or library names when lib is omitted.`,
-          inputSchema: SearchArgs,
+          description:
+            kind === "symbols"
+              ? 'Search symbols across all official KiCad libraries by name, best matches first. Returns "Library:Name" refs, or library names when lib and query are both omitted.'
+              : 'Search footprints in an official KiCad library by name. Returns "Library:Name" refs, or library names when lib is omitted.',
+          inputSchema: SearchArgs[kind],
         },
         tool(async ({ lib, query }: { lib?: string; query?: string }) =>
-          list(await search(kind, lib, query), lib ? kind : "libraries"),
+          list(await search(kind, lib, query), lib || (kind === "symbols" && query?.trim()) ? kind : "libraries"),
         ),
       )
     }

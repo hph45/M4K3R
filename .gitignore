@@ -4,5 +4,9 @@ dist/
 *.log
 .vite/
 coverage/
+.local-data/
+test-results/
+playwright-report/
+.tools/
 .claude/worktrees/
 STATUS.md

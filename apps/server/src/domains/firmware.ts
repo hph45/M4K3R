@@ -4,6 +4,7 @@ import { registerDocKind, type Project } from "@m4k3r/core"
 import {
   build, buildInput, firmwareCommands, FirmwareData, firmwareDoc, pinDefines, pinHeader, runFirmware, Toolchain,
   type BuildResult,
+  runEspFirmware, espChipForBoard,
 } from "@m4k3r/firmware"
 import { z } from "zod"
 import { tool, type Domain, type DomainContext } from "../domain"
@@ -24,15 +25,20 @@ function service({ store, home }: DomainContext) {
   })
 
   async function run(project: string, doc: string, ms: number) {
-    const built = await buildDoc(project, doc)
+    // Keep sources, target and GPIO labels from one immutable project version.
+    const snapshot = store.get(project)
+    const data = firmwareDoc(snapshot, doc)
+    const built = await build(tc, cache, buildInput(snapshot, doc))
     if (!built.ok) return { ok: false as const, diagnostics: built.diagnostics }
-    const result = await runFirmware(readFileSync(join(cache, built.hash, "firmware.uf2")), ms, WALL_MS)
-    return { ok: true as const, ...result, gpio: withNets(store.get(project), doc, result.gpio) }
+    const result = data.platform === "esp32"
+      ? await runEspFirmware(home, readFileSync(join(cache, built.hash, "firmware.merged.bin")), ms, WALL_MS, espChipForBoard(data.board))
+      : await runFirmware(readFileSync(join(cache, built.hash, "firmware.uf2")), ms, WALL_MS)
+    return { ok: true as const, ...result, gpio: withNets(snapshot, doc, result.gpio) }
   }
 
   const artifact = (hash: string, file: string) => {
     const path = join(cache, hash, file)
-    if (!/^[0-9a-f]{16}$/.test(hash) || !/^firmware\.(uf2|elf)$/.test(file) || !existsSync(path)) {
+    if (!/^[0-9a-f]{16}$/.test(hash) || !/^firmware\.(uf2|elf|(?:bootloader\.|partitions\.|merged\.)?bin)$/.test(file) || !existsSync(path)) {
       throw new NotFound(`No build artifact ${hash}/${file}`)
     }
     return path
@@ -88,7 +94,7 @@ export const firmware: Domain = {
 
     server.registerTool(
       "firmware_build",
-      { description: "Compile a firmware doc (Arduino, arduino-pico). Returns size or compiler diagnostics.", inputSchema: args },
+      { description: "Compile Arduino firmware with a pinned RP2040 or ESP32 core. Returns size or compiler diagnostics.", inputSchema: args },
       tool(async ({ project, doc }: { project: string; doc: string }) => {
         const r = await svc.buildDoc(project, doc)
         const head = r.ok ? `Build OK (${r.hash}): flash ${r.size?.flash} B, RAM ${r.size?.ram} B` : "Build failed"
@@ -100,7 +106,7 @@ export const firmware: Domain = {
       "firmware_run",
       {
         description:
-          "Build a firmware doc and run it headless on a simulated RP2040 for ms of simulated time. " +
+          "Build a firmware doc and run real RP2040 or supported ESP32 machine code for ms of simulated time. " +
           "Returns serial output and the final state of every GPIO the firmware configured.",
         inputSchema: { ...args, ms: z.number().positive().max(MAX_MS).default(1000) },
       },
@@ -112,10 +118,11 @@ export const firmware: Domain = {
           ([pin, s]) => `${pin}${"net" in s ? ` (${s.net})` : ""}: ${s.state}, ${s.function}, ${s.edges} edges`,
         )
         return [
-          `Ran ${r.simulatedMs} ms simulated in ${r.wallMs} ms`,
+          `${r.complete === false ? "Partial execution: " : ""}Ran ${r.simulatedMs} ms simulated in ${r.wallMs} ms`,
           ...(serial.length ? serial : ["(no serial output)"]),
           "--- GPIO",
           ...(gpio.length ? gpio : ["(none configured)"]),
+          ...(r.warnings ?? []).map((warning) => `Warning: ${warning}`),
         ].join("\n")
       }),
     )

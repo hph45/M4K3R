@@ -1,4 +1,4 @@
-import type { ModelFactory } from "../model"
+import { SimError, type ModelFactory } from "../model"
 
 /**
  * V = iR + L di/dt + Kₑω and J dω/dt = Kₜi − bω − τ_load, solved together (implicitly) each step.
@@ -21,20 +21,31 @@ export const dcMotor: ModelFactory = (ctx) => {
   let dt = Infinity
   let w = 0
   let i = 0
+  let externalSpeed: number | undefined
   // ω at the end of this step for a given current; the steady state when dt = Infinity
   const speed = (current: number) => ((j / dt) * w + ke * current - load) / (j / dt + friction)
   return {
     stamp(s) {
       dt = s.dt
+      if (externalSpeed !== undefined) {
+        s.voltage(k, a, b, ke * externalSpeed - (l / dt) * i)
+        s.add(k, k, -(r + l / dt))
+        return
+      }
       const den = j / dt + friction
       s.voltage(k, a, b, (ke * ((j / dt) * w - load)) / den - (l / dt) * i)
       s.add(k, k, -(r + l / dt + (ke * ke) / den))
     },
     step() {
       i = ctx.v(k)
-      w = speed(i)
+      w = externalSpeed ?? speed(i)
     },
     current: () => ctx.v(k),
-    view: () => ({ rpm: ((dt === Infinity ? speed(ctx.v(k)) : w) * 60) / (2 * Math.PI), current: ctx.v(k) }),
+    view: () => ({ rpm: ((externalSpeed ?? (dt === Infinity ? speed(ctx.v(k)) : w)) * 60) / (2 * Math.PI), current: ctx.v(k), torque: ke * ctx.v(k) - friction * w - load }),
+    input(event) {
+      if (event.action === "free-shaft") { externalSpeed = undefined; return }
+      if (event.action !== "shaft-speed" || typeof event.value !== "number" || !Number.isFinite(event.value)) throw new SimError(`${ctx.ref}: shaft-speed requires an angular velocity in rad/s`)
+      externalSpeed = event.value
+    },
   }
 }

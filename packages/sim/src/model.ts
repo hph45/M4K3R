@@ -34,6 +34,8 @@ export type View = Record<string, number | boolean | string>
 export interface Model {
   /** Set when the stamp depends on the solution, so each step needs Newton iterations. */
   nonlinear?: boolean
+  /** Advance a coupled runtime before solving this analog step. Called once, outside Newton iterations. */
+  beforeStep?(t: number, dt: number): void
   stamp(s: Stamper): void
   /** Called once per accepted time step, to advance internal state. */
   step?(t: number, dt: number): void

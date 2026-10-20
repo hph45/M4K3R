@@ -1,0 +1,22 @@
+{
+  "name": "@m4k3r/ecad",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./node": "./src/node.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@m4k3r/core": "workspace:*",
+    "zod": "^4.6.7",
+    "polygon-clipping": "^0.15.7",
+    "earcut": "^3.0.2",
+    "fflate": "^0.8.2"
+  },
+  "devDependencies": {
+    "@types/earcut": "^3.0.0"
+  }
+}

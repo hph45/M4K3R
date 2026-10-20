@@ -1,45 +1,37 @@
 # Roadmap
 
-M0 freezes the contracts. After that, three workstreams run in parallel and meet in v1.
+## Local v1 release candidate
 
-```
-        ┌─► A  CAD ──────────────┐
-M0 ─────┼─► B  Electronics ──────┼─► v1
-        └─► C  Sim + Firmware ───┘
-```
+The original interrupted preview is integrated. The active milestone is a complete local device-planning workflow, using **Plan a drone** as the reference project. [Acceptance criteria and fidelity limits](v1-acceptance.md) define what is tested.
 
-## M0: Foundations
+| Workstream | Implemented |
+|---|---|
+| Projects | Shared component/BOM identity, live updates, reversible command batches, API/MCP parity and persisted JSON/source files |
+| Circuit and schematic | Drag/drop parts, direct wires, manual bends, labels/junctions/no-connects, multi-unit symbols, ERC and visible motor/LED simulation |
+| PCB | Two-layer placement/routing, vias/zones, net classes, off-board components, ratsnest, DRC, actual Gerber/Excellon/BOM/PnP/STEP ZIP and board 3D |
+| Mechanical | Constrained sketches/features, face sketches/splines, configurable catalog families, printable templates, assemblies/mounts, exact mass/inertia/solid fit and STL/STEP/3MF |
+| Firmware | Recoverable Monaco editor, pinned Pico/ESP32 compilation, exact artifacts, real CPU execution, serial/GPIO, user-triggered physical serial/C3 flashing controls |
+| Device simulation | Pico GPIO/PWM/ADC + hardware SPI/I²C adapters, nRF24/MPU6050 models, scenarios/instruments, planar skid-steer, static propulsion/battery analysis and bounded manual-control rigid-body flight preview |
+| Reference drone | ESP32, ESC/motor/propeller/battery/IMU interfaces, editable frame/cradle/tray, mounted hardware, routed power PCB, bench firmware and explicit rotor estimates |
+| Local delivery | Host-specific archive, startup/setup/check scripts, dependency notices and pinned source archives; final snapshot validation follows integration |
 
-- pnpm monorepo, Vitest, typecheck
-- `core`: project schema, commands with undo/redo, units parser, netlist
-- Local server: file store, JSON API, MCP, WebSocket live updates, and the UI served on one port
-- UI shell: project list, document tabs, `⌘K` palette, a components and nets view, light/dark theme
-- Generic parts library (R, C, L, LED, diode, button, switch, battery, motor, header)
+The local v1 implementation is integrated. Unit, production-browser and real MCU suites cover the workflows above. Use `pnpm release:check` to verify each generated host archive; the task board and generated release report record the latest evidence. This is a local release candidate, not a public distribution announcement.
 
-**Exit:**
-1. `pnpm dev` and create a project.
-2. An agent wires it over MCP while the UI updates live.
-3. Undo works.
+## Validation gates
 
-## Workstreams
+1. Unit/HTTP checks, recursive typecheck and production build pass.
+2. Production browser workflows cover persistent edits/undo, circuit feedback, mechanical mounting/export, board routing/fabrication, firmware drafts and hardware-control boundaries.
+3. Real Arduino binaries execute in Pico/ESP32 emulators. PWM/ADC, two-MCU radio, I²C sensor and saved drone coupling use machine-code tests.
+4. Drone geometry has no unintended positive-volume collisions or keepout intrusions; its board passes the implemented DRC. Estimated mass/rotor data remains identified.
+5. A release archive starts with Node 24 on a matching host, uses an empty isolated project home, evaluates CAD/assembly and exports printable output without installing a compiler on startup.
 
-| | A: CAD | B: Electronics | C: Sim + Firmware |
-|---|---|---|---|
-| Step 1 | Sketcher + planegcs, extrude | KiCad symbol/footprint import, schematic editor | Engine core, MNA, R/C/L/diode/LED, headless tests |
-| Step 2 | Full v1 feature set, variables | ERC, PCB placement + routing | rp2040js + pin bridges, toolchain, button/battery/motor/H-bridge/nRF24 |
-| Step 3 | Assemblies, mates, mass properties, STL/STEP | Zones, DRC, fab outputs, board 3D | Instruments, scenarios, skid-steer physics |
+## Subsequent work
 
-**Staying independent:**
-- C works from the netlist in `core`, so it doesn't wait for the schematic editor.
-- A doesn't need boards until integration.
-- Each capability ships with its API commands and read tools, so agents can use it on day one.
+- More measured parts/propulsion datasets and manufacturer geometry imports.
+- Detailed SPICE/precision analog, more peripheral devices and richer debugging.
+- Higher-fidelity RF, aerodynamics, contact, thermal and structural analysis.
+- Hierarchical sheet ports, more PCB layers, push-and-shove and broader manufacturing checks.
+- Sweep/loft and additional production CAD/drawing workflows.
+- Physical hardware and manufacturer fabrication validation, plus public distribution licensing decisions.
 
-## v1
-
-A complete device can go from idea to fab-ready boards, printable parts, and firmware verified in simulation. That includes the enclosure, multiple boards and MCUs, radios, motors, sensors, and precision analog. It works the same whether a person or an agent is driving.
-
-## Contributing
-
-- One branch per workstream, small PRs
-- Docs are living, and they stay short. If code and doc disagree, fix one of them in the same PR.
-- Every model, check and command lands with a test
+These are distinct from the supported, tested v1 adapters. A simulated result is scoped to its documented models; unsupported behavior is reported rather than fabricated.

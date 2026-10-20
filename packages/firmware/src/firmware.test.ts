@@ -3,7 +3,7 @@ import {
   applyCommands, emptyProject, Part, registerCommands, registerDocKind,
   type Command, type CommandContext, type Project,
 } from "@m4k3r/core"
-import { buildHash, buildInput, cName, firmwareCommands, FirmwareData, parseDiagnostics, pinHeader } from "./index"
+import { buildHash, buildInput, cName, firmwareCommands, FirmwareData, gpioOf, parseDiagnostics, pinHeader } from "./index"
 
 registerDocKind("firmware", FirmwareData)
 registerCommands(firmwareCommands)
@@ -52,6 +52,12 @@ describe("pin header", () => {
     )
   })
 
+  it("reads ESP32-style IO pin names, as imported from KiCad modules", () => {
+    expect(gpioOf({ num: "4", name: "IO4", type: "bidir" })).toBe(4)
+    expect(gpioOf({ num: "13", name: "USB_D-", type: "bidir", functions: ["IO19"] })).toBe(19)
+    expect(gpioOf({ num: "36", name: "RXD0", type: "bidir" })).toBeUndefined()
+  })
+
   it("sanitizes net names into C identifiers", () => {
     expect(cName("RF CE")).toBe("RF_CE")
     expect(cName("+3V3")).toBe("3V3")
@@ -66,6 +72,12 @@ describe("pin header", () => {
 
 describe("firmware doc commands", () => {
   const data = (p: Project) => p.docs[0]!.data as FirmwareData
+  it("defaults a new target to its own platform and rejects nested main sketches", () => {
+    expect(FirmwareData.parse({ platform: "esp32" }).board).toBe("esp32c3")
+    expect(FirmwareData.parse({}).board).toBe("rpipico")
+    expect(() => FirmwareData.parse({ main: "src/main.ino" })).toThrow(/root-level/)
+    expect(() => run(wired, { type: "firmware.set", args: { doc: "main", main: "src/main.ino" } })).toThrow(/root-level/)
+  })
 
   it("creates a doc with a starter sketch", () => {
     expect(data(wired)).toMatchObject({ mcu: "c_1", board: "rpipico", libs: [], main: "main.ino" })
@@ -98,6 +110,13 @@ describe("firmware doc commands", () => {
     const renamed = run(wired, { type: "net.rename", args: { net: "l-in1", name: "MOTOR" } }).project
     expect(buildHash(buildInput(renamed, "main"))).not.toBe(buildHash(input))
     expect(buildHash({ ...input, files: { ...input.files } })).toBe(buildHash(input))
+  })
+
+  it("passes an empty main sketch to the compiler, while rejecting a genuinely missing sketch", () => {
+    const empty = run(wired, { type: "firmware.file.write", args: { doc: "main", path: "main.ino", content: "" } }).project
+    expect(buildInput(empty, "main").files["main.ino"]).toBe("")
+    const missing = run(emptyProject("missing", "Missing source"), { type: "doc.create", args: { kind: "firmware", name: "empty", data: { files: {} } } }).project
+    expect(() => buildInput(missing, "empty")).toThrow(/Main sketch "main.ino" is missing/)
   })
 })
 

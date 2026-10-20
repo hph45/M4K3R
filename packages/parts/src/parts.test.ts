@@ -210,3 +210,68 @@ describe("KiCad library", () => {
     expect(() => splitRef("Device")).toThrow(/Library:Name/)
   })
 })
+
+describe("KiCad symbol index", () => {
+  const blob = (lib: string, name: string) => ({ type: "blob", path: `${lib}.kicad_symdir/${name}.kicad_sym` })
+  const pages = [
+    [{ type: "tree", path: "Device.kicad_symdir" }, blob("Device", "R"), blob("Device", "C"), { type: "blob", path: "README.md" }],
+    [blob("MCU_Espressif", "ESP32-S3"), blob("RF_Module", "ESP32-S3-WROOM-1"), blob("RF_Module", "ESP32-S3-MINI-1")],
+    [blob("RF_Module", "ESP32-WROOM-32"), blob("Sensor", "MODULE_ESP32-S3_TEST")],
+  ]
+  const tree = (log: string[], fail = { first429: true, down: false }) => async (url: string) => {
+    const page = Number(new URL(url).searchParams.get("page"))
+    log.push(String(page))
+    if (fail.down) throw new TypeError("fetch failed")
+    if (page === 2 && fail.first429) {
+      fail.first429 = false
+      return new Response("slow down", { status: 429, headers: { "retry-after": "0" } })
+    }
+    const headers = page < pages.length ? { "x-next-page": String(page + 1) } : undefined
+    return Response.json(pages[page - 1] ?? [], { headers })
+  }
+  const memory = () => {
+    const store = new Map<string, string>()
+    return { store, get: async (k: string) => store.get(k), set: async (k: string, v: string) => void store.set(k, v) }
+  }
+
+  it("builds the index once from every page, retrying when rate limited, and caches it", async () => {
+    const cache = memory(), log: string[] = []
+    const lib = new KicadLibrary(cache, tree(log))
+    const [a, b] = await Promise.all([lib.symbolIndex(), lib.searchSymbols("esp32")])
+    expect(a.libs).toEqual({
+      Device: ["C", "R"], MCU_Espressif: ["ESP32-S3"], RF_Module: ["ESP32-S3-MINI-1", "ESP32-S3-WROOM-1", "ESP32-WROOM-32"], Sensor: ["MODULE_ESP32-S3_TEST"],
+    })
+    expect(b).toHaveLength(5)
+    expect(log.filter((p) => p === "2")).toHaveLength(2)
+    expect(log.filter((p) => p === "1")).toHaveLength(1)
+    expect(JSON.parse(cache.store.get("index/symbols.json")!).libs).toEqual(a.libs)
+    const again: string[] = []
+    expect(await new KicadLibrary(cache, tree(again)).searchSymbols("device r")).toEqual(["Device:R"])
+    expect(again).toEqual([])
+  })
+
+  it("refreshes a stale index in the background and falls back to it when offline", async () => {
+    const cache = memory(), log: string[] = []
+    cache.store.set("index/symbols.json", JSON.stringify({ updated: 0, libs: { Old: ["X"] } }))
+    const lib = new KicadLibrary(cache, tree(log))
+    expect(await lib.searchSymbols("")).toEqual(["Old:X"])
+    await expect.poll(() => lib.searchSymbols("old")).toEqual([])
+    expect(await lib.searchSymbols("wroom")).toEqual(["RF_Module:ESP32-WROOM-32", "RF_Module:ESP32-S3-WROOM-1"])
+
+    const offline = { first429: false, down: true }
+    const stale = new KicadLibrary(memory(), tree([], offline))
+    await expect(stale.searchSymbols("r")).rejects.toThrow("Indexing the KiCad symbol libraries failed: fetch failed")
+    const kept = memory()
+    kept.store.set("index/symbols.json", JSON.stringify({ updated: 0, libs: { Old: ["X"] } }))
+    expect((await new KicadLibrary(kept, tree([], offline)).symbolIndex(true)).libs).toEqual({ Old: ["X"] })
+  })
+
+  it("ranks exact and prefix name matches first, then shorter names, and filters by library", async () => {
+    const lib = new KicadLibrary(memory(), tree([]))
+    expect(await lib.searchSymbols("ESP32-S3")).toEqual([
+      "MCU_Espressif:ESP32-S3", "RF_Module:ESP32-S3-MINI-1", "RF_Module:ESP32-S3-WROOM-1", "Sensor:MODULE_ESP32-S3_TEST",
+    ])
+    expect(await lib.searchSymbols("esp32 rf_module")).toEqual(["RF_Module:ESP32-WROOM-32", "RF_Module:ESP32-S3-MINI-1", "RF_Module:ESP32-S3-WROOM-1"])
+    expect(await lib.searchSymbols("s3", "rf_module", 1)).toEqual(["RF_Module:ESP32-S3-MINI-1"])
+  })
+})

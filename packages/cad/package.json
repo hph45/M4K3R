@@ -1,0 +1,20 @@
+{
+  "name": "@m4k3r/cad",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./geometry": "./src/spline.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@m4k3r/core": "workspace:*",
+    "@salusoft89/planegcs": "^1.3.0",
+    "replicad": "^1.1.0",
+    "replicad-opencascadejs": "^1.1.0",
+    "zod": "^4.6.7",
+    "fflate": "^0.8.2"
+  }
+}

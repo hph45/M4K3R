@@ -14,6 +14,15 @@ const BRANCH = "master"
 const REPOS = { symbols: "kicad-symbols", footprints: "kicad-footprints" } as const
 const EXT = { symbols: [".kicad_symdir", ".kicad_sym"], footprints: [".pretty", ".kicad_mod"] } as const
 export type LibKind = keyof typeof REPOS
+const API = (kind: LibKind) => `https://gitlab.com/api/v4/projects/${encodeURIComponent(`kicad/libraries/${REPOS[kind]}`)}/repository/tree?ref=${BRANCH}`
+const INDEX_KEY = "index/symbols.json"
+const INDEX_MAX_AGE = 7 * 24 * 3600_000
+
+/** Every symbol in the official libraries, by library. Cached as JSON. */
+export interface SymbolIndex {
+  updated: number
+  libs: Record<string, string[]>
+}
 
 const raw = (kind: LibKind, lib: string, name: string) =>
   `${GITLAB}/${REPOS[kind]}/-/raw/${BRANCH}/${lib}${EXT[kind][0]}/${encodeURIComponent(name)}${EXT[kind][1]}`
@@ -43,6 +52,10 @@ export interface ImportRequest {
 
 /** The official KiCad symbol, footprint and 3D libraries, fetched by name on demand. */
 export class KicadLibrary {
+  private index?: SymbolIndex
+  private refs?: string[]
+  private building?: Promise<SymbolIndex>
+
   constructor(
     private cache?: Cache,
     private fetchText: (url: string) => Promise<Response> = fetch,
@@ -83,11 +96,10 @@ export class KicadLibrary {
     const key = `lists/${kind}/${lib ?? "_libraries"}.txt`
     let text = await this.cache?.get(key)
     if (text === undefined) {
-      const project = encodeURIComponent(`kicad/libraries/${REPOS[kind]}`)
       const path = encodeURIComponent(lib ? `${lib}${EXT[kind][0]}` : "")
       const names: string[] = []
       for (let page = 1; page; ) {
-        const url = `https://gitlab.com/api/v4/projects/${project}/repository/tree?ref=${BRANCH}&path=${path}&per_page=100&page=${page}`
+        const url = `${API(kind)}&path=${path}&per_page=100&page=${page}`
         const res = await this.fetchText(url)
         if (res.status === 404) throw new Error(`No KiCad ${kind} library "${lib}"`)
         if (!res.ok) throw new Error(`Listing KiCad ${kind} failed: HTTP ${res.status}`)
@@ -100,6 +112,92 @@ export class KicadLibrary {
     }
     const words = query.toLowerCase().split(/\s+/).filter(Boolean)
     return text.split("\n").filter((n) => n && words.every((w) => n.toLowerCase().includes(w)))
+  }
+
+  /**
+   * The symbol index, built once from the repository tree and cached. A stale index (older than a week)
+   * is served while it refreshes in the background; `refresh` waits for a new one, keeping the old one if that fails.
+   */
+  async symbolIndex(refresh = false): Promise<SymbolIndex> {
+    if (!this.index) {
+      const text = await this.cache?.get(INDEX_KEY)
+      if (text) this.setIndex(JSON.parse(text) as SymbolIndex)
+    }
+    if (this.index && !refresh && Date.now() - this.index.updated < INDEX_MAX_AGE) return this.index
+    this.building ??= this.buildIndex()
+      .then(async (index) => {
+        this.setIndex(index)
+        await this.cache?.set(INDEX_KEY, JSON.stringify(index))
+        return index
+      })
+      .finally(() => (this.building = undefined))
+    if (this.index && !refresh) {
+      this.building.catch(() => {})
+      return this.index
+    }
+    try {
+      return await this.building
+    } catch (e) {
+      if (this.index) return this.index
+      throw new Error(`Indexing the KiCad symbol libraries failed: ${e instanceof Error ? e.message : String(e)}`)
+    }
+  }
+
+  /** "Lib:Name" symbols across all libraries (or one), matching every word in `query`; exact and prefix name matches first, then shorter names. */
+  async searchSymbols(query: string, lib?: string, limit = 50): Promise<string[]> {
+    await this.symbolIndex()
+    const words = query.toLowerCase().split(/\s+/).filter(Boolean)
+    const prefix = lib && `${lib.toLowerCase()}:`
+    const q = words.join(" ")
+    const rank = (ref: string) => {
+      const name = ref.slice(ref.indexOf(":") + 1).toLowerCase()
+      return name === q ? 0 : words[0] && name.startsWith(words[0]) ? 1 : 2
+    }
+    return this.refs!
+      .filter((ref) => { const r = ref.toLowerCase(); return (!prefix || r.startsWith(prefix)) && words.every((w) => r.includes(w)) })
+      .map((ref) => ({ ref, rank: rank(ref), length: ref.length - ref.indexOf(":") }))
+      .sort((a, b) => a.rank - b.rank || a.length - b.length || a.ref.localeCompare(b.ref))
+      .slice(0, limit)
+      .map((m) => m.ref)
+  }
+
+  private setIndex(index: SymbolIndex) {
+    this.index = index
+    this.refs = Object.entries(index.libs).flatMap(([lib, names]) => names.map((name) => `${lib}:${name}`))
+  }
+
+  /** Reads the whole symbol repository tree, a few pages at a time. */
+  private async buildIndex(): Promise<SymbolIndex> {
+    const libs: Record<string, string[]> = {}
+    let next = 1
+    let last = Infinity
+    const worker = async () => {
+      while (next <= last) {
+        const page = next++
+        const res = await this.fetchRetrying(`${API("symbols")}&recursive=true&per_page=100&page=${page}`)
+        const entries = (await res.json()) as { path: string; type: string }[]
+        if (!res.headers.get("x-next-page")) last = Math.min(last, page)
+        for (const { path, type } of entries) {
+          const m = type === "blob" && /^([^/]+)\.kicad_symdir\/([^/]+)\.kicad_sym$/.exec(path)
+          if (m) (libs[m[1]!] ??= []).push(m[2]!)
+        }
+      }
+    }
+    await Promise.all(Array.from({ length: 5 }, () => worker().catch((e) => { last = 0; throw e })))
+    if (!Object.keys(libs).length) throw new Error("no symbols found")
+    for (const names of Object.values(libs)) names.sort()
+    return { updated: Date.now(), libs }
+  }
+
+  /** GitLab allows 500 unauthenticated requests a minute: back off on 429 and server errors. */
+  private async fetchRetrying(url: string, attempts = 5): Promise<Response> {
+    for (let i = 1; ; i++) {
+      const res = await this.fetchText(url)
+      if (res.ok) return res
+      if ((res.status !== 429 && res.status < 500) || i >= attempts) throw new Error(`HTTP ${res.status}`)
+      const after = res.headers.get("retry-after")
+      await new Promise((r) => setTimeout(r, after ? Number(after) * 1000 : 500 * 2 ** i))
+    }
   }
 
   /** Import a part from the KiCad libraries or from file contents. */

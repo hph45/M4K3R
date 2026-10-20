@@ -4,6 +4,7 @@ import { addComponent, connect, disconnect, pinLabel, renameNet } from "../actio
 import { formatKeys } from "../registry"
 import { clearPins, clearSelection, run, selectComponent, togglePin, useApp } from "../store"
 import { Editable } from "./Editable"
+import { Schematic } from "./Schematic"
 
 const byRef = (a: Component, b: Component) => a.ref.localeCompare(b.ref, undefined, { numeric: true })
 
@@ -31,6 +32,16 @@ function wiring(project: Project) {
 }
 
 export function Wiring({ project }: { project: Project }) {
+  const [details, setDetails] = useState(false)
+  const circuit = project.docs.find((d) => d.kind === "schematic")
+  let name = "Wiring"
+  for (let i = 2; project.docs.some((d) => d.name === name); i++) name = `Wiring ${i}`
+  const doc = circuit ?? { id: "new-wiring-circuit", kind: "schematic", name, data: { symbols: [] } }
+  if (!details) return <Schematic project={project} doc={doc} createOnAdd={!circuit} wiring toolbarEnd={<button aria-pressed={false} onClick={() => setDetails(true)}>Details</button>} />
+  return <div className="wiring-workspace"><header className="electronics-toolbar"><strong>Circuit details</strong><span className="muted small">Components, nets, and unconnected pins</span><span className="spacer" /><button className="primary" onClick={() => setDetails(false)}>Show circuit</button><button aria-pressed={true} onClick={() => setDetails(false)}>Details</button></header><div className="wiring-details-body"><WiringDetails project={project} /></div></div>
+}
+
+export function WiringDetails({ project }: { project: Project }) {
   const { components, nets, unconnected, wired } = useMemo(() => wiring(project), [project])
   const selected = useApp((s) => s.selection.component)
 

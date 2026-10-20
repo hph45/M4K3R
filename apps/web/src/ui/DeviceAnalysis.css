@@ -1,0 +1,62 @@
+.device-analysis { height: 100%; display: flex; flex-direction: column; min-height: 0; }
+.device-analysis-toolbar { display: flex; align-items: center; gap: 16px; padding: 14px 24px; border-bottom: 1px solid var(--line); background: var(--surface); }
+.device-analysis-body { display: grid; grid-template-columns: minmax(320px, 38%) 1fr; min-height: 0; flex: 1; }
+.device-analysis-inputs, .device-analysis-results { padding: 24px; overflow: auto; display: flex; flex-direction: column; gap: 16px; }
+.device-analysis-inputs { border-right: 1px solid var(--line); background: var(--surface); }
+.device-analysis h2 { font-size: 15px; }
+.device-analysis p, .device-analysis li { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.device-analysis label { display: flex; gap: 14px; align-items: center; }
+.device-analysis select { max-width: 240px; padding: 6px; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 6px; }
+.device-analysis code { font: 10px var(--mono); overflow-wrap: anywhere; }
+.device-analysis-error { color: var(--danger) !important; white-space: pre-wrap; }
+.device-analysis-empty { margin: auto; max-width: 430px; display: flex; flex-direction: column; gap: 16px; text-align: center; }
+.device-analysis-verdict { padding: 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.device-analysis-verdict[data-status="theoretical-hover"] { border-color: #48b38b; }
+.device-analysis-verdict p { margin-top: 8px; }
+.device-analysis-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.device-analysis-stats > div { padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); display: flex; flex-direction: column; gap: 8px; }
+.device-analysis-stats span { font-size: 11px; color: var(--muted); }
+.device-analysis-stats strong { font: 600 22px var(--mono); }
+.device-analysis-stats small { font-size: 11px; color: var(--muted); }
+.device-analysis table { border-collapse: collapse; width: 100%; font-size: 12px; }
+.device-analysis th, .device-analysis td { padding: 9px; text-align: left; border-bottom: 1px solid var(--line); }
+.device-analysis th { color: var(--muted); font-weight: 500; }
+.device-analysis summary { cursor: pointer; font-size: 12px; }
+.device-analysis pre { font: 11px/1.6 var(--mono); }
+.flight-preview { display: flex; flex-direction: column; gap: 14px; border-top: 1px solid var(--line); padding-top: 24px; margin-top: 10px; }
+.flight-preview-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.flight-preview-heading span { font-size: 11px; color: var(--muted); }
+.flight-controls { display: flex; align-items: end; flex-wrap: wrap; gap: 12px; }
+.flight-controls label { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; font-size: 11px; color: var(--muted); }
+.flight-controls label:first-child { flex: 1; min-width: 180px; }
+.flight-controls input[type="range"] { width: 100%; accent-color: var(--accent); }
+.flight-controls input[type="number"] { width: 100px; background: var(--surface); color: var(--text); border: 1px solid var(--line); padding: 6px; border-radius: 6px; }
+.flight-rotor-controls label { display: flex; gap: 14px; font: 11px var(--mono); margin: 10px 0; }
+.flight-rotor-controls input { flex: 1; accent-color: var(--accent); }
+.flight-playback { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; font: 11px var(--mono); }
+.flight-playback input { flex: 1; min-width: 120px; accent-color: var(--accent); }
+.flight-playback > span { width: 100%; color: var(--muted); }
+.flight-scene { display: block; width: 100%; height: 300px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; stroke-width: 1; }
+.flight-camera { display: flex; gap: 6px; margin-bottom: 8px; }
+.flight-scene * { vector-effect: non-scaling-stroke; }
+.flight-camera button { font-size: 11px; height: 28px; }
+.flight-camera button[aria-pressed=true] { color: var(--accent); background: var(--accent-soft); border-color: var(--accent); }
+.flight-ground { fill: var(--hover); stroke: var(--line); }
+.flight-path { stroke: var(--accent); stroke-dasharray: 3 3; stroke-width: .7; }
+.flight-altitude-line { stroke: var(--muted); stroke-dasharray: 2 2; stroke-width: .5; }
+.flight-arm { stroke: var(--text); stroke-width: 2; }
+.flight-disc { fill: var(--hover); stroke: var(--muted); stroke-width: .7; }
+.flight-disc[data-powered="true"] { fill: var(--accent-soft); stroke: var(--accent); }
+.flight-heading { stroke: #e8a24d; stroke-width: 2; }
+.flight-scene circle { fill: var(--text); stroke: none; }
+.flight-scene text { fill: var(--muted); stroke: none; font: 6px var(--mono); }
+.flight-readings { display: flex; gap: 14px; flex-wrap: wrap; }
+.flight-readings > span { display: flex; flex-direction: column; gap: 4px; font-size: 10px; color: var(--muted); }
+.flight-readings strong { font: 12px var(--mono); color: var(--text); }
+.flight-trace { padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); font-size: 10px; color: var(--muted); }
+.flight-trace > div { display: flex; justify-content: space-between; gap: 12px; }
+.flight-trace svg { width: 100%; height: 90px; margin-top: 8px; stroke-width: 1; }
+.flight-trace svg path { stroke: var(--line); }
+.flight-trace > span { display: block; text-align: right; font-family: var(--mono); }
+@media (max-width: 900px) { .device-analysis-body { grid-template-columns: 1fr; overflow: auto; } .device-analysis-inputs, .device-analysis-results { overflow: visible; } .device-analysis-stats { grid-template-columns: repeat(2, 1fr); } }
+.device-input-form{display:flex;flex-direction:column;gap:12px}.device-input-form h2{margin:12px 0 0}.device-input-form>p,.device-rotor-form p{font-size:12px;color:var(--muted);line-height:1.6}.device-input-form label{display:flex;flex-direction:column;align-items:stretch;gap:6px;font-size:12px;color:var(--muted)}.device-input-form input,.device-input-form select{min-width:0;width:100%;font:inherit}.device-input-form input[type=file]{height:auto;padding:8px 0;font-size:11px}.device-input-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.device-input-check{flex-direction:row!important;align-items:center}.device-input-check input{width:14px;height:14px}.device-rotor-form{border:1px solid var(--line);border-radius:8px;padding:12px;display:block}.device-rotor-form>summary{font-size:12px;font-weight:600;cursor:pointer}.device-rotor-form[open]>summary{margin-bottom:14px}.device-rotor-form>label,.device-rotor-form>.device-input-grid,.device-rotor-form>p{margin:12px 0}.device-input-form>button{align-self:flex-start}.device-curve-table{font-size:11px;width:100%;margin-top:10px}

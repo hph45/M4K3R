@@ -2,7 +2,7 @@ import { createHash } from "node:crypto"
 import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from "node:fs"
 import { tmpdir } from "node:os"
 import { dirname, join } from "node:path"
-import { CLI_VERSION, CORE, CORE_VERSION, type Toolchain } from "./toolchain"
+import { CLI_VERSION, coreFor, type Platform, type Toolchain } from "./toolchain"
 
 export interface Diagnostic {
   file: string
@@ -13,6 +13,7 @@ export interface Diagnostic {
 }
 
 export interface BuildInput {
+  platform?: Platform
   board: string
   libs: string[]
   main: string
@@ -72,7 +73,8 @@ export function parseDiagnostics(output: string, sketchDir: string): Diagnostic[
 /** Content hash of everything that affects the binary. */
 export function buildHash(input: BuildInput) {
   const files = Object.entries(input.files).sort(([a], [b]) => (a < b ? -1 : 1))
-  const key = { cli: CLI_VERSION, core: `${CORE}@${CORE_VERSION}`, ...input, files }
+  const core = coreFor(input.platform)
+  const key = { cli: CLI_VERSION, core: `${core.name}@${core.version}`, ...input, files }
   return createHash("sha256").update(JSON.stringify(key)).digest("hex").slice(0, 16)
 }
 
@@ -83,16 +85,17 @@ export function build(tc: Toolchain, cacheDir: string, input: BuildInput): Promi
   const hash = buildHash(input)
   const saved = join(cacheDir, hash, "result.json")
   if (existsSync(saved)) return Promise.resolve({ ...JSON.parse(readFileSync(saved, "utf8")), cached: true })
-  let job = inflight.get(hash)
+  const key = `${cacheDir}/${hash}`
+  let job = inflight.get(key)
   if (!job) {
-    job = compile(tc, join(cacheDir, hash), hash, input).finally(() => inflight.delete(hash))
-    inflight.set(hash, job)
+    job = compile(tc, join(cacheDir, hash), hash, input).finally(() => inflight.delete(key))
+    inflight.set(key, job)
   }
   return job
 }
 
 async function compile(tc: Toolchain, out: string, hash: string, input: BuildInput): Promise<BuildResult> {
-  await tc.ensure(input.libs)
+  await tc.ensure(input.libs, input.platform)
   const tmp = realpathSync(mkdtempSync(join(tmpdir(), "m4k3r-build-")))
   try {
     const name = input.main.replace(/\.ino$/, "")
@@ -104,7 +107,7 @@ async function compile(tc: Toolchain, out: string, hash: string, input: BuildInp
     const buildDir = join(sketch, "build")
     const r = await tc.run([
       "compile", sketch, "--json", "--warnings", "default",
-      "--fqbn", `${CORE}:${input.board}`,
+      "--fqbn", `${coreFor(input.platform).name}:${input.board}`,
       "--build-path", buildDir,
       ...input.libs.flatMap((spec) => ["--libraries", tc.libDir(spec)]),
       ...(tc.compileArgs ?? []),
@@ -131,7 +134,8 @@ async function compile(tc: Toolchain, out: string, hash: string, input: BuildInp
       const sections = json.builder_result?.executable_sections_size ?? []
       const size = (n: string) => sections.find((s) => s.name === n)?.size ?? 0
       result.size = { flash: size("text"), ram: size("data") }
-      for (const ext of ["elf", "uf2"]) {
+      for (const ext of input.platform === "esp32" ? ["elf", "bin", "bootloader.bin", "partitions.bin", "merged.bin"] : ["elf", "uf2"]) {
+        if (!existsSync(join(buildDir, `${input.main}.${ext}`))) continue
         copyFileSync(join(buildDir, `${input.main}.${ext}`), join(out, `firmware.${ext}`))
         result.artifacts.push(`firmware.${ext}`)
       }

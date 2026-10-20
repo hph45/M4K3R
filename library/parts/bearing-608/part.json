@@ -1,0 +1,24 @@
+{
+  "id": "bearing-608",
+  "name": "608 bearing (8 × 22 × 7)",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "bearings",
+  "kind": "mechanical",
+  "refPrefix": "MP",
+  "pins": [],
+  "props": {},
+  "physical": {
+    "size": [22, 22, 7],
+    "mass": 12,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "bearing",
+      "color": "#7296a6",
+      "innerDiameter": 8
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}

@@ -3,6 +3,7 @@
   "name": "Pin header 1×2",
   "description": "",
   "category": "connector",
+  "kind": "electronic",
   "refPrefix": "J",
   "pins": [
     {
@@ -238,5 +239,18 @@
       "max": [1.77, 4.32]
     }
   },
-  "model3d": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x02_P2.54mm_Vertical.step"
+  "model3d": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x02_P2.54mm_Vertical.step",
+  "physical": {
+    "size": [2.54, 5.08, 8],
+    "mass": 0.2,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "box",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
 }

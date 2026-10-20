@@ -74,24 +74,45 @@ export const PartFootprint = z.object({
 
 export const PartId = z.string().regex(/^[a-z0-9][a-z0-9._-]*$/, "lowercase letters, digits, . _ -")
 
+const XYZ = z.tuple([z.number().finite(), z.number().finite(), z.number().finite()])
+export const PhysicalPart = z.object({
+  size: z.tuple([z.number().positive(), z.number().positive(), z.number().positive()]).describe("Overall bounds in mm"),
+  mass: z.number().nonnegative().optional().describe("Mass in grams; missing means unknown"),
+  centerOfMass: XYZ.default([0, 0, 0]).describe("Local center of mass in mm"),
+  inertia: z.tuple([z.number().nonnegative(), z.number().nonnegative(), z.number().nonnegative()]).optional().describe("Local principal Ixx/Iyy/Izz in g mm²"),
+  geometry: z.object({
+    type: z.enum(["box", "cylinder", "sphere", "propeller", "fastener", "bearing", "gear", "extrusion"]),
+    color: z.string().optional(),
+    innerDiameter: z.number().positive().optional().describe("Bore diameter in mm for a bearing, spacer, tube or pulley"),
+  }),
+  mountingHoles: z.array(z.object({ id: z.string(), at: XYZ, diameter: z.number().positive(), axis: XYZ.refine((axis) => Math.hypot(...axis) > 0, "Mounting axis must be nonzero").default([0, 0, 1]) })).default([]),
+  keepouts: z.array(z.object({ name: z.string(), at: XYZ, size: z.tuple([z.number().positive(), z.number().positive(), z.number().positive()]) })).default([]),
+  source: z.string().optional(),
+  massSource: z.enum(["measured", "manufacturer", "estimated"]).default("estimated"),
+})
+export type PhysicalPart = z.infer<typeof PhysicalPart>
+
 export const Part = z
   .object({
     id: PartId,
     name: z.string().min(1),
     description: z.string().default(""),
     category: z.string().default("misc"),
+    kind: z.enum(["electronic", "mechanical", "module"]).default("electronic"),
     refPrefix: z.string().regex(/^[A-Z]+$/).describe("Reference designator prefix, e.g. R, U, SW"),
     manufacturer: z.string().optional(),
     mpn: z.string().optional(),
     datasheet: z.string().optional(),
-    pins: z.array(Pin).min(1),
+    pins: z.array(Pin).default([]),
     props: z.record(z.string(), z.string()).default({}).describe("Default component properties, e.g. { value: '10k' }"),
     symbol: PartSymbol.optional(),
     footprint: PartFootprint.optional().describe("Default footprint"),
     model3d: z.string().optional().describe("STEP model: a URL, or a path relative to the part folder"),
+    physical: PhysicalPart.optional().describe("Physical geometry, mounting interfaces and sourced mass for assemblies"),
     sim: z.object({ model: z.string(), params: z.record(z.string(), z.unknown()).default({}) }).optional(),
     spice: z.object({ lib: z.string(), subckt: z.string().optional() }).optional(),
   })
+  .refine((p) => p.kind === "mechanical" || p.pins.length > 0, { message: "Electronic parts and modules need pins" })
   .refine((p) => new Set(p.pins.map((pin) => pin.num)).size === p.pins.length, { message: "pin numbers must be unique" })
 
 export const Component = z.object({

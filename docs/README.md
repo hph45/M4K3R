@@ -4,6 +4,8 @@
 
 Runs locally. Clone the repo, run `pnpm dev`, and open http://localhost:4400.
 
+The local v1 release candidate connects graphical circuits, two-layer PCB design and fabrication output, parametric CAD/assemblies, real Pico/ESP32 firmware, supported device co-simulation and weight/thrust planning. Click **Try a demo** for a small circuit or **Plan a drone** for the complete integration example. See [v1 acceptance](v1-acceptance.md) for tested workflows and fidelity limits.
+
 ## Principles
 
 1. **Simple is better.** Every screen, feature and doc should be as small as it can be and still do the job.
@@ -20,7 +22,9 @@ Runs locally. Clone the repo, run `pnpm dev`, and open http://localhost:4400.
 |---|---|
 | [architecture.md](architecture.md) | Stack, packages, project format, key decisions |
 | [api.md](api.md) | HTTP API and MCP tools for agents |
-| [cad.md](cad.md) | Mechanical: sketches, features, assemblies |
+| [cad.md](cad.md) | Parametric sketches and printable solids |
+| [assembly.md](assembly.md) | Catalog parts, mounting, mass/CG/inertia and fit |
+| [pcb.md](pcb.md) | Board design, DRC and fabrication |
 | [electronics.md](electronics.md) | Parts library, schematic, PCB, fab outputs |
 | [firmware.md](firmware.md) | Editor, toolchain, pin header generation, flashing |
 | [simulation.md](simulation.md) | Co-simulation engine and component models |
@@ -28,4 +32,4 @@ Runs locally. Clone the repo, run `pnpm dev`, and open http://localhost:4400.
 
 ## Non-goals for v1
 
-Real-time multi-user editing, ESP32/Wi-Fi emulation, RF field or EM simulation, FEA, particle physics, autorouting, 2D drawings, mobile, and hosting it as a public service.
+Real-time multi-user editing, RF field or EM simulation, FEA, six-axis flight certification, particle physics, global autorouting, 2D manufacturing drawings, mobile, and public hosting. ESP32-C3 machine-code emulation is supported; its external peripheral coupling limits are described in the acceptance document.

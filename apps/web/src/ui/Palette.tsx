@@ -26,7 +26,7 @@ export function Palette() {
     }
   }, [step, query])
 
-  useEffect(() => list.current?.children[active]?.scrollIntoView({ block: "nearest" }), [active])
+  useEffect(() => { list.current?.children[active]?.scrollIntoView({ block: "nearest" }) }, [active])
 
   if (!step) return null
 

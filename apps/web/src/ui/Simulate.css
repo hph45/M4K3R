@@ -1,0 +1,79 @@
+.sim-workspace { height: 100%; display: flex; flex-direction: column; min-height: 0; }
+.sim-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; padding: 14px 24px; border-bottom: 1px solid var(--line); background: var(--surface); }
+.sim-title { display: flex; align-items: center; gap: 8px; font-weight: 600; margin-right: 12px; }
+.sim-status { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); }
+.sim-status.is-running { background: #44b98a; box-shadow: 0 0 0 4px #44b98a18; }
+.sim-toolbar label, .sim-saved-settings label { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.sim-toolbar select, .sim-scope select, .sim-saved-settings select { height: 30px; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 0 8px; font: inherit; }
+.sim-toolbar input, .sim-saved-settings input { width: 80px; height: 30px; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 0 8px; font-family: var(--mono); }
+.sim-toolbar input[aria-invalid], .sim-saved-settings input[aria-invalid] { border-color: var(--danger); }
+.sim-clock { margin-left: 10px; font-family: var(--mono); font-variant-numeric: tabular-nums; min-width: 65px; }
+.sim-factor { color: var(--muted); font-size: 12px; }
+.sim-content { flex: 1; min-height: 0; overflow: auto; padding: 24px; display: flex; flex-direction: column; gap: 26px; }
+.sim-section-title { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 14px; }
+.sim-section-title h2 { font-size: 14px; font-weight: 600; }
+.sim-section-title > span { font-size: 12px; color: var(--muted); }
+.sim-section-title select { margin-left: auto; max-width: 300px; }
+.sim-device-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+.sim-device { position: relative; display: flex; min-height: 140px; flex-direction: column; align-items: flex-start; padding: 15px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); cursor: pointer; }
+.sim-device[data-selected] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.sim-device-heading { display: flex; align-items: baseline; gap: 8px; width: 100%; margin-bottom: 16px; }
+.sim-device-heading strong { font-family: var(--mono); font-size: 12px; }
+.sim-device-heading > span { color: var(--muted); font-size: 12px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.sim-device .sim-current { height: 24px; margin-top: auto; padding: 0; font: 11px var(--mono); }
+.sim-push { align-self: center; margin-bottom: 12px; border-radius: 30px; box-shadow: 0 3px 0 var(--line); touch-action: none; user-select: none; }
+.sim-push[data-pressed] { transform: translateY(2px); box-shadow: none; background: var(--accent-soft); color: var(--accent); }
+.sim-switch { align-self: center; margin-bottom: 12px; }
+.sim-switch > span { position: relative; width: 38px; height: 18px; border-radius: 14px; background: var(--line); }
+.sim-switch > span::after { content: ""; position: absolute; left: 3px; top: 3px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); transition: transform .15s; }
+.sim-switch > span[data-position="B"]::after { transform: translateX(20px); }
+.sim-led-state { display: flex; align-items: center; gap: 15px; margin: 4px 0 12px 10px; }
+.sim-led { display: inline-block; width: 26px; height: 26px; border-radius: 50%; background: var(--led-color); transition: opacity .05s; }
+.sim-motor { gap: 14px; padding: 0; margin: -3px 0 12px; height: 64px; }
+.sim-motor-housing { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--line); background: var(--hover); }
+.sim-motor[data-motor-moving="true"] .sim-motor-housing { border-color: var(--accent); background: var(--accent-soft); }
+.sim-motor svg.sim-rotor { width: 50px; height: 50px; display: block; color: var(--muted); animation: sim-rotate 1s linear infinite; transform-origin: 50% 50%; transform-box: view-box; }
+.sim-motor[data-motor-moving="true"] svg.sim-rotor { color: var(--accent); }
+.sim-fan-blade { fill: currentColor; stroke: none; }
+.sim-fan-hub { fill: var(--surface); stroke: currentColor; stroke-width: 1.5; }
+.sim-fan-marker { fill: var(--surface); stroke: none; }
+.sim-motor-reading { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+.sim-motor-reading strong { font: 600 16px var(--mono); color: var(--text); }
+.sim-motor-reading > span { font-size: 11px; color: var(--muted); }
+.sim-motor[data-motor-state="spinning"] .sim-motor-reading > span { color: var(--accent); }
+@keyframes sim-rotate { to { transform: rotate(360deg); } }
+.sim-battery { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; font-family: var(--mono); font-size: 11px; }
+.sim-battery meter { width: 65px; accent-color: #44b98a; }
+.sim-battery button { padding: 0 3px; }
+.sim-value { margin: 4px 0 14px; font: 16px var(--mono); }
+.sim-unmodeled { color: var(--muted); font-size: 12px; }
+.sim-empty { padding: 30px 20px; background: var(--surface); border: 1px dashed var(--line); border-radius: 8px; text-align: center; color: var(--muted); }
+.sim-error, .sim-warnings { padding: 10px 24px; font-size: 12px; border-bottom: 1px solid var(--line); }
+.sim-error { color: var(--danger); background: color-mix(in srgb, var(--danger) 7%, var(--surface)); }
+.sim-warnings { color: #b88130; background: var(--surface); }
+.sim-scope { min-height: 140px; }
+.sim-trace { margin-bottom: 12px; padding: 8px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.sim-trace-header { display: flex; align-items: center; gap: 14px; font: 11px var(--mono); }
+.sim-trace-header > strong { margin-left: auto; font-weight: 500; }
+.sim-trace-header button { height: 24px; padding: 0 6px; }
+.sim-plot { display: flex; gap: 10px; align-items: stretch; height: 90px; }
+.sim-range { display: flex; flex-direction: column; justify-content: space-between; padding: 8px 0; color: var(--muted); font: 10px/34px var(--mono); min-width: 58px; }
+.sim-plot svg { width: 100%; height: 90px; overflow: hidden; stroke-width: 1.5; }
+.sim-grid { stroke: var(--line); stroke-width: 1; }
+.sim-time-range { display: flex; justify-content: space-between; margin-left: 68px; font: 10px var(--mono); color: var(--muted); }
+.sim-saved-settings { color: var(--muted); font-size: 12px; }
+.sim-saved-settings summary { cursor: pointer; }
+.sim-saved-settings > div { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; padding-top: 12px; }
+.sim-footnote { color: var(--muted); font-size: 11px; }
+.sim-coupled-serial { padding: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; white-space: pre-wrap; font: 11px/1.6 var(--mono); max-height: 240px; overflow: auto; }
+.sim-scenario > p { margin-top: 12px; }
+.sim-scenario textarea { display: block; width: 100%; min-height: 130px; margin-top: 12px; padding: 10px; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: 8px; font: 11px/1.6 var(--mono); }
+.sim-scenario > strong { display: block; margin-top: 12px; color: var(--text); }
+.sim-vehicle > p { margin-top: 12px; }
+.sim-vehicle textarea { display: block; width: 100%; min-height: 160px; padding: 10px; margin-top: 12px; color: var(--text); background: var(--surface); border: 1px solid var(--line); font: 11px/1.6 var(--mono); border-radius: 8px; }
+.sim-vehicle-map { display: block; width: min(100%, 500px); height: 260px; margin-top: 18px; border: 1px solid var(--line); background: var(--surface); stroke-width: .006; }
+.sim-vehicle-map pattern path { stroke: var(--line); fill: none; }
+.sim-vehicle-map > g rect { fill: var(--accent-soft); stroke: var(--accent); }
+.sim-vehicle-map > g path { stroke: var(--accent); fill: none; stroke-width: .01; }
+@media (max-width: 700px) { .sim-toolbar { padding: 12px; } .sim-content { padding: 16px; } .sim-title { width: 100%; } .sim-factor { margin-left: auto; } .sim-section-title > span { display: none; } .sim-device-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } }
+@media (prefers-reduced-motion: reduce) { .sim-motor svg.sim-rotor { animation: none; } }

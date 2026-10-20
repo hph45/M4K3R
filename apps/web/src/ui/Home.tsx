@@ -1,12 +1,14 @@
 import { useState } from "react"
 import { commandsStep } from "../actions"
 import { formatKeys } from "../registry"
-import { createProject, deleteProject, navigate, openPalette, useApp } from "../store"
+import { createDemo, createDrone, createProject, deleteProject, navigate, openPalette, useApp } from "../store"
 
 export function Home() {
   const projects = useApp((s) => s.projects)
   const [name, setName] = useState("")
   const [confirming, setConfirming] = useState<string | null>(null)
+  const [creatingDemo, setCreatingDemo] = useState(false)
+  const [creatingDrone, setCreatingDrone] = useState(false)
 
   return (
     <div className="home">
@@ -30,6 +32,22 @@ export function Home() {
           Create
         </button>
       </form>
+
+      <div className="starter">
+        <div><strong>Make something.</strong><p className="muted">Start with a button, an LED, a motor and an enclosure. Explore the circuit, run it, and change the design.</p></div>
+        <button disabled={creatingDemo} onClick={async () => {
+          setCreatingDemo(true)
+          try { await createDemo() } finally { setCreatingDemo(false) }
+        }}>{creatingDemo ? "Creating…" : "Try a demo"}</button>
+      </div>
+
+      <div className="starter">
+        <div><strong>Plan a complete device.</strong><p className="muted">Explore an ESP32 drone with an editable frame and holder, motors, wiring, a power PCB, firmware, and estimated weight and thrust.</p></div>
+        <button disabled={creatingDrone} onClick={async () => {
+          setCreatingDrone(true)
+          try { await createDrone() } finally { setCreatingDrone(false) }
+        }}>{creatingDrone ? "Creating…" : "Plan a drone"}</button>
+      </div>
 
       <div className="project-list">
         {projects?.map((p) => (

@@ -1,0 +1,120 @@
+{
+  "id": "servo",
+  "name": "Generic micro servo",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "modules",
+  "kind": "module",
+  "refPrefix": "U",
+  "pins": [
+    {
+      "num": "1",
+      "name": "VCC",
+      "type": "power_in"
+    },
+    {
+      "num": "2",
+      "name": "GND",
+      "type": "power_in"
+    },
+    {
+      "num": "3",
+      "name": "SIGNAL",
+      "type": "passive"
+    }
+  ],
+  "props": {},
+  "symbol": {
+    "source": "M4K3R abstract module",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "rect",
+            "start": [-7.5, -5],
+            "end": [7.5, 5],
+            "width": 0.25
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [-10, -1.27],
+            "rot": 0,
+            "length": 2.5
+          },
+          {
+            "num": "2",
+            "at": [-10, 1.27],
+            "rot": 0,
+            "length": 2.5
+          },
+          {
+            "num": "3",
+            "at": [10, -1.27],
+            "rot": 180,
+            "length": 2.5
+          }
+        ]
+      }
+    ]
+  },
+  "footprint": {
+    "source": "M4K3R generic 2.54 mm header interface — verify vendor pinout and geometry",
+    "pads": [
+      {
+        "num": "1",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-10.23, -1.27],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "2",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-10.23, 1.27],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "3",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [10.23, -1.27],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      }
+    ],
+    "graphics": [],
+    "courtyard": {
+      "min": [-12.5, -7],
+      "max": [12.5, 7]
+    }
+  },
+  "physical": {
+    "size": [23, 12, 28],
+    "mass": 9,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "box",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}

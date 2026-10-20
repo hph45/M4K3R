@@ -1,0 +1,129 @@
+{
+  "id": "brushless-motor",
+  "name": "Generic 2205 brushless motor",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "modules",
+  "kind": "module",
+  "refPrefix": "U",
+  "pins": [
+    {
+      "num": "1",
+      "name": "A",
+      "type": "passive"
+    },
+    {
+      "num": "2",
+      "name": "B",
+      "type": "passive"
+    },
+    {
+      "num": "3",
+      "name": "C",
+      "type": "passive"
+    }
+  ],
+  "props": {
+    "kv": "2300",
+    "maxRpm": "20000",
+    "referenceVoltage": "11.1",
+    "efficiency": "0.8",
+    "dataSource": "Illustrative loaded RPM with a 5 inch propeller at 11.1 V, not measured. Replace with measured or vendor data before assessing a real build.",
+    "sizeX": "27",
+    "sizeY": "27",
+    "sizeZ": "25"
+  },
+  "symbol": {
+    "source": "M4K3R abstract module",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "rect",
+            "start": [-7.5, -5.08],
+            "end": [7.5, 5.08],
+            "width": 0.25
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [-10, -2.54],
+            "rot": 0,
+            "length": 2.5
+          },
+          {
+            "num": "2",
+            "at": [-10, 0],
+            "rot": 0,
+            "length": 2.5
+          },
+          {
+            "num": "3",
+            "at": [-10, 2.54],
+            "rot": 0,
+            "length": 2.5
+          }
+        ]
+      }
+    ]
+  },
+  "footprint": {
+    "source": "M4K3R generic 2.54 mm header interface — verify vendor pinout and geometry",
+    "pads": [
+      {
+        "num": "1",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-12.23, -2.54],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "2",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-12.23, 0],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "3",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-12.23, 2.54],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      }
+    ],
+    "graphics": [],
+    "courtyard": {
+      "min": [-14.5, -14.5],
+      "max": [14.5, 14.5]
+    }
+  },
+  "physical": {
+    "size": [27, 27, 25],
+    "mass": 30,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "cylinder",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}

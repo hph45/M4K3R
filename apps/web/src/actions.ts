@@ -137,7 +137,25 @@ registerAction({
 })
 
 registerAction({ id: "undo", title: "Undo", keys: "mod+z", when: inProject, run: undo })
-registerAction({ id: "redo", title: "Redo", keys: "mod+shift+z", when: inProject, run: redo })
+registerAction({ id: "redo", title: "Redo", keys: "mod+shift+z", aliases: ["ctrl+y"], when: inProject, run: redo })
+
+export function newDocument() {
+  openPalette(pick("New document…", availableActions()
+    .filter((action) => action.id !== "project.new" && /^New /i.test(action.title))
+    .map((action) => ({ id: action.id, title: action.title, run: action.run }))))
+}
+
+registerAction({ id: "doc.rename", title: "Rename current document…", when: () => {
+  const { route, project } = useApp.getState()
+  return route.page === "project" && !!project?.docs.some((doc) => doc.id === route.tab)
+}, run() {
+  const { route, project } = useApp.getState()
+  if (route.page !== "project") return
+  const doc = project?.docs.find((doc) => doc.id === route.tab)
+  if (doc) openPalette({ placeholder: "Document name", initial: doc.name,
+    submit: (name) => { if (name.trim()) void run([{ type: "doc.rename", args: { doc: doc.id, name: name.trim() } }], "Rename document") },
+  })
+} })
 
 registerAction({
   id: "tab.switch",
@@ -146,7 +164,7 @@ registerAction({
   run: () =>
     openPalette(
       pick("Which tab?", [
-        { id: "wiring", title: "Wiring", run: () => openTab("wiring") },
+        ...(project()!.docs.some((d) => d.kind === "schematic") ? [] : [{ id: "wiring", title: "Wiring", run: () => openTab("wiring") }]),
         ...project()!.docs.map((d) => ({ id: d.id, title: d.name, hint: d.kind, run: () => openTab(d.id) })),
       ]),
     ),

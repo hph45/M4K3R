@@ -50,6 +50,10 @@ export class Pico {
   onPin?: (gpio: number, state: PinState, nanos: number) => void
   private stopped = false
   private driven = new Set<number>()
+  private measuring = false
+  private sliceHigh = new Float64Array(GPIO_COUNT)
+  private sliceLast = new Float64Array(GPIO_COUNT)
+  private duty = new Float64Array(GPIO_COUNT)
 
   constructor(uf2: Uint8Array) {
     this.mcu.logger = new ConsoleLogger(LogLevel.Error)
@@ -63,6 +67,10 @@ export class Pico {
     this.mcu.uart[1]!.onByte = (b) => emit(2, "Serial2", new Uint8Array([b]))
     this.mcu.gpio.slice(0, GPIO_COUNT).forEach((pin, i) =>
       pin.addListener((state, old) => {
+        if (this.measuring) {
+          if (old === GPIOPinState.High) this.sliceHigh[i]! += this.nanos - this.sliceLast[i]!
+          this.sliceLast[i] = this.nanos
+        }
         if ((state === GPIOPinState.High) !== (old === GPIOPinState.High)) this.edges[i]!++
         // An undriven pad reads back its own output or pull, as on real hardware
         if (!this.driven.has(i)) pin.setInputValue(state === GPIOPinState.High || state === GPIOPinState.InputPullUp)
@@ -79,8 +87,13 @@ export class Pico {
 
   /** Run for a span of simulated time. */
   step(nanos: number) {
+    if (!Number.isFinite(nanos) || nanos < 0) throw new Error("MCU step must be finite and nonnegative")
     const { mcu } = this
     const clock = this.sim.clock
+    const start = clock.nanos
+    this.sliceHigh.fill(0)
+    this.sliceLast.fill(start)
+    this.measuring = true
     const end = clock.nanos + nanos
     while (clock.nanos < end) {
       if (mcu.core.waiting) {
@@ -90,6 +103,22 @@ export class Pico {
         clock.tick((mcu.core.executeInstruction() * 1e9) / mcu.clkSys)
       }
     }
+    this.measuring = false
+    const elapsed = clock.nanos - start
+    for (let gpio = 0; gpio < GPIO_COUNT; gpio++) {
+      if (mcu.gpio[gpio]!.value === GPIOPinState.High) this.sliceHigh[gpio]! += clock.nanos - this.sliceLast[gpio]!
+      this.duty[gpio] = elapsed > 0 ? this.sliceHigh[gpio]! / elapsed : mcu.gpio[gpio]!.value === GPIOPinState.High ? 1 : 0
+    }
+  }
+
+  /** Actual high-time fraction from executed GPIO/PWM edges during the last step. */
+  outputDuty(gpio: number) { return this.duty[gpio] ?? 0 }
+
+  /** Feed real circuit voltages into the rp2040js 12-bit ADC channels on GPIO26–29. */
+  setAnalogInput(gpio: number, voltage: number) {
+    if (gpio < 26 || gpio > 29) return
+    if (!Number.isFinite(voltage)) throw new Error("ADC voltage must be finite")
+    this.mcu.adc.channelValues[gpio - 26] = Math.round(Math.max(0, Math.min(3.3, voltage)) / 3.3 * 4095)
   }
 
   /** Run for ms of simulated time, yielding to the event loop, until done, stop() or the wall-clock cap. */
@@ -145,16 +174,20 @@ export interface RunResult {
   gpio: Record<string, GpioSummary>
   simulatedMs: number
   wallMs: number
+  complete?: boolean
+  warnings?: string[]
 }
 
 /** Boot a firmware image, run it headless for ms of simulated time and report what it did. */
 export async function runFirmware(uf2: Uint8Array, ms: number, wallMs = 10_000): Promise<RunResult> {
   const pico = new Pico(uf2)
   const serial: Partial<Record<SerialPort, string>> = {}
-  pico.onSerial = (port, text) => (serial[port] = (serial[port] ?? "") + text)
+  pico.onSerial = (port, text) => (serial[port] = ((serial[port] ?? "") + text).slice(-65536))
   const start = performance.now()
   await pico.run(ms, wallMs)
   return {
+    complete: pico.nanos >= ms * 1e6,
+    warnings: pico.nanos >= ms * 1e6 ? [] : ["Wall-clock time limit reached before the requested simulated duration."],
     serial,
     gpio: pico.pins(),
     simulatedMs: Math.round(pico.nanos / 1e3) / 1e3,

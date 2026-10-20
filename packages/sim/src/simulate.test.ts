@@ -1,5 +1,6 @@
 import { applyCommands, emptyProject, type Command, type Project } from "@m4k3r/core"
 import { describe, expect, it } from "vitest"
+import { build, refList } from "./build"
 import { simulate } from "./simulate"
 import { circuit, libraryPart } from "./testing"
 
@@ -26,7 +27,7 @@ describe("simulate", () => {
       analysis: "tran", duration: 0.1, step: 1e-4, probes: ["LED", "I(D1)", "D1.brightness"], maxPoints: 10,
       inputs: [{ t: 0.05, ref: "SW1", action: "press" }],
     })
-    expect(r.warnings).toEqual(["J1 (header-1x2) has no sim model and is ignored"])
+    expect(r.warnings).toEqual(["J1 has no simulation model and is ignored"])
     expect(r.waveforms!.time).toHaveLength(10)
     expect(Object.keys(r.waveforms!.series)).toEqual(["V(LED)", "I(D1)", "D1.brightness"])
     expect(r.waveforms!.series["I(D1)"]![3]).toBeLessThan(1e-9)
@@ -66,5 +67,22 @@ describe("simulate", () => {
     expect(r.stats.steps).toBe(100_000)
     expect(r.stats.steps / (r.stats.ms / 1000)).toBeGreaterThan(1e5)
     expect(r.voltages.N20).toBeGreaterThan(0.99)
+  })
+
+  it("groups warnings into one line per kind", () => {
+    expect(refList(["U3", "J2", "J1", "J3", "U1", "J5", "ESC1", "ESC2"])).toBe("ESC1, ESC2, J1–J3, J5, U1, U3")
+    const channel = (n: number): Command[] => [
+      { type: "component.add", args: { part: "esc-20a", ref: `ESC${n}` } },
+      { type: "component.add", args: { part: "brushless-motor", ref: `M${n}` } },
+      { type: "component.add", args: { part: "header-1x2" } },
+      ...["A", "B", "C"].map((phase): Command => ({ type: "net.connect", args: { pins: [`ESC${n}.${phase}`, `M${n}.${phase}`], name: `PHASE_${n}_${phase}` } })),
+      { type: "net.connect", args: { pins: [`ESC${n}.VBAT`, "BT1.+"], name: "VBAT" } },
+      { type: "net.connect", args: { pins: [`ESC${n}.GND`, `J${n}.2`, "BT1.-"], name: "GND" } },
+    ]
+    const p = project({ type: "component.add", args: { part: "battery" } }, ...[1, 2, 3].flatMap(channel))
+    expect(build(p).warnings).toEqual([
+      "3 parts have no simulation model and are ignored: J1–J3",
+      "M1–M3 follow their ESCs' aggregate ESC/motor/propeller model; three-phase waveforms and kV-based thrust are not modeled",
+    ])
   })
 })

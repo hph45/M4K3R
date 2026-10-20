@@ -43,7 +43,7 @@ export class Circuit implements Stamper {
   }
 
   v(i: Node): number {
-    return i < 0 ? 0 : this.x[i]!
+    return i < 0 ? 0 : (this.x[i] ?? 0)
   }
 
   add(row: Node, col: Node, value: number) {
@@ -100,6 +100,7 @@ export class Circuit implements Stamper {
   advance(dt: number) {
     this.t += dt
     this.dt = dt
+    for (const model of this.models) model.beforeStep?.(this.t, dt)
     this.solve()
     for (const m of this.models) m.step?.(this.t, dt)
   }

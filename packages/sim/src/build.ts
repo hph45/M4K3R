@@ -1,6 +1,6 @@
 import { parseQuantity, type Project } from "@m4k3r/core"
 import { Circuit } from "./circuit"
-import { SimError, type Model, type Node } from "./model"
+import { SimError, type Model, type ModelFactory, type Node } from "./model"
 import { models } from "./models"
 
 export const isGround = (net: string) => net.toUpperCase() === "GND" || net === "0"
@@ -15,7 +15,7 @@ export interface Built {
 }
 
 /** Build the analog circuit for a project. Components whose part has no sim model are skipped with a warning. */
-export function build(project: Project): Built {
+export function build(project: Project, overrides: Record<string, ModelFactory> = {}): Built {
   const circuit = new Circuit()
   const warnings: string[] = []
   const netOf = new Map<string, string>()
@@ -31,16 +31,33 @@ export function build(project: Project): Built {
 
   const parts = new Map<string, Model>()
   const groups: Node[][] = []
+  const unmodeled: string[] = [], aggregate: string[] = []
   for (const c of project.components) {
     const part = project.parts[c.part]
     if (!part) throw new SimError(`${c.ref}: part "${c.part}" is missing from the project`)
-    if (!part.sim) {
-      warnings.push(`${c.ref} (${part.id}) has no sim model and is ignored`)
+    let override = overrides[c.ref] ?? overrides[c.id]
+    if (!override && !part.sim && /brushless/i.test(part.id)) {
+      const esc = project.components.find((other) => {
+        const definition = project.parts[other.part]
+        return definition?.sim?.model === "esc-propeller" && ["A", "B", "C"].every((phase) => {
+          const motorPin = part.pins.find((pin) => pin.name === phase), escPin = definition.pins.find((pin) => pin.name === phase)
+          const motorNet = motorPin && netOf.get(`${c.id}/${motorPin.num}`)
+          return !!motorNet && !!escPin && motorNet === netOf.get(`${other.id}/${escPin.num}`)
+        })
+      })
+      if (esc) {
+        override = () => ({ stamp() {}, view: () => ({ ...parts.get(esc.ref)?.view?.(), behavioralSource: esc.ref }) })
+        aggregate.push(c.ref)
+      }
+    }
+    if (!part.sim && !override) {
+      if (part.kind !== "mechanical") unmodeled.push(c.ref)
       continue
     }
-    const factory = models[part.sim.model]
+    const modelName = part.sim?.model ?? "coupled MCU"
+    const factory = override ?? models[modelName]
     if (!factory) {
-      throw new SimError(`${c.ref}: unknown sim model "${part.sim.model}" (known: ${Object.keys(models).join(", ")})`)
+      throw new SimError(`${c.ref}: unknown sim model "${modelName}" (known: ${Object.keys(models).join(", ")})`)
     }
     const byName = new Map<string, Node>()
     const byNum = new Map<string, Node>()
@@ -53,14 +70,14 @@ export function build(project: Project): Built {
     groups.push([...byNum.values()])
 
     const props = { ...part.props, ...c.props }
-    const params = part.sim.params
+    const params = part.sim?.params ?? {}
     const raw = (key: string) => props[key] ?? params[key]
     const model = factory({
       ref: c.ref,
       props,
       pin(name) {
         const node = byName.get(name) ?? byNum.get(name)
-        if (node === undefined) throw new SimError(`${c.ref}: model "${part.sim!.model}" needs a pin named "${name}"`)
+        if (node === undefined) throw new SimError(`${c.ref}: model "${modelName}" needs a pin named "${name}"`)
         return node
       },
       num(key, fallback) {
@@ -83,9 +100,27 @@ export function build(project: Project): Built {
     parts.set(c.ref, model)
   }
 
+  // One line per kind, however many parts it applies to.
+  if (unmodeled.length) warnings.push(unmodeled.length === 1 ? `${unmodeled[0]} has no simulation model and is ignored` : `${unmodeled.length} parts have no simulation model and are ignored: ${refList(unmodeled)}`)
+  if (aggregate.length) warnings.push(`${refList(aggregate)} ${aggregate.length === 1 ? "follows its ESC's" : "follow their ESCs'"} aggregate ESC/motor/propeller model; three-phase waveforms and kV-based thrust are not modeled`)
   const floating = floatingNets(nets, groups)
   if (floating.length) warnings.push(`No connection to GND: ${floating.join(", ")}`)
   return { circuit, nets, parts, warnings }
+}
+
+/** "J1, J2, J3, U1, U3" → "J1–J3, U1, U3" */
+export function refList(refs: string[]) {
+  const parsed = refs.map((ref) => /^(.*?)(\d+)$/.exec(ref)).map((m, i) => m ? { prefix: m[1]!, n: Number(m[2]) } : { prefix: refs[i]!, n: NaN })
+  parsed.sort((a, b) => a.prefix.localeCompare(b.prefix) || a.n - b.n)
+  const out: string[] = []
+  for (let i = 0; i < parsed.length; ) {
+    let j = i
+    while (j + 1 < parsed.length && parsed[j + 1]!.prefix === parsed[i]!.prefix && parsed[j + 1]!.n === parsed[j]!.n + 1) j++
+    const name = (k: number) => Number.isNaN(parsed[k]!.n) ? parsed[k]!.prefix : `${parsed[k]!.prefix}${parsed[k]!.n}`
+    out.push(j - i >= 2 ? `${name(i)}–${name(j)}` : [i, ...(j > i ? [j] : [])].map(name).join(", "))
+    i = j + 1
+  }
+  return out.join(", ")
 }
 
 /** Nets with no path to ground through any part (treating every part as connecting all its pins). */

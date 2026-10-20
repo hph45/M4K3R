@@ -3,13 +3,17 @@ import { z } from "zod"
 import { Command, CommandError, describeCommands, netlist, netlistText } from "@m4k3r/core"
 import type { DomainContext } from "./domain"
 import { domains } from "./domains"
+import { createDemo } from "./demo"
+import { createDrone } from "./drone"
 import { NotFound } from "./store"
+import { VERSION } from "./version"
 
 const Batch = z.object({ commands: z.array(Command).min(1), label: z.string().optional() })
 
 export function api(ctx: DomainContext) {
   const { store, library } = ctx
   const r = Router()
+  r.get("/health", (_req, res) => res.json({ status: "ok", version: VERSION, domains: domains.map((domain) => domain.name) }))
 
   r.get("/commands", (_req, res) => {
     res.json(describeCommands())
@@ -22,6 +26,13 @@ export function api(ctx: DomainContext) {
   r.post("/projects", (req, res) => {
     const { name } = z.object({ name: z.string().min(1) }).parse(req.body)
     res.status(201).json(store.create(name))
+  })
+
+  r.post("/demo", (_req, res) => {
+    res.status(201).json(createDemo(store))
+  })
+  r.post("/demo/drone", (_req, res) => {
+    res.status(201).json(createDrone(store))
   })
 
   r.get("/projects/:id", (req, res) => {

@@ -1,0 +1,97 @@
+{
+  "id": "connector-xt30",
+  "name": "Generic XT30 battery connection",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "modules",
+  "kind": "module",
+  "refPrefix": "U",
+  "pins": [
+    {
+      "num": "1",
+      "name": "+",
+      "type": "passive"
+    },
+    {
+      "num": "2",
+      "name": "-",
+      "type": "passive"
+    }
+  ],
+  "props": {},
+  "symbol": {
+    "source": "M4K3R abstract module",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "rect",
+            "start": [-7.5, -5],
+            "end": [7.5, 5],
+            "width": 0.25
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [-10, 0],
+            "rot": 0,
+            "length": 2.5
+          },
+          {
+            "num": "2",
+            "at": [10, 0],
+            "rot": 180,
+            "length": 2.5
+          }
+        ]
+      }
+    ]
+  },
+  "footprint": {
+    "source": "M4K3R generic 2.54 mm header interface — verify vendor pinout and geometry",
+    "pads": [
+      {
+        "num": "1",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-6.23, 0],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "2",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [6.23, 0],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      }
+    ],
+    "graphics": [],
+    "courtyard": {
+      "min": [-8.5, -5],
+      "max": [8.5, 5]
+    }
+  },
+  "physical": {
+    "size": [15, 8, 8],
+    "mass": 2,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "box",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  }
+}

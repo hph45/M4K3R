@@ -7,8 +7,15 @@
     "typecheck": "tsc -p ."
   },
   "dependencies": {
+    "@m4k3r/assembly": "workspace:*",
+    "@m4k3r/cad": "workspace:*",
     "@m4k3r/core": "workspace:*",
+    "@m4k3r/ecad": "workspace:*",
+    "@m4k3r/firmware": "workspace:*",
+    "@m4k3r/sim": "workspace:*",
+    "esptool-js": "^0.7.0",
     "immer": "^11.1.21",
+    "monaco-editor": "^0.57.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "zustand": "^5.0.15"

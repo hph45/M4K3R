@@ -1,5 +1,5 @@
 import type { Project } from "@m4k3r/core"
-import { commandsStep } from "../actions"
+import { commandsStep, newDocument } from "../actions"
 import { docView, formatKeys } from "../registry"
 import { openPalette, openTab, redo, run, undo, useApp } from "../store"
 import { Editable } from "./Editable"
@@ -11,8 +11,10 @@ export function ProjectView({ tab }: { tab: string }) {
   const history = useApp((s) => s.history)
   if (!project) return <div className="loading" />
 
+  // The first schematic is the project's circuit: it owns the Wiring view, and "wiring" routes open it.
+  const circuit = project.docs.find((d) => d.kind === "schematic")
   const doc = project.docs.find((d) => d.id === tab)
-  const current = doc ? doc.id : "wiring"
+  const current = doc ? doc.id : (circuit?.id ?? "wiring")
 
   return (
     <div className="project">
@@ -49,14 +51,15 @@ export function ProjectView({ tab }: { tab: string }) {
         </button>
       </header>
 
-      <main className="doc">{doc ? <DocView project={project} docId={doc.id} /> : <Wiring project={project} />}</main>
+      <main className="doc">{doc && doc.id !== circuit?.id ? <DocView project={project} docId={doc.id} /> : <Wiring key={tab} project={project} />}</main>
 
       <nav className="tabs">
-        {[{ id: "wiring", name: "Wiring" }, ...project.docs].map((d) => (
+        {[...(circuit ? [] : [{ id: "wiring", name: "Wiring" }]), ...project.docs].map((d) => (
           <button key={d.id} className="tab" data-active={d.id === current || undefined} onClick={() => openTab(d.id)}>
             {d.name}
           </button>
         ))}
+        <button className="tab" onClick={newDocument}>＋ New document</button>
       </nav>
     </div>
   )

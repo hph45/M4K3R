@@ -13,7 +13,7 @@ function onKeyDown(e: KeyboardEvent) {
   }
   if (e.key === "Escape") return useApp.getState().palette ? closePalette() : clearSelection()
   if ((e.target as HTMLElement).closest?.("input, textarea, select, [contenteditable]")) return
-  const action = availableActions().find((a) => a.keys && matchesKeys(a.keys, e))
+  const action = availableActions().find((a) => [a.keys, ...(a.aliases ?? [])].some((keys) => keys && matchesKeys(keys, e)))
   if (action) {
     e.preventDefault()
     action.run()

@@ -1,6 +1,6 @@
 import { execFile } from "node:child_process"
 import { createHash } from "node:crypto"
-import { existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from "node:fs"
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs"
 import { join } from "node:path"
 import { promisify } from "node:util"
 
@@ -11,6 +11,12 @@ export const CLI_VERSION = "1.5.1"
 export const CORE = "rp2040:rp2040"
 export const CORE_VERSION = "6.2.0"
 const CORE_INDEX = "https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json"
+export const ESP_CORE = "esp32:esp32"
+export const ESP_CORE_VERSION = "3.3.12"
+const ESP_INDEX = "https://espressif.github.io/arduino-esp32/package_esp32_index.json"
+export type Platform = "rp2040" | "esp32"
+export const coreFor = (platform: Platform = "rp2040") => platform === "esp32"
+  ? { name: ESP_CORE, version: ESP_CORE_VERSION } : { name: CORE, version: CORE_VERSION }
 
 const CLI_BUILDS: Record<string, { file: string; sha256: string }> = {
   "darwin-arm64": {
@@ -23,6 +29,7 @@ const CLI_BUILDS: Record<string, { file: string; sha256: string }> = {
 }
 
 export type Log = (line: string) => void
+const installQueues = new Map<string, Promise<unknown>>()
 
 /**
  * arduino-cli, the arduino-pico core and libraries, installed on demand under <home>/.toolchains.
@@ -34,7 +41,6 @@ export class Toolchain {
   readonly config: string
   /** Extra arguments for arduino-cli compile on this host. */
   compileArgs: string[] | undefined
-  private queue: Promise<unknown> = Promise.resolve()
 
   constructor(
     home: string,
@@ -51,9 +57,9 @@ export class Toolchain {
   }
 
   /** Install whatever is missing. Concurrent callers wait for one install at a time. */
-  ensure(libs: string[] = []): Promise<void> {
-    const next = this.queue.then(() => this.install(libs))
-    this.queue = next.catch(() => {})
+  ensure(libs: string[] = [], platform: Platform = "rp2040"): Promise<void> {
+    const next = (installQueues.get(this.dir) ?? Promise.resolve()).then(() => this.install(libs, platform))
+    installQueues.set(this.dir, next.catch(() => {}))
     return next
   }
 
@@ -79,15 +85,15 @@ export class Toolchain {
     this.log(`${what} done in ${((Date.now() - t) / 1000).toFixed(1)} s`)
   }
 
-  private async install(libs: string[]) {
+  private async install(libs: string[], platform: Platform) {
     mkdirSync(this.dir, { recursive: true })
     if (!existsSync(this.cli)) await this.downloadCli()
-    if (!existsSync(this.config)) {
+    if (!existsSync(this.config) || !readFileSync(this.config, "utf8").includes(ESP_INDEX)) {
       writeFileSync(
         this.config,
         [
           "board_manager:",
-          `  additional_urls: [${CORE_INDEX}]`,
+          `  additional_urls: [${CORE_INDEX}, ${ESP_INDEX}]`,
           "directories:",
           `  data: ${join(this.dir, "arduino")}`,
           `  downloads: ${join(this.dir, "downloads")}`,
@@ -100,10 +106,11 @@ export class Toolchain {
         ].join("\n"),
       )
     }
-    const stamp = join(this.dir, "arduino", `${CORE}@${CORE_VERSION}.installed`.replace(":", "_"))
+    const core = coreFor(platform)
+    const stamp = join(this.dir, "arduino", `${core.name}@${core.version}.installed`.replace(":", "_"))
     if (!existsSync(stamp)) {
       await this.cliOrThrow("Updating package index", ["core", "update-index"])
-      await this.cliOrThrow(`Installing ${CORE}@${CORE_VERSION}`, ["core", "install", `${CORE}@${CORE_VERSION}`])
+      await this.cliOrThrow(`Installing ${core.name}@${core.version}`, ["core", "install", `${core.name}@${core.version}`])
       writeFileSync(stamp, "")
       rmSync(join(this.dir, "downloads"), { recursive: true, force: true })
     }

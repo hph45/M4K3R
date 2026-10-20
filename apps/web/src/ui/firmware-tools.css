@@ -1,0 +1,19 @@
+.firmware-editor-shell { flex: 1; display: flex; flex-direction: column; min-height: 180px; min-width: 0; background: var(--bg); }
+.firmware-editor-mode { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 16px; border-bottom: 1px solid var(--line); }
+.firmware-editor-mode button { height: 25px; }
+.firmware-monaco { flex: 1; min-height: 140px; min-width: 0; overflow: hidden; }
+.firmware-monaco > .muted { display: inline-block; padding: 18px; }
+.firmware-editor-shell > .electronics-error { margin: 8px 16px; }
+.firmware-hardware { border-top: 1px solid var(--line); margin-top: 8px; padding-top: 10px; }
+.firmware-hardware summary { cursor: pointer; font-weight: 600; }
+.firmware-hardware summary > .muted { font-weight: 400; }
+.firmware-hardware > p { margin: 10px 0; }
+.firmware-hardware-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.firmware-hardware label { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+.firmware-hardware select { border: 1px solid var(--line); border-radius: 6px; color: var(--text); background: var(--bg); font: inherit; padding: 5px; }
+.firmware-serial-send { display: flex; gap: 8px; margin: 10px 0; }
+.firmware-serial-send input { flex: 1; min-width: 70px; font: 12px var(--mono); }
+.firmware-flash { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+.firmware-flash > p { width: 100%; margin: 0 0 3px; }
+.firmware-flash-progress progress { width: 120px; }
+.firmware-hardware .firmware-hardware-log { height: 145px; overflow: auto; white-space: pre-wrap; border: 1px solid var(--line); border-radius: 6px; padding: 10px; background: var(--bg); }

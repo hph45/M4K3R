@@ -19,9 +19,7 @@
 
 **The server is the single writer.** The UI and agents both send the same **commands**. The server applies them, saves to disk, and broadcasts the patch to every connected client. That's why an agent's edit shows up in your browser immediately.
 
-**Compute is isomorphic.** `core`, `cad`, `ecad` and `sim` run in both the browser and Node:
-- The UI runs them in Web Workers for interactive speed.
-- The server runs them for agents and CI, for example "run this scenario and return the results".
+**Execution placement:** CAD/assembly evaluate on the local server using the real OCCT kernel. Analog simulation runs in a browser worker for interactive feedback. Coupled MCU/device execution and firmware compilation run on the server. `core`, `ecad` and `sim` use the same TypeScript contracts in the browser and Node. Browser-safe assembly types/math are separate from its Node evaluator.
 
 ## Stack
 
@@ -30,14 +28,14 @@
 | Language | TypeScript everywhere |
 | Server | Node 24, Express, `ws`, MCP SDK (Streamable HTTP) |
 | UI | React + Vite (served through the server in dev), Zustand |
-| 3D | three.js via react-three-fiber |
+| 3D | Opaque Canvas mesh viewport with orbit, picking, anchors and CG markers |
 | CAD kernel | OpenCascade (OCCT) WASM, through [replicad](https://replicad.xyz) |
 | Sketch solver | planegcs (FreeCAD's solver, WASM) |
-| 2D canvas (schematic, PCB) | Canvas 2D first, WebGL only where profiling demands it |
-| Polygon ops (copper pours) | Clipper2 |
-| MCU emulation | [rp2040js](https://github.com/wokwi/rp2040js) |
-| Circuit analysis | ngspice compiled to WASM |
-| Code editor | Monaco |
+| 2D canvas (schematic, PCB) | SVG with shared transformed geometry and interactive editing |
+| Polygon ops (copper pours) | polygon-clipping; earcut for board triangulation |
+| MCU emulation | [rp2040js](https://github.com/wokwi/rp2040js) and checksum-pinned Espressif ESP-EMU WASM |
+| Circuit analysis | MNA behavioral solver now; ngspice WASM planned |
+| Code editor | Locally bundled Monaco C++, inline compiler markers and plain-text fallback; recoverable drafts |
 | Schemas | zod, so one definition gives types, validation and API docs |
 | Edits | immer patches, so undo/redo and live sync come free |
 | Tests | Vitest |
@@ -47,12 +45,14 @@
 
 ```
 apps/server       local server: API, MCP, WS, file store, firmware builds
-apps/web          UI shell and the five workspaces
+apps/web          UI shell and registered domain workspaces
 packages/core     project model, schemas, commands, units, netlist
 packages/parts    KiCad importers, part utilities
 packages/cad      feature evaluation (OCCT)
-packages/ecad     schematic + PCB logic, ERC/DRC, fab export
-packages/sim      engine, models, scenarios, SPICE netlister
+packages/ecad     schematic/PCB geometry, ERC/DRC, copper routing and fabrication
+packages/sim      MNA models, MCU bridges, protocols, scenarios, vehicles and device analysis
+packages/firmware pinned compilers, real MCU runtimes and peripheral adapters
+packages/assembly catalog/CAD/PCB placement, mounting, mass/inertia and interference
 library/parts     built-in generic parts (R, C, LED, button, …)
 ```
 
@@ -119,10 +119,10 @@ Geometry, netlists and check results are derived and never saved.
 |---|---|---|---|
 | Delivery | Local server + browser UI | Clone and run. Real files on disk. Agents get an API. | We want a hosted version |
 | Writes | Server applies all commands | One source of truth. Live sync for UI and agents. | Multi-user editing (likely Yjs) |
-| MCU for v1 | RP2040 only | Popular, capable, and rp2040js is open source. | We need AVR (add avr8js) or ESP32 |
-| Firmware | Arduino C++ (arduino-pico core) | Huge library ecosystem. Code runs unmodified on hardware. | Users want MicroPython |
+| MCU for v1 | RP2040 and supported ESP32 targets | Actual machine-code execution; Pico offers richer peripheral coupling. | More verified adapters are needed |
+| Firmware | Arduino C++ (pinned arduino-pico / Espressif cores) | Huge library ecosystem. Code runs unmodified on hardware. | Users want MicroPython |
 | Compile | Server runs arduino-cli, which is fetched on first build | No in-browser ARM GCC. No Docker required. | A clang-wasm toolchain matures |
 | CAD kernel | OCCT via replicad | Real B-rep, fillets, STEP I/O | Size or performance blocks us |
 | Footprints and symbols | Import KiCad libraries | Thousands of vetted parts | — |
 | Live sim | Behavioral models + small MNA solver | Fast enough to run interactively with firmware | Accuracy gaps that SPICE can't cover |
-| Detailed analog | ngspice WASM | Accuracy without building our own SPICE | — |
+| Detailed analog | MNA behavioral solver; ngspice remains future scope | Current component models publish their assumptions. | Precision models require SPICE |

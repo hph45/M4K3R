@@ -111,6 +111,22 @@ export async function createProject(name: string) {
   if (project) navigate({ page: "project", id: project.id, tab: "wiring" })
 }
 
+export async function createDemo() {
+  const project = await safe(api.createDemo())
+  if (project) {
+    const tab = project.docs.find((doc) => doc.kind === "schematic")?.id ?? "wiring"
+    navigate({ page: "project", id: project.id, tab })
+  }
+}
+
+export async function createDrone() {
+  const project = await safe(api.createDrone())
+  if (project) {
+    const tab = project.docs.find((doc) => doc.kind === "assembly")?.id ?? "wiring"
+    navigate({ page: "project", id: project.id, tab })
+  }
+}
+
 export async function deleteProject(id: string) {
   await safe(api.deleteProject(id))
   loadProjects()

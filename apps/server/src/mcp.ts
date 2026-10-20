@@ -5,6 +5,9 @@ import { z } from "zod"
 import { Command, commandList, describeCommands, netlistText, Part } from "@m4k3r/core"
 import { tool, type DomainContext } from "./domain"
 import { domains } from "./domains"
+import { VERSION } from "./version"
+import { createDemo } from "./demo"
+import { createDrone } from "./drone"
 
 const INSTRUCTIONS = `M4K3R is a hardware design tool (CAD, schematic, PCB, firmware, simulation).
 Every edit is a command applied with apply_commands; the user's browser updates live.
@@ -13,7 +16,7 @@ If a part you need is missing, search_parts first, then import it from KiCad (se
 
 function build(ctx: DomainContext) {
   const { store, library } = ctx
-  const server = new McpServer({ name: "m4k3r", version: "0.1.0" }, { instructions: INSTRUCTIONS })
+  const server = new McpServer({ name: "m4k3r", version: VERSION }, { instructions: INSTRUCTIONS })
   const project = z.string().describe("Project id (from list_projects)")
 
   server.registerTool(
@@ -41,6 +44,12 @@ function build(ctx: DomainContext) {
         history: store.historyLabels(id),
       }
     }),
+  )
+
+  server.registerTool(
+    "create_example_project",
+    { description: "Create an editable local example: button circuit/enclosure or complete ESP32 drone planning assembly, wiring, power PCB, firmware and explicit propulsion estimates.", inputSchema: { example: z.enum(["button", "drone"]) } },
+    tool(({ example }: { example: "button" | "drone" }) => example === "drone" ? createDrone(store) : createDemo(store)),
   )
 
   server.registerTool(

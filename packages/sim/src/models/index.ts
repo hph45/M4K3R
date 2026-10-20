@@ -10,8 +10,10 @@ import { nmos } from "./nmos"
 import { resistor } from "./resistor"
 import { toggleSwitch } from "./switch"
 import { vsource } from "./vsource"
+import { regulator, hBridge, escPropeller } from "./propulsion"
 
 /** Keyed by part.sim.model */
 export const models: Record<string, ModelFactory> = {
   resistor, capacitor, inductor, diode, led, battery, button, switch: toggleSwitch, "dc-motor": dcMotor, nmos, vsource,
+  regulator, "h-bridge": hBridge, "esc-propeller": escPropeller,
 }

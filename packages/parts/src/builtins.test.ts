@@ -9,6 +9,7 @@ describe("built-in parts", () => {
 
   it("all have a symbol and a footprint whose pads match the pins", () => {
     for (const part of parts) {
+      if (part.kind === "mechanical") continue
       expect(part.symbol, part.id).toBeDefined()
       const pads = new Set(part.footprint!.pads.map((p) => p.num))
       for (const pin of part.pins) expect(pads.has(pin.num), `${part.id} pin ${pin.num}`).toBe(true)

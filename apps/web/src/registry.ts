@@ -23,6 +23,7 @@ export interface Action {
   title: string
   /** Shortcut such as "mod+shift+z". mod is ⌘ on a Mac and Ctrl elsewhere. */
   keys?: string
+  aliases?: string[]
   /** Hide the action where it doesn't apply. */
   when?(): boolean
   run(): void
@@ -43,7 +44,8 @@ export function matchesKeys(keys: string, e: KeyboardEvent) {
   const key = mods.pop()
   return (
     e.key.toLowerCase() === key &&
-    (isMac() ? e.metaKey : e.ctrlKey) === mods.includes("mod") &&
+    e.metaKey === (mods.includes("meta") || (isMac() && mods.includes("mod"))) &&
+    e.ctrlKey === (mods.includes("ctrl") || (!isMac() && mods.includes("mod"))) &&
     e.shiftKey === mods.includes("shift") &&
     e.altKey === mods.includes("alt")
   )

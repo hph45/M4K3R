@@ -9,6 +9,7 @@
     "typecheck": "tsc -p ."
   },
   "dependencies": {
-    "@m4k3r/core": "workspace:*"
+    "@m4k3r/core": "workspace:*",
+    "zod": "^4.6.7"
   }
 }

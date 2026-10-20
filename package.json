@@ -11,11 +11,17 @@
     "build": "pnpm --filter @m4k3r/web build",
     "start": "pnpm --filter @m4k3r/server start",
     "test": "vitest run",
-    "typecheck": "pnpm -r typecheck"
+    "test:e2e": "playwright test",
+    "typecheck": "pnpm -r typecheck",
+    "release:package": "node scripts/release/package.mjs",
+    "release:check": "node scripts/release/check.mjs",
+    "release:start": "node scripts/release/start.mjs"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.1",
     "@types/node": "^26.6.5",
     "typescript": "^7.0.2",
     "vitest": "^5.0.5"
-  }
+  },
+  "version": "1.0.0-rc.1"
 }

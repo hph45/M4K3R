@@ -3,6 +3,7 @@
   "name": "N-channel MOSFET",
   "description": "SOT-23 pinout (2N7002-style)",
   "category": "discrete",
+  "kind": "electronic",
   "refPrefix": "Q",
   "pins": [
     {
@@ -486,6 +487,19 @@
     }
   },
   "model3d": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/Package_TO_SOT_SMD.3dshapes/SOT-23.step",
+  "physical": {
+    "size": [3, 1.4, 1.1],
+    "mass": 0.01,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "box",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  },
   "sim": {
     "model": "nmos",
     "params": {

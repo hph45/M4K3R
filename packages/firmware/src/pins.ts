@@ -1,8 +1,8 @@
 import { findComponent, partOf, type Pin, type Project } from "@m4k3r/core"
 
-/** GPIO number of an MCU pin: from its name (GP10, GPIO10) or a GPIO10 function. */
+/** GPIO number of an MCU pin: from its name (GP10, GPIO10, ESP32-style IO10) or such a function. */
 export function gpioOf(pin: Pin): number | undefined {
-  const match = [pin.name, ...(pin.functions ?? [])].map((s) => /^GP(?:IO)?(\d+)$/i.exec(s)).find(Boolean)
+  const match = [pin.name, ...(pin.functions ?? [])].map((s) => /^(?:GP(?:IO)?|IO)(\d+)$/i.exec(s)).find(Boolean)
   return match ? Number(match[1]) : undefined
 }
 

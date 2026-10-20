@@ -1,0 +1,105 @@
+{
+  "id": "flight-battery",
+  "name": "Generic 3S 850 mAh LiPo",
+  "description": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+  "category": "modules",
+  "kind": "module",
+  "refPrefix": "U",
+  "pins": [
+    {
+      "num": "1",
+      "name": "+",
+      "type": "passive"
+    },
+    {
+      "num": "2",
+      "name": "-",
+      "type": "passive"
+    }
+  ],
+  "props": {
+    "voltage": "11.1V",
+    "capacity": "0.85Ah",
+    "resistance": "0.08"
+  },
+  "symbol": {
+    "source": "M4K3R abstract module",
+    "units": [
+      {
+        "graphics": [
+          {
+            "type": "rect",
+            "start": [-7.5, -5],
+            "end": [7.5, 5],
+            "width": 0.25
+          }
+        ],
+        "pins": [
+          {
+            "num": "1",
+            "at": [-10, 0],
+            "rot": 0,
+            "length": 2.5
+          },
+          {
+            "num": "2",
+            "at": [10, 0],
+            "rot": 180,
+            "length": 2.5
+          }
+        ]
+      }
+    ]
+  },
+  "footprint": {
+    "source": "M4K3R generic 2.54 mm header interface — verify vendor pinout and geometry",
+    "pads": [
+      {
+        "num": "1",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [-28.73, 0],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      },
+      {
+        "num": "2",
+        "type": "thru_hole",
+        "shape": "circle",
+        "at": [28.73, 0],
+        "size": [1.7, 1.7],
+        "drill": [1, 1],
+        "layers": [
+          "*.Cu",
+          "*.Mask"
+        ]
+      }
+    ],
+    "graphics": [],
+    "courtyard": {
+      "min": [-31, -16],
+      "max": [31, 16]
+    }
+  },
+  "physical": {
+    "size": [60, 30, 24],
+    "mass": 75,
+    "centerOfMass": [0, 0, 0],
+    "geometry": {
+      "type": "box",
+      "color": "#7296a6"
+    },
+    "mountingHoles": [],
+    "keepouts": [],
+    "source": "M4K3R generic planning envelope and estimated mass; replace with measurements or the selected vendor's data before fabrication.",
+    "massSource": "estimated"
+  },
+  "sim": {
+    "model": "battery",
+    "params": {}
+  }
+}
